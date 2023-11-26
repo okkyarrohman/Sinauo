@@ -11,11 +11,13 @@
 
 <style>
     .container {
-        width: 90%
+        width: 100%;
+
     }
 
     .group-1 {
-        width: 90%;
+        width: 100%;
+        height: 526px;
 
     }
 
@@ -28,7 +30,6 @@
         font-family: 'Gilroy', ;
         font-weight: 700;
         font-size: 69px;
-
         margin-right: 20%;
     }
 
@@ -78,10 +79,68 @@
         font-size: 24px;
         color: white;
     }
+
+
+    .temukan-section {
+        width: 90%;
+
+    }
+
+    .title .title-temukan {
+        font-family: 'Gilroy', ;
+        font-weight: 700;
+        font-size: 45px;
+
+    }
+
+    .title span {
+        color: #006CEC;
+    }
+
+    .par .par-temukan {
+        width: 50%;
+        align-items: center;
+    }
+
+
+    .tujuan-section {
+        border: solid 1px;
+    }
+
+    .tujuan-section .content-2 {
+        border: solid 1px;
+    }
+
+    .tujuan-section .content-1 {
+        border: solid 1px;
+    }
+
+    .content-1 .font-tujuan {
+        border: solid 1px;
+        text-align: left;
+        font-family: 'Gilroy', ;
+        font-weight: 700;
+        font-size: 69px;
+    }
+
+    .content-1 .par-tujuan {
+        border: solid 1px;
+        font-weight: 400;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    .font-tujuan span {
+        color: #006CEC;
+    }
+
+    .tujuan-section .content-3 {
+        border: solid 1px;
+    }
 </style>
 
 <body>
-    <nav class="navbar bg-body-tertiary shadow-sm " style="width: 90%;">
+    <nav class="navbar bg-body-tertiary shadow-sm " style="width: 100%;">
         <div class="container-sm">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('nonUser/img/logo.svg') }}" alt="Logo" width="100" height="50"
@@ -123,7 +182,7 @@
         </div>
     </div>
 
-    <div class="fitur-section bg-primary">
+    <div class="fitur-section bg-primary w-100">
         <div class="fitur d-flex justify-content-between">
             <div class="gourp-1">
                 <div class="row mt-5 pt-4">
@@ -171,6 +230,7 @@
                 </div>
             </div>
             <div class="keterangan">
+
                 <h2>Fitur <span>Populer</span></h2>
                 <p>SinauO! merupakan platform pembelajaran terbaik ,dengan menghadirkan pengalaman belajar yang baik
                     bagi Anda, SinauO! juga menyediakan banyak konten belajar yang terstruktur untuk mendukung desain
@@ -178,10 +238,97 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
+    <div class="temukan-section w-100">
+        <div class="title mt-4 d-flex justify-content-center">
+            <h2 class="title-temukan">Temukan <span>Kontent Belajar</span> Terbaik</h2>
+        </div>
+        <div class="par d-flex justify-content-center">
+            <p class="par-temukan ">Menjelajahi ilmu tanpa batas: temukan konten belajar terbaik untuk mengasah
+                kemampuanmu di bidang desain website.</p>
+        </div>
+
+        <br><br>
+        <div class="row ms-5 ps-5">
+            <div class="card ms-5 shadow-lg" style="width: 320px;">
+                <img src="{{ asset('nonUser/img/card-1.svg') }}" class="card-img" alt="..." width="300px"
+                    height="200px">
+                <div class="card-body">
+                    <h5 class="card-title" style=" font-weight:700; font-size:20px; font-family:'Gilroy',">Modul dan
+                        Materi Ajar </h5>
+                    <p class="card-text">Rangkaian materi yang dirancang secara sistematis untuk memandu proses belajar
+                    </p>
+                </div>
+            </div>
+            <div class="card ms-5 shadow-lg" style="width: 320px;">
+                <img src="{{ asset('nonUser/img/card-2.svg') }}" class="card-img" alt="..." width="300px"
+                    height="200px">
+                <div class="card-body">
+                    <h5 class="card-title" style=" font-weight:700; font-size:20px; font-family:'Gilroy',">Video dan
+                        Tutorial Praktik</h5>
+                    <p class="card-text">Memberikan panduan dan langkah-langkah pembelajaran melalui media visual</p>
+                </div>
+            </div>
+            <div class="card ms-5 shadow-lg" style="width: 320px;">
+                <img src="{{ asset('nonUser/img/card-3.svg') }}" class="card-img" alt="..." width="300px"
+                    height="200px">
+                <div class="card-body">
+                    <h5 class="card-title" style=" font-weight:700; font-size:20px; font-family:'Gilroy',">Referensi
+                        Proyek </h5>
+                    <p class="card-text">Dasar informasi, mengembangkan, atau melaksanakan suatu proyek. amet
+                        consectetur.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="tujuan-section d-flex justify-content-between">
+        <div class="content-2">
+            <div class="img ms-5">
+                <img src="{{ asset('nonUser/img/tujuan.svg') }}" alt="" width="500px" height="500px">
+            </div>
+        </div>
+        <div class="content-1 ps-5 p-5 px-5 w-100">
+            <h2 class="font-tujuan">Capai Tujuan Belajar dengan <span>SinauO</span></h2>
+            <p class="par-tujuan">SinauO! merupakan platform pembelajaran terbaik , dengan menghadirkan pengalaman
+                belajar yang baik bagi Anda, SinauO! juga menyediakan banyak konten belajar dengan berbagai keunggulan.
+            </p>
+            <div class="content-1.1 w-100">
+                <div class="point-1 d-flex ">
+                    <img src="{{ asset('nonUser/img/point-1.svg') }}" alt="" width="50" height="100">
+                    <p class="text p-4">Menyediakan konten pembelajaran yang berkualitas tinggi, termasuk tutorial,
+                        studi kasus, dan
+                        sumber
+                        daya pendukung lainnya.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
 
 
 

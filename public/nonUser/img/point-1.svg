@@ -1,3 +1,22 @@
-<svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<ellipse id="Ellipse 1985" cx="19.3671" cy="20" rx="19.3671" ry="20" fill="#AB99FB"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24" fill="#1E1E1E"/>
+<g clip-path="url(#clip0_1_2)">
+<rect width="1440" height="2906" transform="translate(-732 -2495)" fill="white"/>
+<g filter="url(#filter0_f_1_2)">
+<ellipse cx="12.3671" cy="24.5" rx="9.68354" ry="7.5" fill="#FFB132"/>
+</g>
+<ellipse cx="12.3671" cy="12" rx="19.3671" ry="20" fill="#AB99FB"/>
+<path d="M10.4303 21H4.62021C4.36339 21 4.11708 20.8946 3.93548 20.7071C3.75388 20.5196 3.65186 20.2652 3.65186 20V7L7.52527 3H16.2405C16.4973 3 16.7436 3.10536 16.9252 3.29289C17.1068 3.48043 17.2088 3.73478 17.2088 4V10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.52539 9H13.3355M17.2089 14L16.0082 16.3L13.3355 16.67L15.2722 18.47L14.8171 21L17.2089 19.8L19.6008 21L19.1456 18.47L21.0824 16.67L18.4097 16.3L17.2089 14ZM7.52539 13H13.3355H7.52539Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_f_1_2" x="-12.3164" y="2" width="49.3672" height="45" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="7.5" result="effect1_foregroundBlur_1_2"/>
+</filter>
+<clipPath id="clip0_1_2">
+<rect width="1440" height="2906" fill="white" transform="translate(-732 -2495)"/>
+</clipPath>
+</defs>
 </svg>

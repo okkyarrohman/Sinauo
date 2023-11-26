@@ -44,7 +44,7 @@
 
     .fitur-section {
         width: 90%;
-        height: 356px;
+        height: 456px;
     }
 
     .keterangan {
@@ -103,20 +103,14 @@
     }
 
 
-    .tujuan-section {
-        border: solid 1px;
-    }
+    .tujuan-section {}
 
-    .tujuan-section .content-2 {
-        border: solid 1px;
-    }
+    .tujuan-section .content-2 {}
 
-    .tujuan-section .content-1 {
-        border: solid 1px;
-    }
+    .tujuan-section .content-1 {}
 
     .content-1 .font-tujuan {
-        border: solid 1px;
+
         text-align: left;
         font-family: 'Gilroy', ;
         font-weight: 700;
@@ -124,7 +118,7 @@
     }
 
     .content-1 .par-tujuan {
-        border: solid 1px;
+
         font-weight: 400;
         text-align: left;
         font-size: 18px;
@@ -134,8 +128,23 @@
         color: #006CEC;
     }
 
-    .tujuan-section .content-3 {
-        border: solid 1px;
+    .footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100px;
+        background-color: #006CEC;
+
+    }
+
+    .footer .text {
+        text-align: center;
+        align-content: center;
+        color: white;
+        font-size: 21px;
+        font-weight: 400;
+        font-family: 'Gilroy', ;
     }
 </style>
 
@@ -185,12 +194,13 @@
     <div class="fitur-section bg-primary w-100">
         <div class="fitur d-flex justify-content-between">
             <div class="gourp-1">
-                <div class="row mt-5 pt-4">
+                <div class="row mt-5 pt-5">
                     <div class="col-md-12">
                         <div class="card m-4 shadow-lg" style="background-color:#6ED7F5;">
                             <div class="content d-flex justify-content-center align-items-center">
                                 <img src="{{ asset('nonUser/img/logo.svg') }}" width="70px" height="70px"alt="">
                             </div>
+                            <br>
                             <br>
                             <p class="par d-flex justify-content-center">Contoh Proyek</p>
                         </div>
@@ -201,6 +211,7 @@
                                 <img src="{{ asset('nonUser/img/logo.svg') }}" width="70px" height="70px"alt="">
                             </div>
                             <br>
+                            <br>
                             <p class="par d-flex justify-content-center">Quiz & Tugas</p>
                         </div>
                     </div>
@@ -208,12 +219,13 @@
             </div>
 
             <div class="group-2">
-                <div class="row mt-5 pt-4">
+                <div class="row mt-5 pt-5">
                     <div class="col-md-12">
                         <div class="card m-4 shadow-lg" style="background-color:#AB99FB;">
                             <div class="content d-flex justify-content-center align-items-center">
                                 <img src="{{ asset('nonUser/img/logo.svg') }}" width="70px" height="70px"alt="">
                             </div>
+                            <br>
                             <br>
                             <p class="par d-flex justify-content-center">Konten Belajar</p>
                         </div>
@@ -223,6 +235,7 @@
                             <div class="content d-flex justify-content-center align-items-center">
                                 <img src="{{ asset('nonUser/img/logo.svg') }}" width="70px" height="70px"alt="">
                             </div>
+                            <br>
                             <br>
                             <p class="par d-flex justify-content-center">Hasil Belajar</p>
                         </div>
@@ -316,14 +329,43 @@
             </p>
             <div class="content-1.1 w-100">
                 <div class="point-1 d-flex ">
-                    <img src="{{ asset('nonUser/img/point-1.svg') }}" alt="" width="50" height="100">
+                    <div class="icon-rounded rounded-circle m-2" style="background-color:#AB99FB;">
+                        <img src="{{ asset('nonUser/img/point-1.svg') }}" width="100" height="100"
+                            class="icon p-4">
+                    </div>
                     <p class="text p-4">Menyediakan konten pembelajaran yang berkualitas tinggi, termasuk tutorial,
                         studi kasus, dan
                         sumber
                         daya pendukung lainnya.</p>
                 </div>
-
             </div>
+
+            <div class="content-1.2 w-100">
+                <div class="point-1 d-flex ">
+                    <div class="icon-rounded rounded-circle m-2" style="background-color:#EC407A;">
+                        <img src="{{ asset('nonUser/img/point-2.svg') }}" width="100" height="100"
+                            class="icon p-4">
+                    </div>
+                    <p class="text p-4">Menyediakan konten pembelajaran yang berkualitas tinggi, termasuk tutorial,
+                        studi kasus, dan
+                        sumber
+                        daya pendukung lainnya.</p>
+                </div>
+            </div>
+
+            <div class="content-1.3 w-100">
+                <div class="point-1 d-flex ">
+                    <div class="icon-rounded rounded-circle m-2" style="background-color:#303F9F;">
+                        <img src="{{ asset('nonUser/img/point-3.svg') }}" width="100" height="100"
+                            class="icon p-4">
+                    </div>
+                    <p class="text p-4">Menyediakan konten pembelajaran yang berkualitas tinggi, termasuk tutorial,
+                        studi kasus, dan
+                        sumber
+                        daya pendukung lainnya.</p>
+                </div>
+            </div>
+
 
         </div>
 
@@ -332,6 +374,11 @@
 
 
 
+    <footer class="footer">
+        <h4 class="text">
+            Copyright @2023, Rara Kirana, All Rights Reserved
+        </h4>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">

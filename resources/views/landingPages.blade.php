@@ -18,7 +18,7 @@
     <nav class="navbar bg-body-tertiary shadow-sm " style="width: 100%;">
         <div class="container-sm">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('nonUser/img/logo.svg') }}" alt="Logo" width="100" height="50"
+                <img src="{{ asset('nonUser/img/logo.svg') }}" alt="Logo" width="200" height="50"
                     class="d-inline-block align-text-top">
             </a>
             <div class="menu d-flex justify-content-end mr-4">
@@ -32,7 +32,7 @@
                     <h6>Tentang</h6>
                 </div>
                 <div class="auth m-4">
-                    <a href="" class="btn btn-primary">
+                    <a href="/login" class="btn btn-primary">
                         <h6>Masuk</h6>
                     </a>
                 </div>

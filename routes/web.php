@@ -26,3 +26,8 @@ Route::get('/register', function () {
     return view('register');
 });
 
+
+Route::get('/layout-murid',function(){
+    return view('layouts.app-murid');
+});
+

@@ -11,6 +11,8 @@
 
 Aplikasi Learning Manajeman Sistem yang terdapat Guru dan Murid yang dimana setiap Role memiliki Feature yang Berbeda beda
 
+## UI UX Design
+[SINAUO](https://www.figma.com/file/oFqc4cfkNgry4X3KfhCzqP/SinauO!?type=design&node-id=1%3A2&mode=design&t=owlBOEAZ92bxULy2-1)
 
 
 # Feature Aplikasi SINAUO 

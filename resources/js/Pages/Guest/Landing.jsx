@@ -9,7 +9,7 @@ import {
     logoSinauo,
 } from "../../../assets";
 
-export default function Landing({ auth, props }) {
+export default function Landing({ auth }) {
     return (
         <>
             <Head title="Home" />
@@ -36,7 +36,7 @@ export default function Landing({ auth, props }) {
                             </li>
                         </ul>
                         {auth.user ? (
-                            <Link href="/dashboard">
+                            <Link href={route("dashboard")}>
                                 <button className="flex items-center gap-2 py-4 px-7 rounded-lg bg-primary hover:bg-primary-dark text-white">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export default function Landing({ auth, props }) {
                                 </button>
                             </Link>
                         ) : (
-                            <Link href="/login">
+                            <Link href={route("login")}>
                                 <button className="py-4 px-9 rounded-lg bg-primary hover:bg-primary-dark text-white">
                                     Masuk
                                 </button>

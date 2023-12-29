@@ -1,14 +1,17 @@
+import { Link } from "@inertiajs/react";
 import { logoSinauo } from "../../../assets";
 
 export default function Sidebar() {
     return (
         <div className="fixed left-0 w-72 py-10 rounded-r-3xl h-screen bg-white shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] flex flex-col justify-between">
             <div className="h-4/5">
-                <img
-                    className="w-44 mb-9 pl-12"
-                    src={logoSinauo}
-                    alt="logo sinauo"
-                />
+                <Link href="/">
+                    <img
+                        className="w-44 mb-9 pl-12"
+                        src={logoSinauo}
+                        alt="logo sinauo"
+                    />
+                </Link>
                 <div className="overflow-y-auto h-[70%]">
                     <p className="text-xl font-semibold mb-3 pl-12">Menu</p>
                     <ul className="*:text-lg *:font-semibold *:h-14 *:pl-12 mb-8">

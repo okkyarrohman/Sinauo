@@ -16,13 +16,25 @@ use Inertia\Inertia;
 |
 */
 
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Guest/Landing', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
+});
+
+Route::get('/layout', function () {
+    return Inertia::render('Siswa/DashboardSiswa');
 });
 
 Route::get('/dashboard', function () {
@@ -38,8 +50,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/testing', function(){
-    return Inertia::render('Testing',[
-        'title' => 'Laravel with react'
-    ]);
-});
+// Route::get('/testing', function(){
+//     return Inertia::render('Testing',[
+//         'title' => 'Laravel with react'
+//     ]);
+// });

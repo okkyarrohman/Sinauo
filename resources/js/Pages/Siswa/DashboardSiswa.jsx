@@ -1,35 +1,49 @@
+import TextInput from "@/Components/TextInput";
 import MainLayout from "@/Layouts/MainLayout";
+import { imageKonten1, imageWelcomeBanner } from "../../../assets";
+import { Head, Link } from "@inertiajs/react";
+import SearchBar from "@/Components/SiswaComponents/SearchBar";
+import WelcomeBanner from "@/Components/SiswaComponents/WelcomeBanner";
+import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
+import QRAbsensi from "@/Components/SiswaComponents/QRAbsensi";
+import InformasiBaru from "@/Components/SiswaComponents/InformasiBaru";
+import TesStatistik from "@/Components/SiswaComponents/TesStatistik";
+import ProgresMateri from "@/Components/SiswaComponents/ProgresMateri";
+import ProgresTugas from "@/Components/SiswaComponents/ProgresTugas";
 
-export default function DashboardSiswa() {
+export default function DashboardSiswa({ auth }) {
     return (
         <MainLayout>
-            <p className="text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Perspiciatis tenetur a neque unde eos! Asperiores unde neque,
-                inventore laudantium nulla dolor totam labore delectus facere
-                eveniet id tempora pariatur optio voluptatum provident. Quam,
-                dolores! Expedita totam eveniet dolorem fuga, sit maxime
-                blanditiis deserunt, natus delectus placeat debitis maiores
-                neque iste perspiciatis repellat tempore animi earum repellendus
-                facere? Eum eaque, dolor fuga itaque dignissimos deleniti,
-                quaerat magnam optio placeat obcaecati quisquam. Natus sit sequi
-                reprehenderit possimus adipisci odio rerum provident dolorum
-                beatae libero dolor, aliquam dolore doloremque fugit labore
-                itaque iure necessitatibus animi amet nulla nobis sint eum
-                nesciunt. Architecto error minus ipsa quam dolor cum dignissimos
-                et ab tempora reprehenderit excepturi, saepe alias eligendi
-                doloremque, laboriosam vel modi eveniet. Ipsam nam voluptates
-                temporibus, modi aspernatur doloribus eum, beatae maiores non
-                consequatur sint nesciunt fuga officiis omnis unde veritatis
-                possimus aut quas vel eos voluptatibus, voluptatem aperiam! Est
-                iusto modi, natus accusamus placeat nulla blanditiis. Enim
-                consequatur esse libero mollitia minus perferendis voluptate
-                quis soluta animi vero voluptatum repellendus ducimus nisi
-                dolorem, est nostrum provident alias quia sunt inventore
-                consequuntur veritatis totam. Voluptatem, quibusdam, dolore
-                voluptates odit maxime illum fugiat dolor blanditiis facilis
-                quod quisquam ut, cupiditate quis hic tenetur harum.
-            </p>
+            <Head title="Dashboard" />
+            <div className="flex mr-[22.5rem]">
+                <section>
+                    <div className="mb-10">
+                        <SearchBar />
+                    </div>
+                    <div className="mb-12">
+                        <WelcomeBanner />
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-12 mb-8">
+                        <TesStatistik />
+                        <ProgresMateri />
+                    </div>
+                    <ProgresTugas />
+                </section>
+                <section className="w-96 h-screen pl-4 pr-12 py-10 bg-white fixed top-0 bottom-0 right-0 rounded-l-3xl shadow-custom">
+                    <div className="mb-9">
+                        <ProfileInfo name={auth.user.name} />
+                    </div>
+                    <div
+                        className="overflow-y-auto pr-2"
+                        style={{ height: "calc(100% - 5.5rem)" }}
+                    >
+                        <div className="mb-8">
+                            <QRAbsensi />
+                        </div>
+                        <InformasiBaru />
+                    </div>
+                </section>
+            </div>
         </MainLayout>
     );
 }

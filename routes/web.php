@@ -33,12 +33,33 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/layout', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
+// Route::get('/dashboard-siswa', function () {
+//     return Inertia::render('Siswa/DashboardSiswa');
+// })->middleware(['auth', 'verified'])->name('dashboard-siswa');
+Route::get('/materi', function () {
+    return Inertia::render('Siswa/MateriSiswa');
+});
+Route::get('/tutorial', function () {
+    return Inertia::render('Siswa/TutorialSiswa');
+});
+Route::get('/referensi', function () {
+    return Inertia::render('Siswa/ReferensiSiswa');
+});
+Route::get('/kuis', function () {
+    return Inertia::render('Siswa/KuisSiswa');
+});
+Route::get('/tugas', function () {
+    return Inertia::render('Siswa/TugasSiswa');
+});
+Route::get('/data-siswa', function () {
+    return Inertia::render('Guru/DataSiswa');
+});
+Route::get('/panduan', function () {
+    return Inertia::render('Siswa/Panduan');
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Siswa/DashboardSiswa');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

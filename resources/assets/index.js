@@ -5,6 +5,8 @@ import imageKonten2 from "./image-konten-home-2.png";
 import imageKonten3 from "./image-konten-home-3.png";
 import imageKeunggulan from "./image-keunggulan.png";
 import imageAuth from "./image-auth.png";
+import imageWelcomeBanner from "./image-welcome-banner.png";
+import placeHolderQR from "./placeholder-qrcode.png";
 
 export {
     logoSinauo,
@@ -14,4 +16,6 @@ export {
     imageKonten3,
     imageKeunggulan,
     imageAuth,
+    imageWelcomeBanner,
+    placeHolderQR,
 };

@@ -7,3 +7,21 @@
 * {
     @apply font-poppins;
 }
+
+::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary-light;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-dark;
+}

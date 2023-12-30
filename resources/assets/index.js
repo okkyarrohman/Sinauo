@@ -9,6 +9,8 @@ import imageWelcomeBanner from "./image-welcome-banner.png";
 import placeholderQR from "./placeholder-qrcode.png";
 import imageBuku from "./image-book.png";
 import placeholderMateri from "./placeholder-materi.png";
+import placeholderReferensi from "./placeholder-referensi.png";
+import placeholderTutorial from "./placeholder-tutorial.png";
 
 export {
     logoSinauo,
@@ -22,4 +24,6 @@ export {
     placeholderQR,
     imageBuku,
     placeholderMateri,
+    placeholderReferensi,
+    placeholderTutorial,
 };

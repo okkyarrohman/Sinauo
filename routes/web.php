@@ -50,33 +50,43 @@ Route::get('/materi/detail-materi/lihat-materi', function () {
     return Inertia::render('Siswa/ViewIsiMateriSiswa');
 })->middleware(['auth', 'verified'])->name('lihat-materi');
 
+// Tutorial
 Route::get('/tutorial', function () {
     return Inertia::render('Siswa/TutorialSiswa');
 })->middleware(['auth', 'verified'])->name('tutorial');
 
+// Referensi
 Route::get('/referensi', function () {
     return Inertia::render('Siswa/ReferensiSiswa');
 })->middleware(['auth', 'verified'])->name('referensi');
 
+Route::get('/referensi/lihat-referensi', function () {
+    return Inertia::render('Siswa/ViewIsiReferensiSiswa');
+})->middleware(['auth', 'verified'])->name('lihat-referensi');
+
+// Kuis
 Route::get('/kuis', function () {
     return Inertia::render('Siswa/KuisSiswa');
 })->middleware(['auth', 'verified'])->name('kuis');
 
+// Tugas
 Route::get('/tugas', function () {
     return Inertia::render('Siswa/TugasSiswa');
 })->middleware(['auth', 'verified'])->name('tugas');
 
+// Data Siswa
 Route::get('/data-siswa', function () {
     return Inertia::render('Guru/DataSiswa');
 })->middleware(['auth', 'verified'])->name('data-siswa');
 
+// Panduan
 Route::get('/panduan', function () {
     return Inertia::render('Siswa/Panduan');
 })->middleware(['auth', 'verified'])->name('panduan');
 
-Route::get('/edit-profil', function () {
-    return Inertia::render('Siswa/EditProfilSiswa');
-})->middleware(['auth', 'verified'])->name('edit-profil');
+// Route::get('/edit-profil', function () {
+//     return Inertia::render('Siswa/EditProfilSiswa');
+// })->middleware(['auth', 'verified'])->name('edit-profil');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Siswa/DashboardSiswa');

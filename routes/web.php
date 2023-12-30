@@ -36,9 +36,19 @@ Route::get('/', function () {
 // Route::get('/dashboard-siswa', function () {
 //     return Inertia::render('Siswa/DashboardSiswa');
 // })->middleware(['auth', 'verified'])->name('dashboard-siswa');
+
+// Materi
 Route::get('/materi', function () {
     return Inertia::render('Siswa/MateriSiswa');
 })->middleware(['auth', 'verified'])->name('materi');
+
+Route::get('/materi/detail-materi', function () {
+    return Inertia::render('Siswa/DetailMateriSiswa');
+})->middleware(['auth', 'verified'])->name('detail-materi');
+
+Route::get('/materi/detail-materi/lihat-materi', function () {
+    return Inertia::render('Siswa/ViewIsiMateriSiswa');
+})->middleware(['auth', 'verified'])->name('lihat-materi');
 
 Route::get('/tutorial', function () {
     return Inertia::render('Siswa/TutorialSiswa');

@@ -45,7 +45,9 @@ export default function Sidebar() {
                         </Link>
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/materi" ? "bg-primary text-white" : ""
+                                url.includes("/materi")
+                                    ? "bg-primary text-white"
+                                    : ""
                             }`}
                             href={route("materi")}
                         >
@@ -95,7 +97,7 @@ export default function Sidebar() {
                         </Link>
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/referensi"
+                                url.includes("/referensi")
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
@@ -126,7 +128,9 @@ export default function Sidebar() {
                     <ul className="*:text-lg *:font-semibold *:h-14 *:pl-12">
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/kuis" ? "bg-primary text-white" : ""
+                                url.includes("/kuis")
+                                    ? "bg-primary text-white"
+                                    : ""
                             }`}
                             href={route("kuis")}
                         >
@@ -150,7 +154,9 @@ export default function Sidebar() {
                         </Link>
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/tugas" ? "bg-primary text-white" : ""
+                                url.includes("/tugas")
+                                    ? "bg-primary text-white"
+                                    : ""
                             }`}
                             href={route("tugas")}
                         >
@@ -174,7 +180,7 @@ export default function Sidebar() {
                         </Link>
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/data-siswa"
+                                url.includes("/data-siswa")
                                     ? "bg-primary text-white"
                                     : ""
                             }`}

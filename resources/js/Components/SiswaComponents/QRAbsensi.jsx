@@ -1,4 +1,4 @@
-import { placeHolderQR } from "../../../assets";
+import { placeholderQR } from "../../../assets";
 
 export default function QRAbsensi() {
     return (
@@ -8,7 +8,7 @@ export default function QRAbsensi() {
                 <p className="text-[#8A8A8A] font-bold">02 Juli 2024</p>
             </div>
             <div className="size-60 mx-auto">
-                <img src={placeHolderQR} alt="" />
+                <img src={placeholderQR} alt="" />
                 <p className="text-sm text-center">bit.ly/absensi</p>
             </div>
         </>

@@ -4,7 +4,7 @@ import { imageKonten1 } from "../../../assets";
 export default function ProfileInfo({ name }) {
     return (
         <Link
-            className="flex items-center gap-3 w-fit"
+            className="flex items-center gap-3 w-60"
             href={route("edit-profil.edit")}
         >
             <img

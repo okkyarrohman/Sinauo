@@ -9,9 +9,7 @@ export default function ReferensiSiswa({ auth }) {
             <Head title="Referensi" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
-                <div className="w-96">
-                    <ProfileInfo name={auth.user.name} />
-                </div>
+                <ProfileInfo name={auth.user.name} />
             </div>
         </MainLayout>
     );

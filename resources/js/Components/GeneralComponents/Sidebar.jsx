@@ -23,7 +23,7 @@ export default function Sidebar() {
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
-                            href="/dashboard"
+                            href={route("dashboard")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -47,7 +47,7 @@ export default function Sidebar() {
                             className={`flex hover:bg-primary-light hover:text-white ${
                                 url === "/materi" ? "bg-primary text-white" : ""
                             }`}
-                            href="/materi"
+                            href={route("materi")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -73,7 +73,7 @@ export default function Sidebar() {
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
-                            href="/tutorial"
+                            href={route("tutorial")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -99,7 +99,7 @@ export default function Sidebar() {
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
-                            href="/referensi"
+                            href={route("referensi")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -128,7 +128,7 @@ export default function Sidebar() {
                             className={`flex hover:bg-primary-light hover:text-white ${
                                 url === "/kuis" ? "bg-primary text-white" : ""
                             }`}
-                            href="/kuis"
+                            href={route("kuis")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -152,7 +152,7 @@ export default function Sidebar() {
                             className={`flex hover:bg-primary-light hover:text-white ${
                                 url === "/tugas" ? "bg-primary text-white" : ""
                             }`}
-                            href="/tugas"
+                            href={route("tugas")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -178,7 +178,7 @@ export default function Sidebar() {
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
-                            href="/data-siswa"
+                            href={route("data-siswa")}
                         >
                             <li className="flex items-center gap-1">
                                 <svg
@@ -207,7 +207,7 @@ export default function Sidebar() {
                         className={`flex hover:bg-primary-light hover:text-white ${
                             url === "/panduan" ? "bg-primary text-white" : ""
                         }`}
-                        href="/panduan"
+                        href={route("panduan")}
                     >
                         <li className="flex items-center gap-1">
                             <svg

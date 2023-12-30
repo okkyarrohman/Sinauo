@@ -38,34 +38,44 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard-siswa');
 Route::get('/materi', function () {
     return Inertia::render('Siswa/MateriSiswa');
-});
+})->middleware(['auth', 'verified'])->name('materi');
+
 Route::get('/tutorial', function () {
     return Inertia::render('Siswa/TutorialSiswa');
-});
+})->middleware(['auth', 'verified'])->name('tutorial');
+
 Route::get('/referensi', function () {
     return Inertia::render('Siswa/ReferensiSiswa');
-});
+})->middleware(['auth', 'verified'])->name('referensi');
+
 Route::get('/kuis', function () {
     return Inertia::render('Siswa/KuisSiswa');
-});
+})->middleware(['auth', 'verified'])->name('kuis');
+
 Route::get('/tugas', function () {
     return Inertia::render('Siswa/TugasSiswa');
-});
+})->middleware(['auth', 'verified'])->name('tugas');
+
 Route::get('/data-siswa', function () {
     return Inertia::render('Guru/DataSiswa');
-});
+})->middleware(['auth', 'verified'])->name('data-siswa');
+
 Route::get('/panduan', function () {
     return Inertia::render('Siswa/Panduan');
-});
+})->middleware(['auth', 'verified'])->name('panduan');
+
+Route::get('/edit-profil', function () {
+    return Inertia::render('Siswa/EditProfilSiswa');
+})->middleware(['auth', 'verified'])->name('edit-profil');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Siswa/DashboardSiswa');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/edit-profil', [ProfileController::class, 'edit'])->name('edit-profil.edit');
+    Route::patch('/edit-profil', [ProfileController::class, 'update'])->name('edit-profil.update');
+    Route::delete('/edit-profil', [ProfileController::class, 'destroy'])->name('edit-profil.destroy');
 });
 
 require __DIR__.'/auth.php';

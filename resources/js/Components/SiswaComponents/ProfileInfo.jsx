@@ -3,7 +3,10 @@ import { imageKonten1 } from "../../../assets";
 
 export default function ProfileInfo({ name }) {
     return (
-        <Link className="flex items-center gap-3 w-fit" href="">
+        <Link
+            className="flex items-center gap-3 w-fit"
+            href={route("edit-profil.edit")}
+        >
             <img
                 className="size-12 rounded-full"
                 src={imageKonten1}

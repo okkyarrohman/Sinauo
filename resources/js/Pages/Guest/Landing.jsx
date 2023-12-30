@@ -53,7 +53,9 @@ export default function Landing({ auth }) {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    {auth.user.name}
+                                    <p className="w-36 break-words text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {auth.user.name}
+                                    </p>
                                 </button>
                             </Link>
                         ) : (

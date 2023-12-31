@@ -21,6 +21,9 @@ export default {
                 "primary-dark": "#0059A6",
                 "primary-light": "#7FC1F7",
             },
+            boxShadow: {
+                custom: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+            },
         },
     },
 

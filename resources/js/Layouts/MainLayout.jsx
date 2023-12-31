@@ -7,8 +7,8 @@ export default function MainLayout({ children }) {
                 <aside>
                     <Sidebar />
                 </aside>
-                <section className="min-h-screen ml-[19.5rem] pr-12 py-10">
-                    <article className="bg-red-500">{children}</article>
+                <section className="min-h-screen ml-[16.5rem] pr-12 py-10">
+                    <article>{children}</article>
                 </section>
             </section>
         </main>

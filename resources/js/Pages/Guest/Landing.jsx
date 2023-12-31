@@ -53,7 +53,9 @@ export default function Landing({ auth }) {
                                             strokeLinejoin="round"
                                         />
                                     </svg>
-                                    {auth.user.name}
+                                    <p className="w-36 break-words text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {auth.user.name}
+                                    </p>
                                 </button>
                             </Link>
                         ) : (
@@ -216,7 +218,7 @@ export default function Landing({ auth }) {
                         website.
                     </p>
                     <div className="flex justify-between mt-20 gap-20">
-                        <div className="w-96 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] rounded-[1.25rem]">
+                        <div className="w-96 shadow-custom rounded-[1.25rem]">
                             <img
                                 className="h-48 w-full object-cover object-center rounded-t-[1.25rem]"
                                 src={imageKonten1}
@@ -232,7 +234,7 @@ export default function Landing({ auth }) {
                                 </p>
                             </div>
                         </div>
-                        <div className="w-96 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] rounded-[1.25rem]">
+                        <div className="w-96 shadow-custom rounded-[1.25rem]">
                             <img
                                 className="h-48 w-full object-cover object-center rounded-t-[1.25rem]"
                                 src={imageKonten2}
@@ -248,7 +250,7 @@ export default function Landing({ auth }) {
                                 </p>
                             </div>
                         </div>
-                        <div className="w-96 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)] rounded-[1.25rem]">
+                        <div className="w-96 shadow-custom rounded-[1.25rem]">
                             <img
                                 className="h-48 w-full object-cover object-center rounded-t-[1.25rem]"
                                 src={imageKonten3}

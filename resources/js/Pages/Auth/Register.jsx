@@ -99,7 +99,6 @@ export default function Register() {
                                     name="email"
                                     placeholder="Masukkan Email..."
                                     className="w-full border-[#353535]"
-                                    isFocused={true}
                                     value={data.email}
                                     onChange={(e) =>
                                         setData("email", e.target.value)
@@ -120,7 +119,6 @@ export default function Register() {
                                         name="password"
                                         placeholder="Masukkan Password..."
                                         className="w-full border-[#353535]"
-                                        isFocused={true}
                                         value={data.password}
                                         onChange={(e) =>
                                             setData("password", e.target.value)
@@ -208,7 +206,6 @@ export default function Register() {
                                         name="password_confirmation"
                                         placeholder="Masukkan Password Lagi..."
                                         className="w-full border-[#353535]"
-                                        isFocused={true}
                                         value={data.password_confirmation}
                                         onChange={(e) =>
                                             setData(

@@ -90,7 +90,6 @@ export default function Login({ canRegister }) {
                                         name="password"
                                         placeholder="Masukkan Password..."
                                         className="w-full border-[#353535]"
-                                        isFocused={true}
                                         value={data.password}
                                         onChange={(e) =>
                                             setData("password", e.target.value)

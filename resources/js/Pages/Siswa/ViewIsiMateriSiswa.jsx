@@ -1,9 +1,11 @@
 import BackButton from "@/Components/GeneralComponents/BackButton";
 import MainLayout from "@/Layouts/MainLayout";
+import { Head } from "@inertiajs/react";
 
 export default function ViewIsiMateriSiswa() {
     return (
         <MainLayout>
+            <Head title="Materi" />
             <div className="mb-10">
                 <BackButton />
             </div>

@@ -1,7 +1,7 @@
 export default function SecondaryButton(props) {
     return (
         <button
-            className="rounded-[0.625rem] py-3 px-12 text-lg font-bold border border-black"
+            className="rounded-[0.625rem] py-3 px-12 text-lg font-bold border border-primary text-primary"
             type="button"
             onClick={props.onClick}
             disabled={props.disabled}

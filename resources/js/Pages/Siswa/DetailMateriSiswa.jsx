@@ -3,7 +3,7 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import MainLayout from "@/Layouts/MainLayout";
 import { imageBuku, placeholderMateri } from "../../../assets";
 import MateriBanner from "@/Components/SiswaComponents/MateriBanner";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import CardSubmateri from "@/Components/SiswaComponents/CardSubmateri";
 
 export default function DetailMateriSiswa({ auth }) {
@@ -22,6 +22,7 @@ export default function DetailMateriSiswa({ auth }) {
 
     return (
         <MainLayout>
+            <Head title="Materi" />
             <div className="flex justify-between items-center mb-10">
                 <BackButton />
                 <ProfileInfo name={auth.user.name} />

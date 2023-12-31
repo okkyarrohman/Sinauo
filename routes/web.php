@@ -69,10 +69,22 @@ Route::get('/kuis', function () {
     return Inertia::render('Siswa/KuisSiswa');
 })->middleware(['auth', 'verified'])->name('kuis');
 
+Route::get('/kuis/mulai-kuis', function () {
+    return Inertia::render('Siswa/MulaiKuisSiswa');
+})->middleware(['auth', 'verified'])->name('mulai-kuis');
+
+Route::get('/kuis/soal-kuis', function () {
+    return Inertia::render('Siswa/SoalKuisSiswa');
+})->middleware(['auth', 'verified'])->name('soal-kuis');
+
 // Tugas
 Route::get('/tugas', function () {
     return Inertia::render('Siswa/TugasSiswa');
 })->middleware(['auth', 'verified'])->name('tugas');
+
+Route::get('/tugas/detail-tugas', function () {
+    return Inertia::render('Siswa/DetailTugasSiswa');
+})->middleware(['auth', 'verified'])->name('detail-tugas');
 
 // Data Siswa
 Route::get('/data-siswa', function () {
@@ -81,7 +93,7 @@ Route::get('/data-siswa', function () {
 
 // Panduan
 Route::get('/panduan', function () {
-    return Inertia::render('Siswa/Panduan');
+    return Inertia::render('Siswa/PanduanSiswa');
 })->middleware(['auth', 'verified'])->name('panduan');
 
 // Route::get('/edit-profil', function () {

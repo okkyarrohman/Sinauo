@@ -11,6 +11,9 @@ import imageBuku from "./image-book.png";
 import placeholderMateri from "./placeholder-materi.png";
 import placeholderReferensi from "./placeholder-referensi.png";
 import placeholderTutorial from "./placeholder-tutorial.png";
+import imageBelumKuis from "./image-belum-kuis.png";
+import iconSubmitKuis from "./icon-submit-kuis.svg";
+import iconFeedback from "./icon-feedback.svg";
 
 export {
     logoSinauo,
@@ -26,4 +29,7 @@ export {
     placeholderMateri,
     placeholderReferensi,
     placeholderTutorial,
+    imageBelumKuis,
+    iconSubmitKuis,
+    iconFeedback,
 };

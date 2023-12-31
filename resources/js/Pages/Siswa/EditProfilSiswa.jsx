@@ -18,7 +18,7 @@ export default function EditProfilSiswa() {
 
     return (
         <MainLayout>
-            <Head title="Edit Profil" />
+            <Head title="Profil" />
             <section className="w-4/5">
                 <div className="flex justify-between mb-10">
                     <h1 className="font-semibold text-3xl">Edit Profil</h1>

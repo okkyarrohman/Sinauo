@@ -6,6 +6,7 @@ import imageKonten3 from "./image-konten-home-3.png";
 import imageKeunggulan from "./image-keunggulan.png";
 import imageAuth from "./image-auth.png";
 import imageWelcomeBanner from "./image-welcome-banner.png";
+import imageWelcomeGuru from "./image-welcome-guru.png";
 import placeholderQR from "./placeholder-qrcode.png";
 import imageBuku from "./image-book.png";
 import placeholderMateri from "./placeholder-materi.png";
@@ -24,6 +25,7 @@ export {
     imageKeunggulan,
     imageAuth,
     imageWelcomeBanner,
+    imageWelcomeGuru,
     placeholderQR,
     imageBuku,
     placeholderMateri,

@@ -5,6 +5,7 @@ import { imageBuku, placeholderMateri } from "../../../assets";
 import MateriBanner from "@/Components/SiswaComponents/MateriBanner";
 import { Head, Link } from "@inertiajs/react";
 import CardSubmateri from "@/Components/SiswaComponents/CardSubmateri";
+import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 
 export default function DetailMateriSiswa({ auth }) {
     const data = [
@@ -33,15 +34,7 @@ export default function DetailMateriSiswa({ auth }) {
             <div className="w-1/3 flex items-center justify-between mb-9">
                 <div className="size-10 bg-primary rounded-[0.625rem]"></div>
                 <div className="w-[85%]">
-                    <div className="relative">
-                        <div className="bg-[#D9D9D9] w-full h-4 rounded-3xl"></div>
-                        <div
-                            className={`bg-[#F9A825] h-4 rounded-3xl absolute top-0 text-xs font-semibold text-center`}
-                            style={{ width: `75%` }}
-                        >
-                            75%
-                        </div>
-                    </div>
+                    <ProgressBar progres="50" />
                     <p>2/4 Materi</p>
                 </div>
             </div>

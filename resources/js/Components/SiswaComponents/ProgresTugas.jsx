@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import ProgressBar from "../GeneralComponents/ProgressBar";
 
 export default function ProgresTugas() {
     return (
@@ -12,14 +13,8 @@ export default function ProgresTugas() {
                     </h4>
                     <p className="text-[#9E9E9E] text-xs">Tenggat 27/11/2024</p>
                 </div>
-                <div className="relative w-48 mx-auto">
-                    <div className="bg-[#D9D9D9] w-full h-4 rounded-3xl"></div>
-                    <div
-                        className={`bg-[#F9A825] h-4 rounded-3xl absolute top-0 text-xs font-semibold text-center`}
-                        style={{ width: `35%` }}
-                    >
-                        35%
-                    </div>
+                <div className="w-48 mx-auto">
+                    <ProgressBar progres="75" />
                 </div>
                 <Link href="">
                     <button className="font-bold text-white bg-primary rounded-xl px-6 py-1.5">

@@ -37,6 +37,15 @@ Route::get('/', function () {
 //     return Inertia::render('Siswa/DashboardSiswa');
 // })->middleware(['auth', 'verified'])->name('dashboard-siswa');
 
+// GURU
+
+// Dashboard Guru
+Route::get('/dashboard-guru', function () {
+    return Inertia::render('Guru/DashboardGuru');
+})->middleware(['auth', 'verified'])->name('dashboard-guru');
+
+// SISWA
+
 // Materi
 Route::get('/materi', function () {
     return Inertia::render('Siswa/MateriSiswa');

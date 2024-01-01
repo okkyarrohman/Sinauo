@@ -3,7 +3,7 @@ import { logoSinauo } from "../../../assets";
 
 export default function Sidebar() {
     const { url } = usePage();
-    const role = "Siswa";
+    const role = "Guru";
 
     return (
         <div className="fixed left-0 w-60 py-10 rounded-r-3xl h-screen bg-white shadow-custom flex flex-col justify-between">

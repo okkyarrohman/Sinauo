@@ -4,6 +4,7 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import { Head, Link } from "@inertiajs/react";
 import Swal from "sweetalert2";
 import { iconFeedback, iconSubmitKuis } from "../../../assets";
+import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 
 export default function TugasSiswa({ auth }) {
     const data = [
@@ -66,14 +67,8 @@ export default function TugasSiswa({ auth }) {
                                 </p>
                             </div>
                             <p>{item.tanggal}</p>
-                            <div className="relative w-[20%]">
-                                <div className="bg-[#D9D9D9] w-full h-4 rounded-3xl"></div>
-                                <div
-                                    className={`bg-[#F9A825] h-4 rounded-3xl absolute top-0 text-xs font-semibold text-center`}
-                                    style={{ width: `${item.progres}%` }}
-                                >
-                                    {item.progres}%
-                                </div>
+                            <div className="w-[20%]">
+                                <ProgressBar progres={item.progres} />
                             </div>
                             <p>{item.status}</p>
                             <Link href={route("detail-tugas")}>

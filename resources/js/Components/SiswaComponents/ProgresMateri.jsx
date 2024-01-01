@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import ProgressBar from "../GeneralComponents/ProgressBar";
 
 export default function ProgresMateri() {
     const data = [
@@ -34,7 +35,8 @@ export default function ProgresMateri() {
                             <p className="text-sm font-semibold mb-2">
                                 {item.materi}
                             </p>
-                            <div className="relative">
+                            <ProgressBar progres={item.presentase} />
+                            {/* <div className="relative">
                                 <div className="bg-[#D9D9D9] w-full h-4 rounded-3xl"></div>
                                 <div
                                     className={`bg-[#F9A825] h-4 rounded-3xl absolute top-0 text-xs font-semibold text-center`}
@@ -42,7 +44,7 @@ export default function ProgresMateri() {
                                 >
                                     {item.presentase}%
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

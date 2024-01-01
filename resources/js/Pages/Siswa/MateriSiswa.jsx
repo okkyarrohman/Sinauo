@@ -3,6 +3,7 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageKonten2, imageKonten3 } from "../../../assets";
+import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 
 export default function MateriSiswa({ auth }) {
     const data = [
@@ -73,16 +74,10 @@ export default function MateriSiswa({ auth }) {
                                     </h4>
                                 </div>
                                 <div className="px-5 pb-5">
-                                    <div className="relative mb-7">
-                                        <div className="bg-[#D9D9D9] w-full h-4 rounded-3xl"></div>
-                                        <div
-                                            className={`bg-[#F9A825] h-4 rounded-3xl absolute top-0 text-xs font-semibold text-center`}
-                                            style={{
-                                                width: `${item.presentase}%`,
-                                            }}
-                                        >
-                                            {item.presentase}%
-                                        </div>
+                                    <div className="mb-7">
+                                        <ProgressBar
+                                            progres={item.presentase}
+                                        />
                                     </div>
                                     <div className="flex justify-end">
                                         <Link href={route("detail-materi")}>

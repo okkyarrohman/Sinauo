@@ -15,6 +15,7 @@ import placeholderTutorial from "./placeholder-tutorial.png";
 import imageBelumKuis from "./image-belum-kuis.png";
 import iconSubmitKuis from "./icon-submit-kuis.svg";
 import iconFeedback from "./icon-feedback.svg";
+import imageNoData from "./image-no-data.png";
 
 export {
     logoSinauo,
@@ -34,4 +35,5 @@ export {
     imageBelumKuis,
     iconSubmitKuis,
     iconFeedback,
+    imageNoData,
 };

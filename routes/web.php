@@ -44,6 +44,79 @@ Route::get('/dashboard-guru', function () {
     return Inertia::render('Guru/DashboardGuru');
 })->middleware(['auth', 'verified'])->name('dashboard-guru');
 
+Route::get('/materi-guru', function () {
+    return Inertia::render('Guru/MateriGuru');
+})->middleware(['auth', 'verified'])->name('materi-guru');
+
+Route::get('/materi-guru/tambah-materi', function () {
+    return Inertia::render('Guru/TambahMateriGuru');
+})->middleware(['auth', 'verified'])->name('tambah-materi');
+
+Route::get('/materi-guru/tambah-submateri', function () {
+    return Inertia::render('Guru/TambahKontenMateriGuru');
+})->middleware(['auth', 'verified'])->name('tambah-submateri');
+
+Route::get('/tutorial-guru', function () {
+    return Inertia::render('Guru/TutorialGuru');
+})->middleware(['auth', 'verified'])->name('tutorial-guru');
+
+Route::get('/tutorial-guru/tambah-tutorial', function () {
+    return Inertia::render('Guru/TambahTutorialGuru');
+})->middleware(['auth', 'verified'])->name('tambah-tutorial');
+
+Route::get('/referensi-guru', function () {
+    return Inertia::render('Guru/ReferensiGuru');
+})->middleware(['auth', 'verified'])->name('referensi-guru');
+
+Route::get('/referensi-guru/tambah-referensi', function () {
+    return Inertia::render('Guru/TambahReferensiGuru');
+})->middleware(['auth', 'verified'])->name('tambah-referensi');
+
+Route::get('/kuis-guru', function () {
+    return Inertia::render('Guru/KuisGuru');
+})->middleware(['auth', 'verified'])->name('kuis-guru');
+
+Route::get('/kuis-guru/tambah-kuis', function () {
+    return Inertia::render('Guru/TambahKuisGuru');
+})->middleware(['auth', 'verified'])->name('tambah-kuis');
+
+Route::get('/kuis-guru/hasil-kuis', function () {
+    return Inertia::render('Guru/HasilKuisGuru');
+})->middleware(['auth', 'verified'])->name('hasil-kuis');
+
+Route::get('/tugas-guru', function () {
+    return Inertia::render('Guru/TugasGuru');
+})->middleware(['auth', 'verified'])->name('tugas-guru');
+
+Route::get('/tugas-guru/tambah-tugas', function () {
+    return Inertia::render('Guru/TambahTugasGuru');
+})->middleware(['auth', 'verified'])->name('tambah-tugas');
+
+Route::get('/tugas-guru/hasil-tugas', function () {
+    return Inertia::render('Guru/HasilTugasSiswaGuru');
+})->middleware(['auth', 'verified'])->name('hasil-tugas');
+
+Route::get('/tugas-guru/detail-tugas-siswa', function () {
+    return Inertia::render('Guru/DetailHasilTugasSiswaGuru');
+})->middleware(['auth', 'verified'])->name('detail-tugas-siswa');
+
+// Data Siswa
+Route::get('/data-siswa', function () {
+    return Inertia::render('Guru/DataSiswaGuru');
+})->middleware(['auth', 'verified'])->name('data-siswa');
+
+Route::get('/data-siswa/detail-siswa', function () {
+    return Inertia::render('Guru/DetailDataSiswaGuru');
+})->middleware(['auth', 'verified'])->name('detail-siswa');
+
+Route::get('/data-siswa/edit-siswa', function () {
+    return Inertia::render('Guru/TambahSiswaGuru');
+})->middleware(['auth', 'verified'])->name('edit-siswa');
+
+
+
+
+
 // SISWA
 
 // Materi
@@ -94,11 +167,6 @@ Route::get('/tugas', function () {
 Route::get('/tugas/detail-tugas', function () {
     return Inertia::render('Siswa/DetailTugasSiswa');
 })->middleware(['auth', 'verified'])->name('detail-tugas');
-
-// Data Siswa
-Route::get('/data-siswa', function () {
-    return Inertia::render('Guru/DataSiswa');
-})->middleware(['auth', 'verified'])->name('data-siswa');
 
 // Panduan
 Route::get('/panduan', function () {

@@ -72,7 +72,7 @@ export default function Sidebar() {
                         </Link>
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
-                                url === "/tutorial"
+                                url.includes("/tutorial")
                                     ? "bg-primary text-white"
                                     : ""
                             }`}

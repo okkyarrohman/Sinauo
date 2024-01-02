@@ -29,7 +29,7 @@ export default function Register() {
     const [passConfirmVisible, setPassConfirmVisible] = useState(false);
 
     const handlePassVisible = () => {
-        setPassVisible((prevPassVisible) => !prevPassVisible);
+        setPassVisible(!passVisible);
     };
 
     const handlePassConfirmVisible = () => {

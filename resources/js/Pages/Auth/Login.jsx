@@ -26,7 +26,7 @@ export default function Login({ canRegister }) {
     const [passVisible, setPassVisible] = useState(false);
 
     const handlePassVisible = () => {
-        setPassVisible((prevPassVisible) => !prevPassVisible);
+        setPassVisible(!passVisible);
     };
 
     return (

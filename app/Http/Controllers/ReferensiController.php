@@ -18,7 +18,7 @@ class ReferensiController extends Controller
         return 'views';
     }
 
-    public function index_guru()
+    public function index()
     {
         $tutorial = Referensi::all();
 

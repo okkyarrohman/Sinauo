@@ -13,12 +13,16 @@ class TugasController extends Controller
 {
     public function index()
     {
-        return Inertia::render('tugas');
+        $tugas = Tugas::all();
+
+        return Inertia::render('Guru/TugasGuru', [
+            'tugas' => $tugas,
+        ]);
     }
 
     public function create()
     {
-        return Inertia::render('tugas.create');
+        return Inertia::render('Guru/TambahTugasGuru');
     }
 
     public function store(Request $request)
@@ -41,14 +45,14 @@ class TugasController extends Controller
 
         $tugas->save();
 
-        return redirect()->route('tugas')->with('success', 'Data Tugas Berhasil Ditambahkan');
+        return redirect()->route('tugas-guru')->with('success', 'Data Tugas Berhasil Ditambahkan');
     }
 
     public function edit($id)
     {
         $tugas = Tugas::where('id', $id)->first();
 
-        return Inertia::render('tugas.edit', [
+        return Inertia::render('Guru/EditTugasGuru', [
             'tugas' => $tugas
         ]);
     }
@@ -74,7 +78,7 @@ class TugasController extends Controller
 
         $tugas->save();
 
-        return redirect()->route('tugas')->with('success', 'Data Tugas Berhasil Di Update');
+        return redirect()->route('tugas-guru')->with('success', 'Data Tugas Berhasil Di Update');
     }
 
     public function destroy($id)
@@ -96,6 +100,8 @@ class TugasController extends Controller
         }
 
         $tugas->delete();
+
+        return redirect()->route('tugas-guru')->with('success', 'Tugas Berhasil Dihapus');
     }
 
 
@@ -143,5 +149,24 @@ class TugasController extends Controller
         $tugas->save();
 
         return redirect()->route('tugas')->with('success', 'Berhasil Mengirim Jawaban Tugas');
+    }
+
+
+    public function hasilTugas()
+    {
+        $tugas = Tugas::all();
+
+        return Inertia::render('Guru/HasilTugasSiswaGuru', [
+            'tugas' => $tugas
+        ]);
+    }
+
+    public function detailTugas($id)
+    {
+        $tugas = Tugas::where('id', $id)->first();
+
+        return Inertia::render('Guru/DetailHasilTugasSiswaGuru', [
+            'tugas' =>  $tugas
+        ]);
     }
 }

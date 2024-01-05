@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReferensiController;
+use App\Http\Controllers\TutorialController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -56,21 +58,26 @@ Route::group(['middleware' => 'role:guru'], function () {
         return Inertia::render('Guru/TambahKontenMateriGuru');
     })->name('tambah-submateri');
 
-    Route::get('/tutorial-guru', function () {
-        return Inertia::render('Guru/TutorialGuru');
-    })->name('tutorial-guru');
 
-    Route::get('/tutorial-guru/tambah-tutorial', function () {
-        return Inertia::render('Guru/TambahTutorialGuru');
-    })->name('tambah-tutorial');
+    Route::controller(TutorialController::class)->group(function () {
+        Route::get('/tutorial-guru', 'index')->name('tutorial-guru');
+        Route::get('/tutorial-guru/tambah-tutorial', 'create')->name('create.tutorial');
+        Route::post('/tutorial-guru/tambah-tutorial', 'store')->name('store.tutorial');
+        Route::get('/tutorial-guru/edit-tutorial/{id}', 'edit')->name('edit.tutorial');
+        Route::post('/tutorial-guru/update-tutorial', 'update')->name('update.tutorial');
+        Route::get('/tutorial-guru/destroy-tutorial/{id}', 'destroy')->name('destroy.tutorial');
+    });
 
-    Route::get('/referensi-guru', function () {
-        return Inertia::render('Guru/ReferensiGuru');
-    })->name('referensi-guru');
+    Route::controller(ReferensiController::class)->group(function () {
+        Route::get('/referensi-guru', 'index')->name('referensi-guru');
+        Route::get('/referensi-guru/tambah-referensi', 'create')->name('create.referensi');
+        Route::post('/referensi-guru/tambah-referensi', 'store')->name('store.referensi');
+        Route::get('/referensi-guru/edit-referensi/{id}', 'edit')->name('edit.referensi');
+        Route::post('/referensi-guru/update-referensi', 'update')->name('update.referensi');
+        Route::get('/referensi-guru/destroy-referensi/{id}', 'destroy')->name('destroy.referensi');
+    });
 
-    Route::get('/referensi-guru/tambah-referensi', function () {
-        return Inertia::render('Guru/TambahReferensiGuru');
-    })->name('tambah-referensi');
+
 
     Route::get('/kuis-guru', function () {
         return Inertia::render('Guru/KuisGuru');

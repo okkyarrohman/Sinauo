@@ -13,21 +13,23 @@ class ReferensiController extends Controller
 {
     public function index_siswa()
     {
-        $tutorial = Referensi::all();
+        $referensi = Referensi::all();
 
         return 'views';
     }
 
     public function index()
     {
-        $tutorial = Referensi::all();
+        $referensi = Referensi::all();
 
-        return 'Sukses';
+        return Inertia::render('Guru/ReferensiGuru', [
+            'referensis' => $referensi
+        ]);
     }
 
     public function create()
     {
-        return 'view';
+        return Inertia::render('Guru/TambahReferensiGuru');
     }
 
     public function store(Request $request)
@@ -58,14 +60,16 @@ class ReferensiController extends Controller
         // Save data to Database
         $referensi->save();
 
-        return redirect()->route('referensi')->with('success', 'Data Tutorial Behasil Ditambahkan');
+        return redirect()->route('referensi-guru')->with('success', 'Data Tutorial Behasil Ditambahkan');
     }
 
     public function edit($id)
     {
         $referensi = Referensi::where('id', $id)->first();
 
-        return 'sukses';
+        return Inertia::render('Guru/TambahReferensiGuru', [
+            'referensis' => $referensi,
+        ]);
     }
 
     public function update(Request $request)

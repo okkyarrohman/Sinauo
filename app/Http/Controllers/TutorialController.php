@@ -5,29 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tutorial;
 use Inertia\Inertia;
-use Inertia\Response;
 use Illuminate\Support\Facades\File;
 
 class TutorialController extends Controller
 {
-    public function index_siswa()
+
+
+    public function index()
     {
-        $tutorial = Tutorial::all();
-
-        return 'views';
-    }
-
-    public function index_guru()
-    {
-        $tutorial = Tutorial::all();
-
-        return 'Sukses';
+        return Inertia::render('Guru/TutorialGuru');
     }
 
     public function create()
     {
-
-        return 'view';
+        return Inertia::render('Guru/TambahTutorialGuru');
     }
 
     public function store(Request $request)
@@ -50,14 +41,16 @@ class TutorialController extends Controller
         // Save data to Database
         $tutorial->save();
 
-        return redirect()->route('tutorial')->with('success', 'Data Tutorial Behasil Ditambahkan');
+        return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Behasil Ditambahkan');
     }
 
     public function edit($id)
     {
         $tutorial = Tutorial::where('id', $id)->first();
 
-        return 'sukses';
+        return Inertia::render('Guru/EditTutorialGuru', [
+            'tutorials' => $tutorial
+        ]);
     }
 
     public function update(Request $request)
@@ -76,7 +69,7 @@ class TutorialController extends Controller
         }
         $tutorial->save();
 
-        return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Berhasil Diupdate');
+        return redirect()->route('guru')->with('success', 'Data Tutorial Berhasil Diupdate');
     }
 
     public function destroy($id)
@@ -88,6 +81,6 @@ class TutorialController extends Controller
         }
         $tutorial->delete();
 
-        return redirect()->route('tutorial')->with('success', 'Data Tutorial Berhasil Dihapus');
+        return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Berhasil Dihapus');
     }
 }

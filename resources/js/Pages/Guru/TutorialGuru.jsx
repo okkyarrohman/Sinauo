@@ -33,7 +33,7 @@ export default function TutorialGuru({ auth }) {
                 <h1 className="font-semibold text-2xl">
                     Tutorial Pembelajaran
                 </h1>
-                <Link href={route("tambah-tutorial")}>
+                <Link href={route("create.tutorial")}>
                     <button className="flex items-center gap-1 w-fit py-3 px-5 rounded-[0.625rem] bg-primary text-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -24,13 +24,13 @@ class TutorialController extends Controller
         return 'Sukses';
     }
 
-    public function create_guru()
+    public function create()
     {
 
         return 'view';
     }
 
-    public function store_guru(Request $request)
+    public function store(Request $request)
     {
         // Inisiasi table datanase
         $tutorial = new Tutorial();
@@ -53,7 +53,7 @@ class TutorialController extends Controller
         return redirect()->route('tutorial')->with('success', 'Data Tutorial Behasil Ditambahkan');
     }
 
-    public function edit_guru($id)
+    public function edit($id)
     {
         $tutorial = Tutorial::where('id', $id)->first();
 
@@ -79,7 +79,7 @@ class TutorialController extends Controller
         return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Berhasil Diupdate');
     }
 
-    public function destroy_guru($id)
+    public function destroy($id)
     {
         $tutorial = Tutorial::find($id);
         $destination = storage_path('app/public/tutorial/cover' . $tutorial->cover);

@@ -3,9 +3,22 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function TambahReferensiGuru() {
+    const { data, setData, post, processing, errors } = useForm({
+        judul: "",
+        sumber: "",
+        cover: null,
+        file: null,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("store.referensi"));
+    };
+
     return (
         <MainGuruLayout>
             <Head title="Referensi" />
@@ -14,49 +27,49 @@ export default function TambahReferensiGuru() {
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="judul"
                     >
                         Judul Referensi
                     </label>
                     <TextInput
-                        id="email"
+                        id="judul"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="judul"
+                        placeholder="Masukkan Judul Referensi..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.judul}
+                        onChange={(e) => setData("judul", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="sumber"
                     >
                         Sumber
                     </label>
                     <TextInput
-                        id="email"
+                        id="sumber"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="sumber"
+                        placeholder="Masukkan Sumber..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.sumber}
+                        onChange={(e) => setData("sumber", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="foto"
+                        htmlFor="cover"
                     >
                         Cover
                     </label>
                     <div className="flex items-center gap-3">
                         <label
                             className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
-                            htmlFor="foto"
+                            htmlFor="cover"
                         >
                             <span className="text-white flex items-center gap-1">
                                 <svg
@@ -76,26 +89,31 @@ export default function TambahReferensiGuru() {
                                 Pilih File
                             </span>
                             <input
-                                id="foto"
+                                id="cover"
                                 type="file"
-                                name="foto"
+                                name="cover"
                                 className="hidden"
+                                onChange={(e) =>
+                                    setData("cover", e.target.files[0])
+                                }
                             />
                         </label>
-                        <p className="font-light text-sm">nama file</p>
+                        <p className="font-light text-sm">
+                            {data.cover ? data.cover.name : "Nama File"}
+                        </p>
                     </div>
                 </div>
                 <div className="mb-12">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="foto"
+                        htmlFor="file"
                     >
                         File Referensi
                     </label>
                     <div className="flex items-center gap-3">
                         <label
                             className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
-                            htmlFor="foto"
+                            htmlFor="file"
                         >
                             <span className="text-white flex items-center gap-1">
                                 <svg
@@ -115,22 +133,27 @@ export default function TambahReferensiGuru() {
                                 Pilih File
                             </span>
                             <input
-                                id="foto"
+                                id="file"
                                 type="file"
-                                name="foto"
+                                name="file"
                                 className="hidden"
+                                onChange={(e) =>
+                                    setData("file", e.target.files[0])
+                                }
                             />
                         </label>
-                        <p className="font-light text-sm">nama file</p>
+                        <p className="font-light text-sm">
+                            {data.file ? data.file.name : "Nama File"}
+                        </p>
                     </div>
                 </div>
                 <div className="flex gap-5 justify-end">
                     <Link href={route("referensi-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("referensi-guru")}>
-                        <PrimaryButton text="Simpan" />
-                    </Link>
+                    {/* <Link href={route("referensi-guru")}> */}
+                    <PrimaryButton text="Simpan" onClick={handleSubmit} />
+                    {/* </Link> */}
                 </div>
             </form>
         </MainGuruLayout>

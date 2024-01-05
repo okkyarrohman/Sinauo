@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TutorialController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,21 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/referensi-guru/destroy-referensi/{id}', 'destroy')->name('destroy.referensi');
     });
 
+    Route::controller(TugasController::class)->group(function () {
+        Route::get('/tugas-guru', 'index')->name('tugas-guru');
+        Route::get('/tugas-guru/tambah-tugas', 'create')->name('create.tugas');
+        Route::post('/tugas-guru/tambah-tugas', 'store')->name('store.tugas');
+        Route::get('/tugas-guru/edit-tugas/{id}', 'edit')->name('edit.tugas');
+        Route::post('/tugas-guru/update-tugas', 'update')->name('update.tugas');
+        Route::get('/tugas-guru/destroy-tugas/{id}', 'destroy')->name('destroy.tugas');
+
+        Route::get('/tugas-guru/hasil-tugas', 'hasilTugas')->name('hasil-tugas');
+        Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
+    });
+
+
+
+
 
 
     Route::get('/kuis-guru', function () {
@@ -91,21 +107,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         return Inertia::render('Guru/HasilKuisGuru');
     })->name('hasil-kuis');
 
-    Route::get('/tugas-guru', function () {
-        return Inertia::render('Guru/TugasGuru');
-    })->name('tugas-guru');
 
-    Route::get('/tugas-guru/tambah-tugas', function () {
-        return Inertia::render('Guru/TambahTugasGuru');
-    })->name('tambah-tugas');
-
-    Route::get('/tugas-guru/hasil-tugas', function () {
-        return Inertia::render('Guru/HasilTugasSiswaGuru');
-    })->name('hasil-tugas');
-
-    Route::get('/tugas-guru/detail-tugas-siswa', function () {
-        return Inertia::render('Guru/DetailHasilTugasSiswaGuru');
-    })->name('detail-tugas-siswa');
 
     // Data Siswa
     Route::get('/data-siswa', function () {

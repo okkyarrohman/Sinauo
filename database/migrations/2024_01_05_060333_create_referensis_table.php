@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kuis', function (Blueprint $table) {
+        Schema::create('referensis', function (Blueprint $table) {
             $table->id();
+            $table->string('judul');
+            $table->string('sumber');
+            $table->string('cover');
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kuis');
+        Schema::dropIfExists('referensis');
     }
 };

@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function KuisGuru({ auth }) {
     const head_title = [
@@ -33,7 +34,7 @@ export default function KuisGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Kuis" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -94,6 +95,6 @@ export default function KuisGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

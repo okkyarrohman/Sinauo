@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function DataSiswaGuru({ auth }) {
     const head_title = ["No", "Nama", "Email", "Alamat", "Aksi"];
@@ -22,7 +23,7 @@ export default function DataSiswaGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Data Siswa" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -111,6 +112,6 @@ export default function DataSiswaGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

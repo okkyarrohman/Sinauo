@@ -172,12 +172,6 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::get('/panduan', function () {
         return Inertia::render('Siswa/PanduanSiswa');
     })->name('panduan');
-
-    // Route::get('/edit-profil', function () {
-    //     return Inertia::render('Siswa/EditProfilSiswa');
-    // })->name('edit-profil');
-
-
 });
 // SISWA
 

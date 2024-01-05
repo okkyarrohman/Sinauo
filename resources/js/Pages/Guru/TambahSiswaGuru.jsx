@@ -1,6 +1,7 @@
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
@@ -13,7 +14,7 @@ export default function TambahSiswaGuru() {
     };
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Data Siswa" />
             <h1 className="font-semibold text-2xl mb-10">Tambah Siswa</h1>
             <form className="w-4/5">
@@ -144,6 +145,6 @@ export default function TambahSiswaGuru() {
                     </Link>
                 </div>
             </form>
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function MateriGuru({ auth }) {
     const head_title = ["No", "Materi", "Jumlah", "Cover", "Konten", "Aksi"];
@@ -23,7 +24,7 @@ export default function MateriGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Materi" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -91,6 +92,6 @@ export default function MateriGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

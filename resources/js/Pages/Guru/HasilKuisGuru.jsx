@@ -6,6 +6,7 @@ import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head } from "@inertiajs/react";
 
@@ -30,7 +31,7 @@ export default function HasilKuisGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Kuis" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -56,6 +57,6 @@ export default function HasilKuisGuru({ auth }) {
                     })}
                 </TableBody>
             </Table>
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

@@ -4,6 +4,7 @@ import TableBody from "@/Components/GeneralComponents/TableBody";
 import TableHead from "@/Components/GeneralComponents/TableHead";
 import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head } from "@inertiajs/react";
 
@@ -11,7 +12,7 @@ export default function DetailDataSiswaGuru() {
     const head_title = ["Data Siswa", "Keterangan"];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Data Siswa" />
             <div className="mb-10">
                 <BackButton />
@@ -55,6 +56,6 @@ export default function DetailDataSiswaGuru() {
                     </TableBody>
                 </Table>
             </div>
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

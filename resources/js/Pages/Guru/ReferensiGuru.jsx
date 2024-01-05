@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function ReferensiGuru({ auth }) {
     const head_title = ["No", "Judul", "Sumber", "Cover", "File", "Aksi"];
@@ -23,7 +24,7 @@ export default function ReferensiGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Referensi" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -85,6 +86,6 @@ export default function ReferensiGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

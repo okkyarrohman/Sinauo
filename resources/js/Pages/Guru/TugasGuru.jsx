@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function TugasGuru({ auth }) {
     const head_title = ["No", "Tugas", "Tenggat", "Hasil", "Aksi"];
@@ -22,7 +23,7 @@ export default function TugasGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Tugas" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -81,6 +82,6 @@ export default function TugasGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

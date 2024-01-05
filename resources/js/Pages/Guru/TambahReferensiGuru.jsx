@@ -1,12 +1,13 @@
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 
 export default function TambahReferensiGuru() {
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Referensi" />
             <h1 className="font-semibold text-2xl mb-10">Tambah Referensi</h1>
             <form className="w-4/5">
@@ -132,6 +133,6 @@ export default function TambahReferensiGuru() {
                     </Link>
                 </div>
             </form>
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

@@ -10,6 +10,7 @@ import TambahAbsensi from "@/Components/GuruComponents/TambahAbsensi";
 import WelcomeBannerGuru from "@/Components/GuruComponents/WelcomeBannerGuru";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
@@ -52,7 +53,7 @@ export default function DashboardGuru({ auth }) {
     const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Dashboard" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -107,6 +108,6 @@ export default function DashboardGuru({ auth }) {
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
             />
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

@@ -9,6 +9,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function TutorialGuru({ auth }) {
     const head_title = ["No", "Judul", "Cover", "Sumber", "Aksi"];
@@ -22,7 +23,7 @@ export default function TutorialGuru({ auth }) {
     ];
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Tutorial" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
@@ -83,6 +84,6 @@ export default function TutorialGuru({ auth }) {
                     alt="Tidak Ada Data"
                 />
             )}
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

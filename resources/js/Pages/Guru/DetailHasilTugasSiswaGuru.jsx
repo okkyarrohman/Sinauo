@@ -4,6 +4,7 @@ import TableBody from "@/Components/GeneralComponents/TableBody";
 import TableHead from "@/Components/GeneralComponents/TableHead";
 import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
+import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import { useState } from "react";
@@ -45,7 +46,7 @@ export default function DetailHasilTugasSiswaGuru() {
     };
 
     return (
-        <MainLayout>
+        <MainGuruLayout>
             <Head title="Tugas" />
             <div className="mb-10">
                 <BackButton />
@@ -142,6 +143,6 @@ export default function DetailHasilTugasSiswaGuru() {
                     Submit
                 </button>
             </Link>
-        </MainLayout>
+        </MainGuruLayout>
     );
 }

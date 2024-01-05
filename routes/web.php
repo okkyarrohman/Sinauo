@@ -38,148 +38,148 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard-siswa');
 
 // GURU
-
 // Dashboard Guru
-Route::get('/dashboard-guru', function () {
-    return Inertia::render('Guru/DashboardGuru');
-})->middleware(['auth', 'verified'])->name('dashboard-guru');
+Route::group(['middleware' => 'role:guru'], function () {
+    Route::get('/dashboard-guru', function () {
+        return Inertia::render('Guru/DashboardGuru');
+    })->name('dashboard-guru');
 
-Route::get('/materi-guru', function () {
-    return Inertia::render('Guru/MateriGuru');
-})->middleware(['auth', 'verified'])->name('materi-guru');
+    Route::get('/materi-guru', function () {
+        return Inertia::render('Guru/MateriGuru');
+    })->name('materi-guru');
 
-Route::get('/materi-guru/tambah-materi', function () {
-    return Inertia::render('Guru/TambahMateriGuru');
-})->middleware(['auth', 'verified'])->name('tambah-materi');
+    Route::get('/materi-guru/tambah-materi', function () {
+        return Inertia::render('Guru/TambahMateriGuru');
+    })->name('tambah-materi');
 
-Route::get('/materi-guru/tambah-submateri', function () {
-    return Inertia::render('Guru/TambahKontenMateriGuru');
-})->middleware(['auth', 'verified'])->name('tambah-submateri');
+    Route::get('/materi-guru/tambah-submateri', function () {
+        return Inertia::render('Guru/TambahKontenMateriGuru');
+    })->name('tambah-submateri');
 
-Route::get('/tutorial-guru', function () {
-    return Inertia::render('Guru/TutorialGuru');
-})->middleware(['auth', 'verified'])->name('tutorial-guru');
+    Route::get('/tutorial-guru', function () {
+        return Inertia::render('Guru/TutorialGuru');
+    })->name('tutorial-guru');
 
-Route::get('/tutorial-guru/tambah-tutorial', function () {
-    return Inertia::render('Guru/TambahTutorialGuru');
-})->middleware(['auth', 'verified'])->name('tambah-tutorial');
+    Route::get('/tutorial-guru/tambah-tutorial', function () {
+        return Inertia::render('Guru/TambahTutorialGuru');
+    })->name('tambah-tutorial');
 
-Route::get('/referensi-guru', function () {
-    return Inertia::render('Guru/ReferensiGuru');
-})->middleware(['auth', 'verified'])->name('referensi-guru');
+    Route::get('/referensi-guru', function () {
+        return Inertia::render('Guru/ReferensiGuru');
+    })->name('referensi-guru');
 
-Route::get('/referensi-guru/tambah-referensi', function () {
-    return Inertia::render('Guru/TambahReferensiGuru');
-})->middleware(['auth', 'verified'])->name('tambah-referensi');
+    Route::get('/referensi-guru/tambah-referensi', function () {
+        return Inertia::render('Guru/TambahReferensiGuru');
+    })->name('tambah-referensi');
 
-Route::get('/kuis-guru', function () {
-    return Inertia::render('Guru/KuisGuru');
-})->middleware(['auth', 'verified'])->name('kuis-guru');
+    Route::get('/kuis-guru', function () {
+        return Inertia::render('Guru/KuisGuru');
+    })->name('kuis-guru');
 
-Route::get('/kuis-guru/tambah-kuis', function () {
-    return Inertia::render('Guru/TambahKuisGuru');
-})->middleware(['auth', 'verified'])->name('tambah-kuis');
+    Route::get('/kuis-guru/tambah-kuis', function () {
+        return Inertia::render('Guru/TambahKuisGuru');
+    })->name('tambah-kuis');
 
-Route::get('/kuis-guru/hasil-kuis', function () {
-    return Inertia::render('Guru/HasilKuisGuru');
-})->middleware(['auth', 'verified'])->name('hasil-kuis');
+    Route::get('/kuis-guru/hasil-kuis', function () {
+        return Inertia::render('Guru/HasilKuisGuru');
+    })->name('hasil-kuis');
 
-Route::get('/tugas-guru', function () {
-    return Inertia::render('Guru/TugasGuru');
-})->middleware(['auth', 'verified'])->name('tugas-guru');
+    Route::get('/tugas-guru', function () {
+        return Inertia::render('Guru/TugasGuru');
+    })->name('tugas-guru');
 
-Route::get('/tugas-guru/tambah-tugas', function () {
-    return Inertia::render('Guru/TambahTugasGuru');
-})->middleware(['auth', 'verified'])->name('tambah-tugas');
+    Route::get('/tugas-guru/tambah-tugas', function () {
+        return Inertia::render('Guru/TambahTugasGuru');
+    })->name('tambah-tugas');
 
-Route::get('/tugas-guru/hasil-tugas', function () {
-    return Inertia::render('Guru/HasilTugasSiswaGuru');
-})->middleware(['auth', 'verified'])->name('hasil-tugas');
+    Route::get('/tugas-guru/hasil-tugas', function () {
+        return Inertia::render('Guru/HasilTugasSiswaGuru');
+    })->name('hasil-tugas');
 
-Route::get('/tugas-guru/detail-tugas-siswa', function () {
-    return Inertia::render('Guru/DetailHasilTugasSiswaGuru');
-})->middleware(['auth', 'verified'])->name('detail-tugas-siswa');
+    Route::get('/tugas-guru/detail-tugas-siswa', function () {
+        return Inertia::render('Guru/DetailHasilTugasSiswaGuru');
+    })->name('detail-tugas-siswa');
 
-// Data Siswa
-Route::get('/data-siswa', function () {
-    return Inertia::render('Guru/DataSiswaGuru');
-})->middleware(['auth', 'verified'])->name('data-siswa');
+    // Data Siswa
+    Route::get('/data-siswa', function () {
+        return Inertia::render('Guru/DataSiswaGuru');
+    })->name('data-siswa');
 
-Route::get('/data-siswa/detail-siswa', function () {
-    return Inertia::render('Guru/DetailDataSiswaGuru');
-})->middleware(['auth', 'verified'])->name('detail-siswa');
+    Route::get('/data-siswa/detail-siswa', function () {
+        return Inertia::render('Guru/DetailDataSiswaGuru');
+    })->name('detail-siswa');
 
-Route::get('/data-siswa/edit-siswa', function () {
-    return Inertia::render('Guru/TambahSiswaGuru');
-})->middleware(['auth', 'verified'])->name('edit-siswa');
-
-
-
+    Route::get('/data-siswa/edit-siswa', function () {
+        return Inertia::render('Guru/TambahSiswaGuru');
+    })->name('edit-siswa');
+});
 
 
+Route::group(['middleware' => 'role:siswa'], function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Siswa/DashboardSiswa');
+    })->name('dashboard');
+    // Materi
+    Route::get('/materi', function () {
+        return Inertia::render('Siswa/MateriSiswa');
+    })->name('materi');
+
+    Route::get('/materi/detail-materi', function () {
+        return Inertia::render('Siswa/DetailMateriSiswa');
+    })->name('detail-materi');
+
+    Route::get('/materi/detail-materi/lihat-materi', function () {
+        return Inertia::render('Siswa/ViewIsiMateriSiswa');
+    })->name('lihat-materi');
+
+    // Tutorial
+    Route::get('/tutorial', function () {
+        return Inertia::render('Siswa/TutorialSiswa');
+    })->name('tutorial');
+
+    // Referensi
+    Route::get('/referensi', function () {
+        return Inertia::render('Siswa/ReferensiSiswa');
+    })->name('referensi');
+
+    Route::get('/referensi/lihat-referensi', function () {
+        return Inertia::render('Siswa/ViewIsiReferensiSiswa');
+    })->name('lihat-referensi');
+
+    // Kuis
+    Route::get('/kuis', function () {
+        return Inertia::render('Siswa/KuisSiswa');
+    })->name('kuis');
+
+    Route::get('/kuis/mulai-kuis', function () {
+        return Inertia::render('Siswa/MulaiKuisSiswa');
+    })->name('mulai-kuis');
+
+    Route::get('/kuis/soal-kuis', function () {
+        return Inertia::render('Siswa/SoalKuisSiswa');
+    })->name('soal-kuis');
+
+    // Tugas
+    Route::get('/tugas', function () {
+        return Inertia::render('Siswa/TugasSiswa');
+    })->name('tugas');
+
+    Route::get('/tugas/detail-tugas', function () {
+        return Inertia::render('Siswa/DetailTugasSiswa');
+    })->name('detail-tugas');
+
+    // Panduan
+    Route::get('/panduan', function () {
+        return Inertia::render('Siswa/PanduanSiswa');
+    })->name('panduan');
+
+    // Route::get('/edit-profil', function () {
+    //     return Inertia::render('Siswa/EditProfilSiswa');
+    // })->name('edit-profil');
+
+
+});
 // SISWA
-
-// Materi
-Route::get('/materi', function () {
-    return Inertia::render('Siswa/MateriSiswa');
-})->middleware(['auth', 'verified'])->name('materi');
-
-Route::get('/materi/detail-materi', function () {
-    return Inertia::render('Siswa/DetailMateriSiswa');
-})->middleware(['auth', 'verified'])->name('detail-materi');
-
-Route::get('/materi/detail-materi/lihat-materi', function () {
-    return Inertia::render('Siswa/ViewIsiMateriSiswa');
-})->middleware(['auth', 'verified'])->name('lihat-materi');
-
-// Tutorial
-Route::get('/tutorial', function () {
-    return Inertia::render('Siswa/TutorialSiswa');
-})->middleware(['auth', 'verified'])->name('tutorial');
-
-// Referensi
-Route::get('/referensi', function () {
-    return Inertia::render('Siswa/ReferensiSiswa');
-})->middleware(['auth', 'verified'])->name('referensi');
-
-Route::get('/referensi/lihat-referensi', function () {
-    return Inertia::render('Siswa/ViewIsiReferensiSiswa');
-})->middleware(['auth', 'verified'])->name('lihat-referensi');
-
-// Kuis
-Route::get('/kuis', function () {
-    return Inertia::render('Siswa/KuisSiswa');
-})->middleware(['auth', 'verified'])->name('kuis');
-
-Route::get('/kuis/mulai-kuis', function () {
-    return Inertia::render('Siswa/MulaiKuisSiswa');
-})->middleware(['auth', 'verified'])->name('mulai-kuis');
-
-Route::get('/kuis/soal-kuis', function () {
-    return Inertia::render('Siswa/SoalKuisSiswa');
-})->middleware(['auth', 'verified'])->name('soal-kuis');
-
-// Tugas
-Route::get('/tugas', function () {
-    return Inertia::render('Siswa/TugasSiswa');
-})->middleware(['auth', 'verified'])->name('tugas');
-
-Route::get('/tugas/detail-tugas', function () {
-    return Inertia::render('Siswa/DetailTugasSiswa');
-})->middleware(['auth', 'verified'])->name('detail-tugas');
-
-// Panduan
-Route::get('/panduan', function () {
-    return Inertia::render('Siswa/PanduanSiswa');
-})->middleware(['auth', 'verified'])->name('panduan');
-
-// Route::get('/edit-profil', function () {
-//     return Inertia::render('Siswa/EditProfilSiswa');
-// })->middleware(['auth', 'verified'])->name('edit-profil');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profil', [ProfileController::class, 'edit'])->name('edit-profil.edit');
@@ -187,7 +187,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/edit-profil', [ProfileController::class, 'destroy'])->name('edit-profil.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 // Route::get('/testing', function(){

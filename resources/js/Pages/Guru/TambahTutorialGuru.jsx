@@ -3,9 +3,21 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function TambahTutorialGuru() {
+    const { data, setData, post, processing, errors } = useForm({
+        judul: "",
+        sumber: "",
+        cover: null,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        post(route("store.tutorial"));
+    };
+
     return (
         <MainGuruLayout>
             <Head title="Tutorial" />
@@ -14,49 +26,49 @@ export default function TambahTutorialGuru() {
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="judul"
                     >
                         Judul Tutorial
                     </label>
                     <TextInput
-                        id="email"
+                        id="judul"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="judul"
+                        placeholder="Masukkan Judul Tutorial..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.judul}
+                        onChange={(e) => setData("judul", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="sumber"
                     >
                         Sumber
                     </label>
                     <TextInput
-                        id="email"
+                        id="sumber"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="sumber"
+                        placeholder="Masukkan Sumber..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.sumber}
+                        onChange={(e) => setData("sumber", e.target.value)}
                     />
                 </div>
                 <div className="mb-12">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="foto"
+                        htmlFor="cover"
                     >
                         Cover
                     </label>
                     <div className="flex items-center gap-3">
                         <label
                             className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
-                            htmlFor="foto"
+                            htmlFor="cover"
                         >
                             <span className="text-white flex items-center gap-1">
                                 <svg
@@ -76,22 +88,27 @@ export default function TambahTutorialGuru() {
                                 Pilih File
                             </span>
                             <input
-                                id="foto"
+                                id="cover"
                                 type="file"
-                                name="foto"
+                                name="cover"
                                 className="hidden"
+                                onChange={(e) =>
+                                    setData("cover", e.target.files[0])
+                                }
                             />
                         </label>
-                        <p className="font-light text-sm">nama file</p>
+                        <p className="font-light text-sm">
+                            {data.cover ? data.cover.name : "Nama File"}
+                        </p>
                     </div>
                 </div>
                 <div className="flex gap-5 justify-end">
                     <Link href={route("tutorial-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("tutorial-guru")}>
-                        <PrimaryButton text="Simpan" />
-                    </Link>
+                    {/* <Link href={route("tutorial-guru")}> */}
+                    <PrimaryButton text="Simpan" onClick={handleSubmit} />
+                    {/* </Link> */}
                 </div>
             </form>
         </MainGuruLayout>

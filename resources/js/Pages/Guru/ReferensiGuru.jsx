@@ -6,22 +6,19 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
+import { useEffect } from "react";
 
 export default function ReferensiGuru({ auth }) {
+    const { referensis } = usePage().props;
     const head_title = ["No", "Judul", "Sumber", "Cover", "File", "Aksi"];
-    const data = [
-        {
-            no: "1",
-            judul: "ReactJS Basic",
-            sumber: "youtube.com",
-            cover: imageKonten1,
-            file: "ref.pdf",
-        },
-    ];
+
+    const handleDelete = (id) => {
+        route("destroy.referensi", { id });
+    };
 
     return (
         <MainGuruLayout>
@@ -57,21 +54,13 @@ export default function ReferensiGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {referensis.map((item, index) => {
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
+                                <TableItem item={index + 1} />
                                 <TableItem item={item.judul} />
                                 <TableItem item={item.sumber} />
-                                <TableItem
-                                    item={
-                                        <img
-                                            className="size-20"
-                                            src={item.cover}
-                                            alt="Cover Materi"
-                                        />
-                                    }
-                                />
+                                <TableItem item={item.cover} />
                                 <TableItem item={item.file} />
                                 <TableItem item={<ActionButton />} />
                             </TableRow>
@@ -79,7 +68,7 @@ export default function ReferensiGuru({ auth }) {
                     })}
                 </TableBody>
             </Table>
-            {data.length > 0 ? null : (
+            {referensis.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

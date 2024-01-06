@@ -4,6 +4,7 @@ import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 export default function TambahReferensiGuru() {
     const { data, setData, post, processing, errors } = useForm({
@@ -15,8 +16,20 @@ export default function TambahReferensiGuru() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        triggerAlert();
         post(route("store.referensi"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Referensi Berhasil Ditambahkan",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
     };
 
     return (

@@ -4,11 +4,13 @@ import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 export default function EditTugasGuru() {
     const { tugas } = usePage().props;
 
     const { data, setData, post, processing, errors } = useForm({
+        id: tugas.id,
         nama: tugas.nama,
         tenggat: tugas.tenggat,
         step1: tugas.step1,
@@ -21,8 +23,22 @@ export default function EditTugasGuru() {
         deskripsi4: tugas.deskripsi4,
     });
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        triggerAlert();
         post(route("update.tugas"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Tugas Berhasil Diedit",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
     };
 
     return (

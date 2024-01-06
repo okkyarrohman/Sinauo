@@ -19,8 +19,22 @@ export default function TambahTugasGuru() {
         deskripsi4: "",
     });
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        triggerAlert();
         post(route("store.tugas"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Tugas Berhasil Ditambahkan",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
     };
 
     return (

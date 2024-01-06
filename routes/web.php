@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\TugasController;
@@ -66,7 +67,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::post('/tutorial-guru/tambah-tutorial', 'store')->name('store.tutorial');
         Route::get('/tutorial-guru/edit-tutorial/{id}', 'edit')->name('edit.tutorial');
         Route::post('/tutorial-guru/update-tutorial', 'update')->name('update.tutorial');
-        Route::get('/tutorial-guru/destroy-tutorial/{id}', 'destroy')->name('destroy.tutorial');
+        Route::delete('/tutorial-guru/destroy-tutorial/{id}', 'destroy')->name('destroy.tutorial');
     });
 
     Route::controller(ReferensiController::class)->group(function () {
@@ -75,7 +76,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::post('/referensi-guru/tambah-referensi', 'store')->name('store.referensi');
         Route::get('/referensi-guru/edit-referensi/{id}', 'edit')->name('edit.referensi');
         Route::post('/referensi-guru/update-referensi', 'update')->name('update.referensi');
-        Route::get('/referensi-guru/destroy-referensi/{id}', 'destroy')->name('destroy.referensi');
+        Route::delete('/referensi-guru/destroy-referensi/{id}', 'destroy')->name('destroy.referensi');
     });
 
     Route::controller(TugasController::class)->group(function () {
@@ -84,7 +85,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::post('/tugas-guru/tambah-tugas', 'store')->name('store.tugas');
         Route::get('/tugas-guru/edit-tugas/{id}', 'edit')->name('edit.tugas');
         Route::post('/tugas-guru/update-tugas', 'update')->name('update.tugas');
-        Route::get('/tugas-guru/destroy-tugas/{id}', 'destroy')->name('destroy.tugas');
+        Route::delete('/tugas-guru/destroy-tugas/{id}', 'destroy')->name('destroy.tugas');
 
         Route::get('/tugas-guru/hasil-tugas', 'hasilTugas')->name('hasil-tugas');
         Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
@@ -109,6 +110,15 @@ Route::group(['middleware' => 'role:guru'], function () {
 
 
 
+    Route::controller(DataSiswaController::class)->group(function () {
+        Route::get('/data-siswa', 'index')->name('data-siswa');
+        Route::get('/data-siswa/detail-siswa/{id}', 'read')->name('read.siswa');
+        Route::get('/data-siswa/edit-siswa/{id}', 'edit')->name('edit.siswa');
+        Route::post('/data-siswa/edit-siswa/', 'update')->name('update.siswa');
+        Route::delete('/data-siswa/{id}', 'destroy')->name('destroy.siswa');
+    });
+
+
     // Data Siswa
     Route::get('/data-siswa', function () {
         return Inertia::render('Guru/DataSiswaGuru');
@@ -122,6 +132,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         return Inertia::render('Guru/TambahSiswaGuru');
     })->name('edit-siswa');
 });
+
 
 
 Route::group(['middleware' => 'role:siswa'], function () {

@@ -13,27 +13,27 @@ return new class extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('tenggat');
+            $table->string('nama')->nullable();
+            $table->string('tenggat')->nullable();
 
-            $table->string('step1');
-            $table->string('deskripsi1');
-            $table->string('answer1');
+            $table->string('step1')->nullable();
+            $table->string('deskripsi1')->nullable();
+            $table->string('answer1')->nullable();
 
-            $table->string('step2');
-            $table->string('deskripsi2');
-            $table->string('answer2');
+            $table->string('step2')->nullable();
+            $table->string('deskripsi2')->nullable();
+            $table->string('answer2')->nullable();
 
-            $table->string('step3');
-            $table->string('deskripsi3');
-            $table->string('answer3');
+            $table->string('step3')->nullable();
+            $table->string('deskripsi3')->nullable();
+            $table->string('answer3')->nullable();
 
-            $table->string('step4');
-            $table->string('deskripsi4');
-            $table->string('answer4');
+            $table->string('step4')->nullable();
+            $table->string('deskripsi4')->nullable();
+            $table->string('answer4')->nullable();
 
-            $table->string('konfirmasi');
-            $table->string('feedback');
+            $table->string('konfirmasi')->nullable();
+            $table->string('feedback')->nullable();
 
             $table->timestamps();
         });

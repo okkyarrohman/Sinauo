@@ -109,6 +109,6 @@ class ReferensiController extends Controller
         }
         $referensi->delete();
 
-        return redirect()->route('referensi')->with('success', 'Data referensi Berhasil Dihapus');
+        return redirect()->route('referensi-guru')->with('success', 'Data referensi Berhasil Dihapus');
     }
 }

@@ -7,13 +7,13 @@ use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class DataSiswaController extends Controller
 {
     public function index()
     {
         $siswa = User::all();
-        $siswa->hasRole('siswa');
 
         return Inertia::render('Guru/DataSiswaGuru', [
             'siswa' => $siswa

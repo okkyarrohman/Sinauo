@@ -110,28 +110,11 @@ Route::group(['middleware' => 'role:guru'], function () {
 
     Route::get('/kuis-guru/tambah-kuis', function () {
         return Inertia::render('Guru/TambahKuisGuru');
-    })->name('tambah-kuis');
+    })->name('create.kuis');
 
     Route::get('/kuis-guru/hasil-kuis', function () {
         return Inertia::render('Guru/HasilKuisGuru');
     })->name('hasil-kuis');
-
-
-
-
-
-    // Data Siswa
-    // Route::get('/data-siswa', function () {
-    //     return Inertia::render('Guru/DataSiswaGuru');
-    // })->name('data-siswa');
-
-    // Route::get('/data-siswa/detail-siswa', function () {
-    //     return Inertia::render('Guru/DetailDataSiswaGuru');
-    // })->name('detail-siswa');
-
-    // Route::get('/data-siswa/edit-siswa', function () {
-    //     return Inertia::render('Guru/TambahSiswaGuru');
-    // })->name('edit-siswa');
 });
 
 

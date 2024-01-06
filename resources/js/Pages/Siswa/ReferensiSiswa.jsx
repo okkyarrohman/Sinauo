@@ -1,27 +1,11 @@
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { placeholderReferensi, placeholderTutorial } from "../../../assets";
 
 export default function ReferensiSiswa({ auth }) {
-    const data = [
-        {
-            judul: "Pemrograman React",
-        },
-        {
-            judul: "Deep AI Learning To Improve Mobility of Web3 Website With Keras and TensorFlow",
-        },
-        {
-            judul: "Pemrograman JavaScript ES6",
-        },
-        {
-            judul: "Object Oriented Programming in PHP",
-        },
-        {
-            judul: "Object Oriented Programming in PHP",
-        },
-    ];
+    const { referensi } = usePage().props;
 
     return (
         <MainLayout>
@@ -32,7 +16,7 @@ export default function ReferensiSiswa({ auth }) {
             </div>
             <h1 className="font-semibold text-2xl mb-10">Referensi Proyek</h1>
             <div className="grid grid-cols-3 justify-items-center gap-y-10">
-                {data.map((item, index) => {
+                {referensi.map((item, index) => {
                     return (
                         <div
                             key={index}
@@ -55,9 +39,7 @@ export default function ReferensiSiswa({ auth }) {
                                         </h4>
                                     </div>
                                     <div className="px-5">
-                                        <p className="text-sm">
-                                            (Sumber Proyek nama author)
-                                        </p>
+                                        <p className="text-sm">{item.sumber}</p>
                                     </div>
                                 </Link>
                                 <div className="px-5 pb-5 flex justify-end">

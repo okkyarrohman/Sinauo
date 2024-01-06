@@ -1,27 +1,11 @@
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { placeholderTutorial } from "../../../assets";
 
 export default function TutorialSiswa({ auth }) {
-    const data = [
-        {
-            judul: "Pemrograman React",
-        },
-        {
-            judul: "Deep AI Learning To Improve Mobility of Web3 Website With Keras and TensorFlow",
-        },
-        {
-            judul: "Pemrograman JavaScript ES6",
-        },
-        {
-            judul: "Object Oriented Programming in PHP",
-        },
-        {
-            judul: "Object Oriented Programming in PHP",
-        },
-    ];
+    const { tutorial } = usePage().props;
 
     return (
         <MainLayout>
@@ -32,7 +16,7 @@ export default function TutorialSiswa({ auth }) {
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tutorial Praktik</h1>
             <div className="grid grid-cols-3 justify-items-center gap-y-10">
-                {data.map((item, index) => {
+                {tutorial.map((item, index) => {
                     return (
                         <Link
                             href=""
@@ -74,9 +58,7 @@ export default function TutorialSiswa({ auth }) {
                                     </h4>
                                 </div>
                                 <div className="px-5 pb-5">
-                                    <p className="text-sm">
-                                        (Sumber Video Link)
-                                    </p>
+                                    <p className="text-sm">{item.sumber}</p>
                                 </div>
                             </div>
                         </Link>

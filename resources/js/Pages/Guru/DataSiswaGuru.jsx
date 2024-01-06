@@ -64,7 +64,7 @@ export default function DataSiswaGuru({ auth }) {
                                 <TableItem
                                     item={
                                         <div className="flex items-center gap-4">
-                                            <Link href={route("detail-siswa")}>
+                                            <Link href={route("read.siswa")}>
                                                 <button
                                                     className="flex items-center"
                                                     type="button"

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\TugasController;
@@ -53,7 +54,7 @@ Route::group(['middleware' => 'role:guru'], function () {
 
     Route::get('/materi-guru/tambah-materi', function () {
         return Inertia::render('Guru/TambahMateriGuru');
-    })->name('tambah-materi');
+    })->name('create.materi');
 
     Route::get('/materi-guru/tambah-submateri', function () {
         return Inertia::render('Guru/TambahKontenMateriGuru');
@@ -90,6 +91,14 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
     });
 
+    Route::controller(DataSiswaController::class)->group(function () {
+        Route::get('/data-siswa', 'index')->name('data-siswa');
+        Route::get('/data-siswa/detail-siswa/{id}', 'read')->name('read.siswa');
+        Route::get('/data-siswa/edit-siswa/{id}', 'edit')->name('edit.siswa');
+        Route::post('/data-siswa/edit-siswa/', 'update')->name('update.siswa');
+        Route::get('/data-siswa/{id}', 'destroy')->name('destroy.siswa');
+    });
+
 
 
 
@@ -101,27 +110,13 @@ Route::group(['middleware' => 'role:guru'], function () {
 
     Route::get('/kuis-guru/tambah-kuis', function () {
         return Inertia::render('Guru/TambahKuisGuru');
-    })->name('tambah-kuis');
+    })->name('create.kuis');
 
     Route::get('/kuis-guru/hasil-kuis', function () {
         return Inertia::render('Guru/HasilKuisGuru');
     })->name('hasil-kuis');
-
-
-
-    // Data Siswa
-    Route::get('/data-siswa', function () {
-        return Inertia::render('Guru/DataSiswaGuru');
-    })->name('data-siswa');
-
-    Route::get('/data-siswa/detail-siswa', function () {
-        return Inertia::render('Guru/DetailDataSiswaGuru');
-    })->name('detail-siswa');
-
-    Route::get('/data-siswa/edit-siswa', function () {
-        return Inertia::render('Guru/TambahSiswaGuru');
-    })->name('edit-siswa');
 });
+
 
 
 Route::group(['middleware' => 'role:siswa'], function () {
@@ -142,18 +137,16 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('lihat-materi');
 
     // Tutorial
-    Route::get('/tutorial', function () {
-        return Inertia::render('Siswa/TutorialSiswa');
-    })->name('tutorial');
+    Route::controller(TutorialController::class)->group(function () {
+        Route::get('/tutorial', 'index_siswa')->name('tutorial');
+    });
+
 
     // Referensi
-    Route::get('/referensi', function () {
-        return Inertia::render('Siswa/ReferensiSiswa');
-    })->name('referensi');
-
-    Route::get('/referensi/lihat-referensi', function () {
-        return Inertia::render('Siswa/ViewIsiReferensiSiswa');
-    })->name('lihat-referensi');
+    Route::controller(ReferensiController::class)->group(function () {
+        Route::get('/referensi', 'index_siswa')->name('referensi');
+        Route::get('/referensi/lihat-referensi/', 'read_siswa')->name('lihat-referensi');
+    });
 
     // Kuis
     Route::get('/kuis', function () {
@@ -169,13 +162,19 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('soal-kuis');
 
     // Tugas
-    Route::get('/tugas', function () {
-        return Inertia::render('Siswa/TugasSiswa');
-    })->name('tugas');
+    Route::controller(TugasController::class)->group(function () {
+        Route::get('/tugas', 'index_siswa')->name('tugas');
+        Route::get('/tugas/detail-tugas', 'edit_answer')->name('detail-tugas');
+        Route::post('/tugas/detail-tugas', 'update_answer')->name('update-tugas');
+    });
 
-    Route::get('/tugas/detail-tugas', function () {
-        return Inertia::render('Siswa/DetailTugasSiswa');
-    })->name('detail-tugas');
+    // Route::get('/tugas', function () {
+    //     return Inertia::render('Siswa/TugasSiswa');
+    // })->name('tugas');
+
+    // Route::get('/tugas/detail-tugas', function () {
+    //     return Inertia::render('Siswa/DetailTugasSiswa');
+    // })->name('detail-tugas');
 
     // Panduan
     Route::get('/panduan', function () {

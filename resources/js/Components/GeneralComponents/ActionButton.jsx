@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/react";
 export default function ActionButton({ handleDelete, handleEdit }) {
     return (
         <div className="flex gap-4 items-center">
+            <Link href={handleDelete}>
             <button type="button" onClick={handleDelete}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +20,7 @@ export default function ActionButton({ handleDelete, handleEdit }) {
                     />
                 </svg>
             </button>
+            </Link>
             <Link href={handleEdit}>
                 <button type="button">
                     <svg

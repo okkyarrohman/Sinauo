@@ -67,7 +67,7 @@ class ReferensiController extends Controller
     {
         $referensi = Referensi::where('id', $id)->first();
 
-        return Inertia::render('Guru/TambahReferensiGuru', [
+        return Inertia::render('Guru/EditReferensiGuru', [
             'referensis' => $referensi,
         ]);
     }

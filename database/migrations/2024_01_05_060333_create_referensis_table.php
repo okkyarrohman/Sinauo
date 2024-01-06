@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('referensis', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('sumber');
-            $table->string('cover');
-            $table->string('file');
+            $table->string('judul')->nullable();
+            $table->string('sumber')->nullable();
+            $table->string('cover')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

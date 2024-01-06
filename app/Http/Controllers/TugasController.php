@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 
 class TugasController extends Controller
 {
+    // Untuk Guru
     public function index()
     {
         $tugas = Tugas::all();
@@ -101,15 +102,36 @@ class TugasController extends Controller
 
         $tugas->delete();
 
-        return redirect()->route('tugas-guru')->with('success', 'Tugas Berhasil Dihapus');
+        return redirect()->route('Guru/TugasGuru')->with('success', 'Tugas Berhasil Dihapus');
     }
 
 
+    public function hasilTugas()
+    {
+        $tugas = Tugas::all();
+
+        return Inertia::render('Guru/HasilTugasSiswaGuru', [
+            'tugas' => $tugas
+        ]);
+    }
+
+    public function detailTugas($id)
+    {
+        $tugas = Tugas::where('id', $id)->first();
+
+        return Inertia::render('Guru/DetailHasilTugasSiswaGuru', [
+            'tugas' =>  $tugas
+        ]);
+    }
+    // End Untuk Guru
+
+
+    // Untuk Siswa
     public function edit_answer($id)
     {
         $tugas = Tugas::where('id', $id)->first();
 
-        return Inertia::render('edit.tugas', [
+        return Inertia::render('Siswa/EditTugas', [
             'tugas' => $tugas
         ]);
     }
@@ -149,24 +171,5 @@ class TugasController extends Controller
         $tugas->save();
 
         return redirect()->route('tugas')->with('success', 'Berhasil Mengirim Jawaban Tugas');
-    }
-
-
-    public function hasilTugas()
-    {
-        $tugas = Tugas::all();
-
-        return Inertia::render('Guru/HasilTugasSiswaGuru', [
-            'tugas' => $tugas
-        ]);
-    }
-
-    public function detailTugas($id)
-    {
-        $tugas = Tugas::where('id', $id)->first();
-
-        return Inertia::render('Guru/DetailHasilTugasSiswaGuru', [
-            'tugas' =>  $tugas
-        ]);
     }
 }

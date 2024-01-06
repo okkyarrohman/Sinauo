@@ -26,15 +26,6 @@ export default function EditReferensiGuru() {
             <Head title="Referensi" />
             <h1 className="font-semibold text-2xl mb-10">Edit Referensi</h1>
             <form className="w-4/5">
-                {/* Hidden Value ID */}
-                <TextInput
-                    id="id"
-                    type="text"
-                    name="id"
-                    className="hidden"
-                    value={data.id}
-                />
-                {/* Hidden Value ID */}
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"

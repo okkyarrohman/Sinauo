@@ -11,16 +11,16 @@ export default function TambahTugasGuru() {
         tenggat: "",
         step1: "",
         deskripsi1: "",
-        answer1: "",
+        answer1: null,
         step2: "",
         deskripsi3: "",
-        answer2: "",
+        answer2: null,
         step3: "",
         deskripsi3: "",
-        answer3: "",
+        answer3: null,
         step4: "",
         deskripsi4: "",
-        answer4: "",
+        answer4: null,
     });
 
     const handleSubmit = () => {

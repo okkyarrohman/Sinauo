@@ -6,12 +6,14 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function TutorialGuru({ auth }) {
+    const { tutorials } = usePage().props;
+
     const head_title = ["No", "Judul", "Cover", "Sumber", "Aksi"];
     const data = [
         {
@@ -56,10 +58,10 @@ export default function TutorialGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {tutorials.map((item, index) => {
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
+                                <TableItem item={index + 1} />
                                 <TableItem item={item.judul} />
                                 <TableItem
                                     item={

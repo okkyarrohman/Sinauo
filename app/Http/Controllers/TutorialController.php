@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tutorial;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TutorialController extends Controller
 {
+    public function index_siswa()
+    {
+        $tutorial = Tutorial::all();
 
+        return Inertia::render('Siswa/TutorialSiswa', [
+            'tutorial' => $tutorial
+        ]);
+    }
 
     public function index()
     {
@@ -39,7 +46,7 @@ class TutorialController extends Controller
             $cover = $request->file('cover');
             $extension = $cover->getClientOriginalName();
             $coverName = date('YmdHis') . "." . $extension;
-            $cover->move(storage_path('app/public/tutorial/cover' . $coverName));
+            $cover->move(storage_path('app/public/tutorial/cover/'), $coverName);
             $tutorial->cover = $coverName;
         }
         // Save data to Database
@@ -68,7 +75,7 @@ class TutorialController extends Controller
             $cover = $request->file('cover');
             $extension = $cover->getClientOriginalName();
             $coverName = date('YmdHis') . "." . $extension;
-            $cover->move(storage_path('app/public/tutorial/cover' . $coverName));
+            $cover->move(storage_path('app/public/tutorial/cover/'), $coverName);
             $tutorial->cover = $coverName;
         }
         $tutorial->save();
@@ -79,12 +86,12 @@ class TutorialController extends Controller
     public function destroy($id)
     {
         $tutorial = Tutorial::find($id);
-        $destination = storage_path('app/public/tutorial/cover' . $tutorial->cover);
-        if (File::exists($destination)) {
-            File::delete($destination);
+        $cover = Storage::exists('public/tutorial/cover/' . $tutorial->cover);
+
+        if ($cover) {
+            Storage::delete('public/tutorial/cover/' . $tutorial->cover);
         }
         $tutorial->delete();
-
         return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Berhasil Dihapus');
     }
 }

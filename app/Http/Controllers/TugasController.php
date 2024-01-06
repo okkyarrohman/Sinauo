@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Tugas;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TugasController extends Controller
 {
@@ -86,22 +86,20 @@ class TugasController extends Controller
     {
         $tugas = Tugas::find($id)->get();
 
-        $answer2 = storage_path('app/public/tugas/answer2' . $tugas->answer2);
-        $answer3 = storage_path('app/public/tugas/answer3' . $tugas->answer3);
-        $answer4 = storage_path('app/public/tugas/answer4' . $tugas->answer4);
+        $answer2 = Storage::exists('public/tugas/answer2/' . $tugas->answer2);
+        $answer3 = Storage::exists('public/tugas/answer3/' . $tugas->answer3);
+        $answer4 = Storage::exists('public/tugas/answer4/' . $tugas->answer4);
 
-        if (File::exists($answer2)) {
-            File::delete($answer2);
+        if ($answer2) {
+            Storage::delete('public/tugas/answer2/' . $tugas->answer2);
         }
-        if (File::exists($answer3)) {
-            File::delete($answer3);
+        if ($answer3) {
+            Storage::delete('public/tugas/answer3/' . $tugas->answer3);
         }
-        if (File::exists($answer4)) {
-            File::delete($answer4);
+        if ($answer4) {
+            Storage::delete('public/tugas/answer4/' . $tugas->answer4);
         }
-
         $tugas->delete();
-
         return redirect()->route('Guru/TugasGuru')->with('success', 'Tugas Berhasil Dihapus');
     }
 
@@ -127,12 +125,21 @@ class TugasController extends Controller
 
 
     // Untuk Siswa
-    public function edit_answer($id)
+    public function index_siswa()
     {
-        $tugas = Tugas::where('id', $id)->first();
+        $tugas = Tugas::all();
 
-        return Inertia::render('Siswa/EditTugas', [
+        return Inertia::render('Siswa/TugasSiswa', [
             'tugas' => $tugas
+        ]);
+    }
+
+    public function edit_answer()
+    {
+        // $tugas = Tugas::where('id', $id)->first();
+
+        return Inertia::render('Siswa/DetailTugasSiswa', [
+            //'tugas' => $tugas
         ]);
     }
 
@@ -146,7 +153,7 @@ class TugasController extends Controller
             $answer2 = $request->file('answer2');
             $extension = $answer2->getClientOriginalName();
             $answer2Name = date('YmdHis') . "." . $extension;
-            $answer2->move(storage_path('app/public/tugas/answer2' . $answer2Name));
+            $answer2->move(storage_path('app/public/tugas/answer2/'), $answer2Name);
             $tugas->answer2 = $answer2Name;
         }
 
@@ -155,7 +162,7 @@ class TugasController extends Controller
             $answer3 = $request->file('answer3');
             $extension = $answer3->getClientOriginalName();
             $answer3Name = date('YmdHis') . "." . $extension;
-            $answer3->move(storage_path('app/public/tugas/answer3' . $answer3Name));
+            $answer3->move(storage_path('app/public/tugas/answer3/'), $answer3Name);
             $tugas->answer3 = $answer3Name;
         }
 
@@ -164,7 +171,7 @@ class TugasController extends Controller
             $answer4 = $request->file('answer4');
             $extension = $answer4->getClientOriginalName();
             $answer4Name = date('YmdHis') . "." . $extension;
-            $answer4->move(storage_path('app/public/tugas/answer4' . $answer4Name));
+            $answer4->move(storage_path('app/public/tugas/answer4/'), $answer4Name);
             $tugas->answer4 = $answer4Name;
         }
 

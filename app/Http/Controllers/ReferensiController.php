@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Referensi;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ReferensiController extends Controller
 {
@@ -15,7 +15,18 @@ class ReferensiController extends Controller
     {
         $referensi = Referensi::all();
 
-        return 'views';
+        return Inertia::render('Siswa/ReferensiSiswa', [
+            'referensi' => $referensi
+        ]);
+    }
+
+    public function read_siswa($id)
+    {
+        $referensi = Referensi::where('id', $id)->first();
+
+        return Inertia::render('Siswa/ViewIsiReferensiSiswa', [
+            'referensi' => $referensi
+        ]);
     }
 
     public function index()
@@ -46,7 +57,7 @@ class ReferensiController extends Controller
             $cover = $request->file('cover');
             $extension = $cover->getClientOriginalName();
             $coverName = date('YmdHis') . "." . $extension;
-            $cover->move(storage_path('app/public/referensi/cover' . $coverName));
+            $cover->move(storage_path('app/public/referensi/cover/'), $coverName);
             $referensi->cover = $coverName;
         }
 
@@ -54,7 +65,7 @@ class ReferensiController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalName();
             $fileName = date('YmdHis') . "." . $extension;
-            $file->move(storage_path('app/public/referensi/file' . $fileName));
+            $file->move(storage_path('app/public/referensi/file/'), $fileName);
             $referensi->file = $fileName;
         }
         // Save data to Database
@@ -83,7 +94,7 @@ class ReferensiController extends Controller
             $cover = $request->file('cover');
             $extension = $cover->getClientOriginalName();
             $coverName = date('YmdHis') . "." . $extension;
-            $cover->move(storage_path('app/public/referensi/cover' . $coverName));
+            $cover->move(storage_path('app/public/referensi/cover/'), $coverName);
             $referensi->cover = $coverName;
         }
 
@@ -91,7 +102,7 @@ class ReferensiController extends Controller
             $file = $request->file('file');
             $extension = $file->getClientOriginalName();
             $fileName = date('YmdHis') . "." . $extension;
-            $file->move(storage_path('app/public/referensi/file' . $fileName));
+            $file->move(storage_path('app/public/referensi/file/'), $fileName);
             $referensi->file = $fileName;
         }
 
@@ -103,10 +114,16 @@ class ReferensiController extends Controller
     public function destroy($id)
     {
         $referensi = Referensi::find($id);
-        $destination = storage_path('app/public/referensi/cover' . $referensi->cover);
-        if (File::exists($destination)) {
-            File::delete($destination);
+        $cover = Storage::exists('public/referensi/cover/' . $referensi->cover);
+        $file = Storage::exists('public/referensi/file/' . $referensi->file);
+
+        if ($cover) {
+            Storage::delete('public/referensi/cover/' . $referensi->cover);
         }
+        if ($file) {
+            Storage::delete('public/referensi/file/' . $referensi->file);
+        }
+
         $referensi->delete();
 
         return redirect()->route('referensi-guru')->with('success', 'Data referensi Berhasil Dihapus');

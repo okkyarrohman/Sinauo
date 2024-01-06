@@ -13,7 +13,11 @@ class TutorialController extends Controller
 
     public function index()
     {
-        return Inertia::render('Guru/TutorialGuru');
+        $tutorial = Tutorial::all();
+
+        return Inertia::render('Guru/TutorialGuru', [
+            'tutorials' => $tutorial
+        ]);
     }
 
     public function create()

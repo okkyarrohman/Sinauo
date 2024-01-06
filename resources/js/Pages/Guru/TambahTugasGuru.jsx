@@ -3,9 +3,26 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 
 export default function TambahTugasGuru() {
+    const { data, setData, post, processing, errors } = useForm({
+        nama: "",
+        tenggat: "",
+        step1: "",
+        deskripsi1: "",
+        step2: "",
+        deskripsi3: "",
+        step3: "",
+        deskripsi3: "",
+        step4: "",
+        deskripsi4: "",
+    });
+
+    const handleSubmit = () => {
+        post(route("store.tugas"));
+    };
+
     return (
         <MainGuruLayout>
             <Head title="Tugas" />
@@ -14,181 +31,181 @@ export default function TambahTugasGuru() {
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="nama"
                     >
                         Tugas
                     </label>
                     <TextInput
-                        id="email"
+                        id="nama"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="nama"
+                        placeholder="Masukkan Nama Tugas..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.nama}
+                        onChange={(e) => setData("nama", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="tenggat"
                     >
                         Tenggat Waktu
                     </label>
                     <TextInput
-                        id="email"
+                        id="tenggat"
                         type="date"
-                        name="email"
+                        name="tenggat"
                         placeholder="Masukkan Nama Materi..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.tenggat}
+                        onChange={(e) => setData("tenggat", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="step1"
                     >
                         Step 1
                     </label>
                     <TextInput
-                        id="email"
+                        id="step1"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="step1"
+                        placeholder="Masukkan Step Pertama..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.step1}
+                        onChange={(e) => setData("step1", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="deskripsi1"
                     >
                         Deskripsi
                     </label>
                     <textarea
                         className="w-full rounded-lg border border-[#D1D1D1]"
-                        placeholder="Masukkan Jawaban..."
-                        name="jawaban"
-                        id="jawaban"
+                        placeholder="Masukkan Deskripsi..."
+                        name="deskripsi1"
+                        id="deskripsi1"
                         rows="7"
-                        // value={data.jawaban}
-                        // onChange={(e) => setData("jawaban", e.target.value)}
+                        value={data.deskripsi1}
+                        onChange={(e) => setData("deskripsi1", e.target.value)}
                     ></textarea>
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="step2"
                     >
                         Step 2
                     </label>
                     <TextInput
-                        id="email"
+                        id="step2"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="step2"
+                        placeholder="Masukkan Step Kedua..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.step2}
+                        onChange={(e) => setData("step2", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="deskripsi2"
                     >
                         Deskripsi
                     </label>
                     <textarea
                         className="w-full rounded-lg border border-[#D1D1D1]"
-                        placeholder="Masukkan Jawaban..."
-                        name="jawaban"
-                        id="jawaban"
+                        placeholder="Masukkan Deskripsi..."
+                        name="deskripsi2"
+                        id="deskripsi2"
                         rows="7"
-                        // value={data.jawaban}
-                        // onChange={(e) => setData("jawaban", e.target.value)}
+                        value={data.deskripsi2}
+                        onChange={(e) => setData("deskripsi2", e.target.value)}
                     ></textarea>
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="step3"
                     >
                         Step 3
                     </label>
                     <TextInput
-                        id="email"
+                        id="step3"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="step3"
+                        placeholder="Masukkan Step Ketiga..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.step3}
+                        onChange={(e) => setData("step3", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="deskripsi3"
                     >
                         Deskripsi
                     </label>
                     <textarea
                         className="w-full rounded-lg border border-[#D1D1D1]"
-                        placeholder="Masukkan Jawaban..."
-                        name="jawaban"
-                        id="jawaban"
+                        placeholder="Masukkan Deskripsi..."
+                        name="deskripsi3"
+                        id="deskripsi3"
                         rows="7"
-                        // value={data.jawaban}
-                        // onChange={(e) => setData("jawaban", e.target.value)}
+                        value={data.deskripsi3}
+                        onChange={(e) => setData("deskripsi3", e.target.value)}
                     ></textarea>
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="step4"
                     >
                         Step 4
                     </label>
                     <TextInput
-                        id="email"
+                        id="step4"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="step4"
+                        placeholder="Masukkan Step Keempat..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.step4}
+                        onChange={(e) => setData("step4", e.target.value)}
                     />
                 </div>
                 <div className="mb-12">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="deskripsi4"
                     >
                         Deskripsi
                     </label>
                     <textarea
                         className="w-full rounded-lg border border-[#D1D1D1]"
                         placeholder="Masukkan Jawaban..."
-                        name="jawaban"
-                        id="jawaban"
+                        name="deskripsi4"
+                        id="deskripsi4"
                         rows="7"
-                        // value={data.jawaban}
-                        // onChange={(e) => setData("jawaban", e.target.value)}
+                        value={data.deskripsi4}
+                        onChange={(e) => setData("deskripsi4", e.target.value)}
                     ></textarea>
                 </div>
                 <div className="flex gap-5 justify-end">
                     <Link href={route("tugas-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("tugas-guru")}>
-                        <PrimaryButton text="Simpan" />
-                    </Link>
+                    {/* <Link href={route("tugas-guru")}> */}
+                    <PrimaryButton text="Simpan" onClick={handleSubmit} />
+                    {/* </Link> */}
                 </div>
             </form>
         </MainGuruLayout>

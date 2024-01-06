@@ -62,7 +62,20 @@ export default function ReferensiGuru({ auth }) {
                                 <TableItem item={item.sumber} />
                                 <TableItem item={item.cover} />
                                 <TableItem item={item.file} />
-                                <TableItem item={<ActionButton />} />
+                                <TableItem
+                                    item={
+                                        <ActionButton
+                                            handleDelete={route(
+                                                "destroy.referensi",
+                                                item.id
+                                            )}
+                                            handleEdit={route(
+                                                "edit.referensi",
+                                                item.id
+                                            )}
+                                        />
+                                    }
+                                />
                             </TableRow>
                         );
                     })}

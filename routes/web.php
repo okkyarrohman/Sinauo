@@ -137,18 +137,16 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('lihat-materi');
 
     // Tutorial
-    Route::get('/tutorial', function () {
-        return Inertia::render('Siswa/TutorialSiswa');
-    })->name('tutorial');
+    Route::controller(TutorialController::class)->group(function () {
+        Route::get('/tutorial', 'index_siswa')->name('tutorial');
+    });
+
 
     // Referensi
-    Route::get('/referensi', function () {
-        return Inertia::render('Siswa/ReferensiSiswa');
-    })->name('referensi');
-
-    Route::get('/referensi/lihat-referensi', function () {
-        return Inertia::render('Siswa/ViewIsiReferensiSiswa');
-    })->name('lihat-referensi');
+    Route::controller(ReferensiController::class)->group(function () {
+        Route::get('/referensi', 'index_siswa')->name('referensi');
+        Route::get('/referensi/lihat-referensi/', 'read_siswa')->name('lihat-referensi');
+    });
 
     // Kuis
     Route::get('/kuis', function () {
@@ -164,13 +162,19 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('soal-kuis');
 
     // Tugas
-    Route::get('/tugas', function () {
-        return Inertia::render('Siswa/TugasSiswa');
-    })->name('tugas');
+    Route::controller(TugasController::class)->group(function () {
+        Route::get('/tugas', 'index_siswa')->name('tugas');
+        Route::get('/tugas/detail-tugas', 'edit_answer')->name('detail-tugas');
+        Route::post('/tugas/detail-tugas', 'update_answer')->name('update-tugas');
+    });
 
-    Route::get('/tugas/detail-tugas', function () {
-        return Inertia::render('Siswa/DetailTugasSiswa');
-    })->name('detail-tugas');
+    // Route::get('/tugas', function () {
+    //     return Inertia::render('Siswa/TugasSiswa');
+    // })->name('tugas');
+
+    // Route::get('/tugas/detail-tugas', function () {
+    //     return Inertia::render('Siswa/DetailTugasSiswa');
+    // })->name('detail-tugas');
 
     // Panduan
     Route::get('/panduan', function () {

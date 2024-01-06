@@ -6,12 +6,14 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function DataSiswaGuru({ auth }) {
+    const { siswa } = usePage().props;
+
     const head_title = ["No", "Nama", "Email", "Alamat", "Aksi"];
     const data = [
         {
@@ -54,17 +56,22 @@ export default function DataSiswaGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {siswa.map((item, index) => {
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
-                                <TableItem item={item.nama} />
+                                <TableItem item={item.id} />
+                                <TableItem item={item.name} />
                                 <TableItem item={item.email} />
                                 <TableItem item={item.alamat} />
                                 <TableItem
                                     item={
                                         <div className="flex items-center gap-4">
-                                            <Link href={route("read.siswa")}>
+                                            <Link
+                                                href={route(
+                                                    "read.siswa",
+                                                    item.id
+                                                )}
+                                            >
                                                 <button
                                                     className="flex items-center"
                                                     type="button"
@@ -91,11 +98,14 @@ export default function DataSiswaGuru({ auth }) {
                                                 </button>
                                             </Link>
                                             <ActionButton
-                                                handleEdit={() =>
-                                                    router.visit(
-                                                        "/data-siswa/edit-siswa"
-                                                    )
-                                                }
+                                                handleDelete={route(
+                                                    "destroy.siswa",
+                                                    item.id
+                                                )}
+                                                handleEdit={route(
+                                                    "edit.siswa",
+                                                    item.id
+                                                )}
                                             />
                                         </div>
                                     }
@@ -105,7 +115,7 @@ export default function DataSiswaGuru({ auth }) {
                     })}
                 </TableBody>
             </Table>
-            {data.length > 0 ? null : (
+            {siswa.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

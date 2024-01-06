@@ -80,7 +80,7 @@ class TutorialController extends Controller
         }
         $tutorial->save();
 
-        return redirect()->route('guru')->with('success', 'Data Tutorial Berhasil Diupdate');
+        return redirect()->route('tutorial-guru')->with('success', 'Data Tutorial Berhasil Diupdate');
     }
 
     public function destroy($id)

@@ -15,14 +15,6 @@ export default function TutorialGuru({ auth }) {
     const { tutorials } = usePage().props;
 
     const head_title = ["No", "Judul", "Cover", "Sumber", "Aksi"];
-    const data = [
-        {
-            no: "1",
-            judul: "ReactJS Basic",
-            cover: imageKonten1,
-            sumber: "youtube.com",
-        },
-    ];
 
     return (
         <MainGuruLayout>
@@ -63,23 +55,28 @@ export default function TutorialGuru({ auth }) {
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
                                 <TableItem item={item.judul} />
+                                <TableItem item={item.cover} />
+                                <TableItem item={item.sumber} />
                                 <TableItem
                                     item={
-                                        <img
-                                            className="size-20"
-                                            src={item.cover}
-                                            alt="Cover Materi"
+                                        <ActionButton
+                                            handleDelete={route(
+                                                "destroy.tutorial",
+                                                item.id
+                                            )}
+                                            handleEdit={route(
+                                                "edit.tutorial",
+                                                item.id
+                                            )}
                                         />
                                     }
                                 />
-                                <TableItem item={item.sumber} />
-                                <TableItem item={<ActionButton />} />
                             </TableRow>
                         );
                     })}
                 </TableBody>
             </Table>
-            {data.length > 0 ? null : (
+            {tutorials.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

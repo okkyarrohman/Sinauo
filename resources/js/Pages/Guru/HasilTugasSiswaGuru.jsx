@@ -8,9 +8,11 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function HasilTugasSiswaGuru({ auth }) {
+    const { tugas } = usePage().props;
+
     const head_title = [
         "No",
         "Nama",
@@ -48,7 +50,7 @@ export default function HasilTugasSiswaGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {tugas.map((item, index) => {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={item.no} />
@@ -63,7 +65,10 @@ export default function HasilTugasSiswaGuru({ auth }) {
                                 <TableItem
                                     item={
                                         <Link
-                                            href={route("detail-tugas-siswa")}
+                                            href={route(
+                                                "detail-tugas-siswa",
+                                                item.id
+                                            )}
                                         >
                                             <button className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white">
                                                 Lihat

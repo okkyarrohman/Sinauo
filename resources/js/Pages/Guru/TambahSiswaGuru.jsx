@@ -3,10 +3,24 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function TambahSiswaGuru() {
+    const { siswa } = usePage().props;
+
+    const { data, setData, post, processing, success } = useForm({
+        id: siswa.id,
+        name: siswa.name,
+        email: siswa.email,
+        password: siswa.password,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post(route("update.siswa"));
+    };
+
     const [passVisible, setPassVisible] = useState(false);
 
     const handlePassVisible = () => {
@@ -21,19 +35,19 @@ export default function TambahSiswaGuru() {
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="name"
                     >
                         Nama Siswa
                     </label>
                     <TextInput
-                        id="email"
+                        id="name"
                         type="text"
-                        name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        name="name"
+                        placeholder="Masukkan Nama Siswa..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.name}
+                        onChange={(e) => setData("name", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
@@ -47,10 +61,10 @@ export default function TambahSiswaGuru() {
                         id="email"
                         type="email"
                         name="email"
-                        placeholder="Masukkan Nama Materi..."
+                        placeholder="Masukkan Email Siswa..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.email}
+                        onChange={(e) => setData("email", e.target.value)}
                     />
                 </div>
                 <div className="mb-12">
@@ -65,12 +79,12 @@ export default function TambahSiswaGuru() {
                             id="password"
                             type={passVisible ? "text" : "password"}
                             name="password"
-                            placeholder="Masukkan Password..."
+                            placeholder="Masukkan Password Siswa..."
                             className="w-full border-[#353535]"
-                            // value={data.password}
-                            // onChange={(e) =>
-                            //     setData("password", e.target.value)
-                            // }
+                            value={data.password}
+                            onChange={(e) =>
+                                setData("password", e.target.value)
+                            }
                         />
                         <button
                             className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
@@ -140,9 +154,9 @@ export default function TambahSiswaGuru() {
                     <Link href={route("data-siswa")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("data-siswa")}>
-                        <PrimaryButton text="Simpan" />
-                    </Link>
+                    {/* <Link href={route("data-siswa")}> */}
+                    <PrimaryButton text="Simpan" onClick={handleSubmit} />
+                    {/* </Link> */}
                 </div>
             </form>
         </MainGuruLayout>

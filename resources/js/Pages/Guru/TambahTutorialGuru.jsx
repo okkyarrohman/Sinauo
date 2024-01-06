@@ -3,7 +3,8 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, router, useForm } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 export default function TambahTutorialGuru() {
     const { data, setData, post, processing, errors } = useForm({
@@ -14,8 +15,20 @@ export default function TambahTutorialGuru() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        triggerAlert();
         post(route("store.tutorial"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Tutorial Berhasil Ditambahkan",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
     };
 
     return (

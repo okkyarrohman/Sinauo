@@ -1,12 +1,14 @@
 import MainLayout from "@/Layouts/MainLayout";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
 import { iconFeedback, iconSubmitKuis } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 
 export default function TugasSiswa({ auth }) {
+    const { tugas } = usePage().props;
+
     const data = [
         {
             no: "1",
@@ -53,32 +55,37 @@ export default function TugasSiswa({ auth }) {
                 <ProfileInfo name={auth.user.name} />
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tugas</h1>
-            {data.map((item, index) => {
+            {tugas.map((item, index) => {
                 return (
                     <div
                         key={index}
                         className="p-6 bg-white rounded-2xl mb-4 flex items-center"
                     >
-                        <p>{item.no}</p>
+                        <p>{index + 1}</p>
                         <div className="flex items-center justify-between w-[92%] ml-auto">
                             <div className="w-28 relative">
                                 <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap">
                                     {item.nama}
                                 </p>
                             </div>
-                            <p>{item.tanggal}</p>
+                            <p>{item.tenggat}</p>
                             <div className="w-[20%]">
                                 <ProgressBar progres={item.progres} />
                             </div>
-                            <p>{item.status}</p>
+                            <p>{item.konfirmasi}</p>
                             <Link href={route("detail-tugas")}>
                                 <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
                                     Detail
                                 </button>
                             </Link>
                             <button
-                                className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]"
+                                className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
+                                    item.feedback === null
+                                        ? "bg-primary-light"
+                                        : "bg-primary"
+                                }`}
                                 onClick={() => triggerAlert(item.feedback)}
+                                disabled={item.feedback === null}
                             >
                                 Feedback
                             </button>

@@ -6,9 +6,10 @@ import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 
 export default function DetailDataSiswaGuru() {
+    const { siswa } = usePage().props;
     const head_title = ["Data Siswa", "Keterangan"];
 
     return (
@@ -23,7 +24,7 @@ export default function DetailDataSiswaGuru() {
                     <TableBody>
                         <TableRow>
                             <TableItem item="Nama Siswa" />
-                            <TableItem item="Febrian Daffa" />
+                            <TableItem item={siswa.name} />
                         </TableRow>
                         <TableRow>
                             <TableItem item="Foto Profil" />
@@ -43,12 +44,12 @@ export default function DetailDataSiswaGuru() {
                         </TableRow>
                         <TableRow>
                             <TableItem item="Email" />
-                            <TableItem item="daffa123@gmail.com" />
+                            <TableItem item={siswa.email} />
                         </TableRow>
-                        <TableRow>
+                        {/* <TableRow>
                             <TableItem item="Password" />
-                            <TableItem item="jjbdhwegbhbjbj" />
-                        </TableRow>
+                            <TableItem item={siswa.password} />
+                        </TableRow> */}
                         <TableRow>
                             <TableItem item="Jumlah Waktu Akses " />
                             <TableItem item="12:12:12" />

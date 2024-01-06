@@ -3,32 +3,36 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
-export default function TambahTugasGuru() {
+export default function EditTugasGuru() {
+    const { tugas } = usePage().props;
+
     const { data, setData, post, processing, errors } = useForm({
-        nama: "",
-        tenggat: "",
-        step1: "",
-        deskripsi1: "",
-        step2: "",
-        deskripsi2: "",
-        step3: "",
-        deskripsi3: "",
-        step4: "",
-        deskripsi4: "",
+        id: tugas.id,
+        nama: tugas.nama,
+        tenggat: tugas.tenggat,
+        step1: tugas.step1,
+        deskripsi1: tugas.deskripsi1,
+        step2: tugas.step2,
+        deskripsi2: tugas.deskripsi2,
+        step3: tugas.step3,
+        deskripsi3: tugas.deskripsi3,
+        step4: tugas.step4,
+        deskripsi4: tugas.deskripsi4,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         triggerAlert();
-        post(route("store.tugas"));
+        post(route("update.tugas"));
     };
 
     const triggerAlert = () => {
         Swal.fire({
             icon: "success",
-            title: "Tugas Berhasil Ditambahkan",
+            title: "Tugas Berhasil Diedit",
             showConfirmButton: false,
             customClass: {
                 title: "block text-lg w-3/4 text-center mx-auto",
@@ -40,7 +44,7 @@ export default function TambahTugasGuru() {
     return (
         <MainGuruLayout>
             <Head title="Tugas" />
-            <h1 className="font-semibold text-2xl mb-10">Tambah Tugas</h1>
+            <h1 className="font-semibold text-2xl mb-10">Edit Tugas</h1>
             <form className="w-4/5">
                 <div className="mb-4">
                     <label

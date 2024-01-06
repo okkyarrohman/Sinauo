@@ -6,21 +6,15 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 
 export default function TugasGuru({ auth }) {
+    const { tugas } = usePage().props;
+
     const head_title = ["No", "Tugas", "Tenggat", "Hasil", "Aksi"];
-    const data = [
-        {
-            no: "1",
-            tugas: "ReactJS Basic",
-            tenggat: "12/12/2024",
-            // hasil: "100",
-        },
-    ];
 
     return (
         <MainGuruLayout>
@@ -54,11 +48,11 @@ export default function TugasGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {tugas.map((item, index) => {
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
-                                <TableItem item={item.tugas} />
+                                <TableItem item={index + 1} />
+                                <TableItem item={item.nama} />
                                 <TableItem item={item.tenggat} />
                                 <TableItem
                                     item={
@@ -69,13 +63,26 @@ export default function TugasGuru({ auth }) {
                                         </Link>
                                     }
                                 />
-                                <TableItem item={<ActionButton />} />
+                                <TableItem
+                                    item={
+                                        <ActionButton
+                                            handleDelete={route(
+                                                "destroy.tugas",
+                                                item.id
+                                            )}
+                                            handleEdit={route(
+                                                "edit.tugas",
+                                                item.id
+                                            )}
+                                        />
+                                    }
+                                />
                             </TableRow>
                         );
                     })}
                 </TableBody>
             </Table>
-            {data.length > 0 ? null : (
+            {tugas.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

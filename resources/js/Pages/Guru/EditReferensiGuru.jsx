@@ -5,7 +5,7 @@ import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 
-export default function TambahReferensiGuru() {
+export default function EditReferensiGuru() {
     const { referensis } = usePage().props;
     const { data, setData, post, processing, errors } = useForm({
         judul: referensis.judul,

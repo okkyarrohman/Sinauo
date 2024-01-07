@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\KategoriKuisController;
+use App\Http\Controllers\KuisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\SoalController;
@@ -210,6 +211,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('panduan');
 });
 // SISWA
+
+Route::get('/testing-quis', [KuisController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profil', [ProfileController::class, 'edit'])->name('edit-profil.edit');

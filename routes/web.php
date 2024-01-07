@@ -88,14 +88,15 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/tugas-guru', 'index')->name('tugas-guru');
         Route::get('/tugas-guru/tambah-tugas', 'create')->name('create.tugas');
         Route::post('/tugas-guru/tambah-tugas', 'store')->name('store.tugas');
-        Route::get('/tugas-guru/edit-tugas/{id}', 'edit')->name('edit.tugas');
+        Route::get('/tugas-guru/eddeit-tugas/{id}', 'edit')->name('edit.tugas');
         Route::post('/tugas-guru/update-tugas', 'update')->name('update.tugas');
         Route::get('/tugas-guru/destroy-tugas/{id}', 'destroy')->name('destroy.tugas');
     });
 
     Route::controller(TugasResultController::class)->group(function () {
         Route::get('/tugas-guru/hasil-tugas/{id}', 'hasilTugas')->name('hasil-tugas');
-        Route::get('/tugas-guru/detail-tugas-siswa/', 'detailTugas')->name('detail-tugas-siswa');
+        Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
+        Route::post('/tugas-guru/detail-tugas-siswa', 'updateFeedback')->name('updateFeedback.tugas');
     });
 
     Route::controller(DataSiswaController::class)->group(function () {
@@ -169,19 +170,13 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('soal-kuis');
 
     // Tugas
-    Route::controller(TugasController::class)->group(function () {
+    Route::controller(TugasResultController::class)->group(function () {
         Route::get('/tugas', 'index_siswa')->name('tugas');
-        Route::get('/tugas/detail-tugas', 'edit_answer')->name('detail-tugas');
+        Route::get('/tugas/detail-tugas/{id}', 'edit_answer')->name('detail-tugas');
         Route::post('/tugas/detail-tugas', 'update_answer')->name('update-tugas');
     });
 
-    // Route::get('/tugas', function () {
-    //     return Inertia::render('Siswa/TugasSiswa');
-    // })->name('tugas');
 
-    // Route::get('/tugas/detail-tugas', function () {
-    //     return Inertia::render('Siswa/DetailTugasSiswa');
-    // })->name('detail-tugas');
 
     // Panduan
     Route::get('/panduan', function () {

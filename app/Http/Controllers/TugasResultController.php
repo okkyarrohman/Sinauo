@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TugasResult;
 use App\Models\User;
+use App\Models\Tugas;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
@@ -12,12 +13,23 @@ use Illuminate\Support\Facades\Auth;
 
 class TugasResultController extends Controller
 {
+
     public function hasilTugas($id)
     {
-        $tugas = TugasResult::where('tugas_id', $id)->get();
+        $tugas = TugasResult::where('tugas_id', $id)->with('tugas')->get();
+
+        $namaTugas = $tugas->map(function ($tugas) {
+            return $tugas->tugas->nama;
+        });
+
+        $namaUser = $tugas->map(function ($siswa) {
+            return $siswa->user->name;
+        });
 
         return Inertia::render('Guru/HasilTugasSiswaGuru', [
-            'tugas' => $tugas
+            'tugas' => $tugas,
+            'namaTugas' => $namaTugas,
+            'namaUser' => $namaUser,
         ]);
     }
 
@@ -30,12 +42,40 @@ class TugasResultController extends Controller
         ]);
     }
 
-    public function edit_answer()
+    public function updateFeedback(Request $request)
     {
-        // $tugas = Tugas::where('id', $id)->first();
+        $tugas = TugasResult::find($request->id)->get();
+
+        $tugas->konfirmasi = $request->konfirmasi;
+        $tugas->feedback = $request->feedback;
+
+        $tugas->save();
+
+        return redirect()->route('detail-tugas-siswa')->with('success', 'data berhasi dikirim');
+    }
+
+
+    // Untuk Siswa
+    public function index_siswa()
+    {
+        $tugas = TugasResult::all();
+
+        $namaTugas = $tugas->map(function ($tugas) {
+            return $tugas->tugas->nama;
+        });
+
+        return Inertia::render('Siswa/TugasSiswa', [
+            'tugas' => $tugas,
+            'namaTugas' => $namaTugas,
+        ]);
+    }
+
+    public function edit_answer($id)
+    {
+        $tugas = Tugas::where('id', $id)->first();
 
         return Inertia::render('Siswa/DetailTugasSiswa', [
-            //'tugas' => $tugas
+            'tugas' => $tugas
         ]);
     }
 
@@ -43,8 +83,8 @@ class TugasResultController extends Controller
     {
         $tugas = TugasResult::find($request->id);
         $tugas->user()->associate(Auth::user());
+        $tugas->tugas = $request->tugas_id;
         $tugas->answer1 = $request->answer1;
-
 
         // Request column input type file
         if ($request->hasFile('answer2')) {
@@ -72,6 +112,8 @@ class TugasResultController extends Controller
             $answer4->move(storage_path('app/public/tugas/answer4/'), $answer4Name);
             $tugas->answer4 = $answer4Name;
         }
+
+        $tugas->konfirmasi = "Belum Diterima";
 
         $tugas->save();
 

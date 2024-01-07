@@ -13,15 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class TugasController extends Controller
 {
 
-    // Untuk Siswa
-    public function index_siswa()
-    {
-        $tugas = Tugas::all();
 
-        return Inertia::render('Siswa/TugasSiswa', [
-            'tugas' => $tugas
-        ]);
-    }
 
     // Untuk Guru
     public function index()

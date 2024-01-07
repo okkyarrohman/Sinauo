@@ -65,7 +65,7 @@ export default function TugasSiswa({ auth }) {
                         <div className="flex items-center justify-between w-[92%] ml-auto">
                             <div className="w-28 relative">
                                 <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap">
-                                    {item.nama}
+                                    {item.tugas.nama}
                                 </p>
                             </div>
                             <p>{item.tenggat}</p>
@@ -73,7 +73,7 @@ export default function TugasSiswa({ auth }) {
                                 <ProgressBar progres={item.progres} />
                             </div>
                             <p>{item.konfirmasi}</p>
-                            <Link href={route("detail-tugas")}>
+                            <Link href={route("detail-tugas",item.id)}>
                                 <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
                                     Detail
                                 </button>

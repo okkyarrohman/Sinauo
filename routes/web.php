@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSiswaController;
+use App\Http\Controllers\KategoriKuisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\SubMateriController;
@@ -103,7 +104,15 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/data-siswa/{id}', 'destroy')->name('destroy.siswa');
     });
 
-
+    // Quis Start FROM HERE
+    Route::controller(KategoriKuisController::class)->group(function () {
+        Route::get('/kategori', 'index')->name('kategori');
+        Route::get('/kategori/tambah-kategori', 'create')->name('create.kategori');
+        Route::post('/kategori/tambah-kategori', 'store')->name('store.kategori');
+        Route::get('/kategori/edit-kategori/{id}', 'edit')->name('edit.kategori');
+        Route::post('/kategori/edit-kategori', 'update')->name('update.kategori');
+        Route::get('/kategori/destroy-kategori/{id}', 'destroy')->name('destroy.kategori');
+    });
 
 
 
@@ -145,7 +154,6 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/tutorial', 'index_siswa')->name('tutorial');
     });
 
-
     // Referensi
     Route::controller(ReferensiController::class)->group(function () {
         Route::get('/referensi', 'index_siswa')->name('referensi');
@@ -164,6 +172,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::get('/kuis/soal-kuis', function () {
         return Inertia::render('Siswa/SoalKuisSiswa');
     })->name('soal-kuis');
+
+
 
     // Tugas
     Route::controller(TugasResultController::class)->group(function () {

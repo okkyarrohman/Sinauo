@@ -44,8 +44,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function tugas()
+    public function tugasResult()
     {
-        return $this->hasMany(Tugas::class);
+        return $this->hasMany(TugasResult::class);
     }
 }

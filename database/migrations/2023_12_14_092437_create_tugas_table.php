@@ -13,29 +13,20 @@ return new class extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nama')->nullable();
             $table->string('tenggat')->nullable();
 
             $table->string('step1')->nullable();
             $table->string('deskripsi1')->nullable();
-            $table->string('answer1')->nullable();
 
             $table->string('step2')->nullable();
             $table->string('deskripsi2')->nullable();
-            $table->string('answer2')->nullable();
 
             $table->string('step3')->nullable();
             $table->string('deskripsi3')->nullable();
-            $table->string('answer3')->nullable();
 
             $table->string('step4')->nullable();
             $table->string('deskripsi4')->nullable();
-            $table->string('answer4')->nullable();
-
-            $table->string('konfirmasi')->nullable();
-            $table->string('feedback')->nullable();
 
             $table->timestamps();
         });

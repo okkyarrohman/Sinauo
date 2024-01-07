@@ -10,7 +10,7 @@
 
 <body>
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('store.testingQuis') }}">
         @csrf
         @foreach ($categories as $category)
             <div class="card mb-3">
@@ -22,12 +22,12 @@
                             <div class="card-header">{{ $question->soal }}</div>
 
                             <div class="card-body">
-                                <input type="hidden" name="questions[{{ $question->id }}]" value="">
+                                <input type="hidden" name="soal[{{ $question->id }}]" value="">
                                 @foreach ($question->opsi as $option)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio"
-                                            name="questions[{{ $question->id }}]" id="option-{{ $option->id }}"
-                                            value="{{ $option->id }}"@if (old("questions.$question->id") == $option->id) checked @endif>
+                                        <input class="form-check-input" type="radio" name="soal[{{ $question->id }}]"
+                                            id="option-{{ $option->id }}"
+                                            value="{{ $option->id }}"@if (old("soal.$question->id") == $option->id) checked @endif>
                                         <label class="form-check-label" for="option-{{ $option->id }}">
                                             {{ $option->opsi }}
                                         </label>

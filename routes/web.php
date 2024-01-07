@@ -213,6 +213,9 @@ Route::group(['middleware' => 'role:siswa'], function () {
 // SISWA
 
 Route::get('/testing-quis', [KuisController::class, 'index']);
+Route::post('/testing-quis/store', [KuisController::class, 'store'])->name('store.testingQuis');
+Route::get('/testing-quis/hasil/{result_id}', [KuisController::class, 'show'])->name('testing.testing.show');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profil', [ProfileController::class, 'edit'])->name('edit-profil.edit');

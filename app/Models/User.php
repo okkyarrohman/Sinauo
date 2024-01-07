@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TugasResult::class);
     }
+
+    public function hasil()
+    {
+        return $this->hasMany(Hasil::class);
+    }
 }

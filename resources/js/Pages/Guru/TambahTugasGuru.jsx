@@ -4,6 +4,7 @@ import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 export default function TambahTugasGuru() {
     const { data, setData, post, processing, errors } = useForm({

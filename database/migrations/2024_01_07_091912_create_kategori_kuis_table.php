@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materis', function (Blueprint $table) {
+        Schema::create('kategori_kuis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->string('jumlah')->nullable();
-            $table->string('deskripsi')->nullable();
-            $table->string('cover')->nullable();
+            $table->string('kuis');
+            $table->string('tenggat');
+            $table->string('waktu');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materis');
+        Schema::dropIfExists('kategori_kuis');
     }
 };

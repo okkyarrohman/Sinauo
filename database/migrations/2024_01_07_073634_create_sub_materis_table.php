@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materis', function (Blueprint $table) {
+        Schema::create('sub_materis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('materi_id')->nullable();
+            $table->foreign('materi_id')->references('id')->on('materis')->onDelete('cascade');
             $table->string('nama')->nullable();
-            $table->string('jumlah')->nullable();
             $table->string('deskripsi')->nullable();
             $table->string('cover')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materis');
+        Schema::dropIfExists('sub_materis');
     }
 };

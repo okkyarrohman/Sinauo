@@ -54,14 +54,14 @@ export default function HasilTugasSiswaGuru({ auth }) {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={item.no} />
-                                <TableItem item={item.nama} />
-                                <TableItem item={item.tugas} />
+                                <TableItem item={item.user.name} />
+                                <TableItem item={item.tugas.nama} />
                                 <TableItem
                                     item={
                                         <ProgressBar progres={item.progres} />
                                     }
                                 />
-                                <TableItem item={item.status} />
+                                <TableItem item={item.konfirmasi} />
                                 <TableItem
                                     item={
                                         <Link

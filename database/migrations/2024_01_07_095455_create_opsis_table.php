@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materis', function (Blueprint $table) {
+        Schema::create('opsis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->string('jumlah')->nullable();
-            $table->string('deskripsi')->nullable();
-            $table->string('cover')->nullable();
+            $table->unsignedBigInteger('soal_id')->nullable();
+            $table->foreign('soal_id')->references('id')->on('soals')->onDelete('cascade');
+            $table->string('opsi');
+            $table->integer('point');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materis');
+        Schema::dropIfExists('opsis');
     }
 };

@@ -18,22 +18,15 @@ return new class extends Migration
 
             $table->string('step1')->nullable();
             $table->string('deskripsi1')->nullable();
-            $table->string('answer1')->nullable();
 
             $table->string('step2')->nullable();
             $table->string('deskripsi2')->nullable();
-            $table->string('answer2')->nullable();
 
             $table->string('step3')->nullable();
             $table->string('deskripsi3')->nullable();
-            $table->string('answer3')->nullable();
 
             $table->string('step4')->nullable();
             $table->string('deskripsi4')->nullable();
-            $table->string('answer4')->nullable();
-
-            $table->string('konfirmasi')->nullable();
-            $table->string('feedback')->nullable();
 
             $table->timestamps();
         });

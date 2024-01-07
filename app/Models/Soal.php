@@ -16,4 +16,9 @@ class Soal extends Model
     {
         return $this->belongsTo(KategoriKuis::class, 'kategori_id');
     }
+
+    public function opsi()
+    {
+        return $this->hasMany(Opsi::class);
+    }
 }

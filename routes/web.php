@@ -11,6 +11,7 @@ use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TugasResultController;
 use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\OpsiController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -122,6 +123,15 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/soal/edit-soal/{id}', 'edit')->name('edit.soal');
         Route::post('/soal/edit-soal', 'update')->name('update.soal');
         Route::get('/soal/destroy-soal/{id}', 'destroy')->name('destroy.soal');
+    });
+
+    Route::controller(OpsiController::class)->group(function () {
+        Route::get('/opsi', 'index')->name('opsi');
+        Route::get('/opsi/tambah-opsi', 'create')->name('create.opsi');
+        Route::post('/opsi/tambah-opsi', 'store')->name('store.opsi');
+        Route::get('/opsi/edit-opsi/{id}', 'edit')->name('edit.opsi');
+        Route::post('/opsi/edit-opsi', 'update')->name('update.opsi');
+        Route::get('/opsi/destroy-opsi/{id}', 'destroy')->name('destroy.opsi');
     });
 
 

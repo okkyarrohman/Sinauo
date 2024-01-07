@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TugasController extends Controller
 {
-
-
-
     // Untuk Guru
     public function index()
     {

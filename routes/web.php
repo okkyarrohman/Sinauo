@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TugasResultController;
 use App\Http\Controllers\TutorialController;
+use App\Http\Controllers\MateriController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
-
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -49,21 +50,30 @@ Route::get('/', function (User $user) {
 // GURU
 // Dashboard Guru
 Route::group(['middleware' => 'role:guru'], function () {
-    Route::get('/dashboard-guru', function () {
-        return Inertia::render('Guru/DashboardGuru');
-    })->name('dashboard-guru');
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard-guru', 'index')->name('dashboard-guru');
+    });
 
-    Route::get('/materi-guru', function () {
-        return Inertia::render('Guru/MateriGuru');
-    })->name('materi-guru');
+    Route::controller(MateriController::class)->group(function () {
+        Route::get('/materi-guru', 'index')->name('materi-guru');
+        Route::get('/materi-guru/tambah-materi', 'create')->name('create.materi');
+        Route::post('/materi-guru/tambah-materi', 'store')->name('store.materi');
+        Route::get('/materi-guru/edit-materi/{id}', 'edit')->name('edit.materi');
+        Route::post('/materi-guru/edit-materi/')->name('update.materi');
+        Route::post('/materi-guru/destroy-materi/{id}')->name('destroy.materi');
+    });
 
-    Route::get('/materi-guru/tambah-materi', function () {
-        return Inertia::render('Guru/TambahMateriGuru');
-    })->name('create.materi');
+    // Route::get('/materi-guru', function () {
+    //     return Inertia::render('Guru/MateriGuru');
+    // })->name('materi-guru');
 
-    Route::get('/materi-guru/tambah-submateri', function () {
-        return Inertia::render('Guru/TambahKontenMateriGuru');
-    })->name('tambah-submateri');
+    // Route::get('/materi-guru/tambah-materi', function () {
+    //     return Inertia::render('Guru/TambahMateriGuru');
+    // })->name('create.materi');
+
+    // Route::get('/materi-guru/tambah-submateri', function () {
+    //     return Inertia::render('Guru/TambahKontenMateriGuru');
+    // })->name('tambah-submateri');
 
 
     Route::controller(TutorialController::class)->group(function () {
@@ -126,7 +136,7 @@ Route::group(['middleware' => 'role:guru'], function () {
 });
 
 
-
+// Route Siswa
 Route::group(['middleware' => 'role:siswa'], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Siswa/DashboardSiswa');

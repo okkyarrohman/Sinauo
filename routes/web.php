@@ -6,6 +6,7 @@ use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TutorialController;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,8 +30,10 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     return Inertia::render('Guest/Landing', [
+        'siswa' => $request->user()->hasRole('siswa'),
+        'guru' => $request->user()->hasRole('guru'),
         'canLogin' => Route::has('login'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,

@@ -55,7 +55,6 @@ class TugasController extends Controller
 
         $tugas->step4 = $request->step4;
         $tugas->deskripsi4 = $request->deskripsi4;
-        $tugas->konfimasi = $request->konfimasi;
 
         $tugas->save();
 

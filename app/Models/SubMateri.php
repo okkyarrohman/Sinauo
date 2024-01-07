@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Materi extends Model
+class SubMateri extends Model
 {
     use HasFactory;
 
-    protected $table = 'materis';
+    protected $table = 'sub_materis';
 
     protected $fillable = [
         'nama',
-        'jumlah',
         'deskripsi',
-        'cover'
+        'cover',
+        'file'
     ];
 
-    public function submateri()
+
+    public function materi()
     {
-        return $this->hasMany(SubMateri::class);
+        return $this->belongsTo(Materi::class, 'materi_id');
     }
 }

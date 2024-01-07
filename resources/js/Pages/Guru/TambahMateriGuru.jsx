@@ -106,7 +106,7 @@ export default function TambahMateriGuru() {
                     <Link href={route("materi-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("tambah-submateri")}>
+                    <Link href={route("create.submateri")}>
                         <PrimaryButton text="Next" />
                     </Link>
                 </div>

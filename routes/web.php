@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
+use App\Http\Controllers\SubMateriController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TugasResultController;
 use App\Http\Controllers\TutorialController;
@@ -24,14 +25,7 @@ use Inertia\Inertia;
 |
 */
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+
 
 Route::get('/', function (User $user) {
     return Inertia::render('Guest/Landing', [
@@ -43,12 +37,8 @@ Route::get('/', function (User $user) {
     ]);
 });
 
-// Route::get('/dashboard-siswa', function () {
-//     return Inertia::render('Siswa/DashboardSiswa');
-// })->middleware(['auth', 'verified'])->name('dashboard-siswa');
 
 // GURU
-// Dashboard Guru
 Route::group(['middleware' => 'role:guru'], function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard-guru', 'index')->name('dashboard-guru');
@@ -59,22 +49,18 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/materi-guru/tambah-materi', 'create')->name('create.materi');
         Route::post('/materi-guru/tambah-materi', 'store')->name('store.materi');
         Route::get('/materi-guru/edit-materi/{id}', 'edit')->name('edit.materi');
-        Route::post('/materi-guru/edit-materi/')->name('update.materi');
-        Route::post('/materi-guru/destroy-materi/{id}')->name('destroy.materi');
+        Route::post('/materi-guru/edit-materi/', 'update')->name('update.materi');
+        Route::get('/materi-guru/destroy-materi/{id}', 'destroy')->name('destroy.materi');
     });
 
-    // Route::get('/materi-guru', function () {
-    //     return Inertia::render('Guru/MateriGuru');
-    // })->name('materi-guru');
-
-    // Route::get('/materi-guru/tambah-materi', function () {
-    //     return Inertia::render('Guru/TambahMateriGuru');
-    // })->name('create.materi');
-
-    // Route::get('/materi-guru/tambah-submateri', function () {
-    //     return Inertia::render('Guru/TambahKontenMateriGuru');
-    // })->name('tambah-submateri');
-
+    Route::controller(SubMateriController::class)->group(function () {
+        Route::get('/submateri-guru', 'index')->name('submateri-guru');
+        Route::get('/submateri-guru/tambah-submateri', 'create')->name('create.submateri');
+        Route::post('/submateri-guru/tambah-submateri', 'store')->name('store.submateri');
+        Route::get('/submateri-guru/edit-submateri/{id}', 'edit')->name('edit.submateri');
+        Route::post('/submateri-guru/edit-submateri/', 'update')->name('update.submateri');
+        Route::get('/submateri-guru/destroy-submateri/{id}', 'destroy')->name('destroy.submateri');
+    });
 
     Route::controller(TutorialController::class)->group(function () {
         Route::get('/tutorial-guru', 'index')->name('tutorial-guru');

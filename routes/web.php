@@ -4,6 +4,7 @@ use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\TugasResultController;
 use App\Http\Controllers\TutorialController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
@@ -90,9 +91,11 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/tugas-guru/edit-tugas/{id}', 'edit')->name('edit.tugas');
         Route::post('/tugas-guru/update-tugas', 'update')->name('update.tugas');
         Route::get('/tugas-guru/destroy-tugas/{id}', 'destroy')->name('destroy.tugas');
+    });
 
-        Route::get('/tugas-guru/hasil-tugas', 'hasilTugas')->name('hasil-tugas');
-        Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
+    Route::controller(TugasResultController::class)->group(function () {
+        Route::get('/tugas-guru/hasil-tugas/{id}', 'hasilTugas')->name('hasil-tugas');
+        Route::get('/tugas-guru/detail-tugas-siswa/', 'detailTugas')->name('detail-tugas-siswa');
     });
 
     Route::controller(DataSiswaController::class)->group(function () {

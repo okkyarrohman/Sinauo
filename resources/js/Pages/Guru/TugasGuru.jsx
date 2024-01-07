@@ -56,7 +56,7 @@ export default function TugasGuru({ auth }) {
                                 <TableItem item={item.tenggat} />
                                 <TableItem
                                     item={
-                                        <Link href={route("hasil-tugas")}>
+                                        <Link href={route("hasil-tugas",item.id)}>
                                             <button className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white">
                                                 Lihat
                                             </button>

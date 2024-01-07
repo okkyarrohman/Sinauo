@@ -8,6 +8,7 @@ use App\Models\Tugas;
 use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class TugasController extends Controller
 {
@@ -43,6 +44,7 @@ class TugasController extends Controller
 
         $tugas->step4 = $request->step4;
         $tugas->deskripsi4 = $request->deskripsi4;
+        $tugas->konfimasi = $request->konfimasi;
 
         $tugas->save();
 
@@ -146,7 +148,9 @@ class TugasController extends Controller
     public function update_answer(Request $request)
     {
         $tugas = Tugas::find($request->id);
+        $tugas->user()->associate(Auth::user());
         $tugas->answer1 = $request->answer1;
+
 
         // Request column input type file
         if ($request->hasFile('answer2')) {

@@ -29,4 +29,9 @@ class Tugas extends Model
         'konfirmasi',
         'feedback',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -11,5 +11,10 @@ class KategoriKuis extends Model
 
     protected $table = 'kategori_kuis';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'tenggat', 'waktu'];
+
+    public function soal()
+    {
+        return $this->hasMany(Soal::class);
+    }
 }

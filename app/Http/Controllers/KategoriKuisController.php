@@ -26,6 +26,8 @@ class KategoriKuisController extends Controller
     {
         $kategori = new KategoriKuis();
         $kategori->name = $request->name;
+        $kategori->tenggat = $request->tenggat;
+        $kategori->waktu = $request->waktu;
         $kategori->save();
 
         return redirect()->route('kategori');
@@ -44,6 +46,8 @@ class KategoriKuisController extends Controller
     {
         $kategori = KategoriKuis::find($request->id);
         $kategori->name = $request->name;
+        $kategori->tenggat = $request->tenggat;
+        $kategori->waktu = $request->waktu;
         $kategori->save();
 
         return redirect()->route('kategori');

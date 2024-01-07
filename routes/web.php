@@ -5,6 +5,7 @@ use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\KategoriKuisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
+use App\Http\Controllers\SoalController;
 use App\Http\Controllers\SubMateriController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\TugasResultController;
@@ -112,6 +113,15 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/kategori/edit-kategori/{id}', 'edit')->name('edit.kategori');
         Route::post('/kategori/edit-kategori', 'update')->name('update.kategori');
         Route::get('/kategori/destroy-kategori/{id}', 'destroy')->name('destroy.kategori');
+    });
+
+    Route::controller(SoalController::class)->group(function () {
+        Route::get('/soal', 'index')->name('soal');
+        Route::get('/soal/tambah-soal', 'create')->name('create.soal');
+        Route::post('/soal/tambah-soal', 'store')->name('store.soal');
+        Route::get('/soal/edit-soal/{id}', 'edit')->name('edit.soal');
+        Route::post('/soal/edit-soal', 'update')->name('update.soal');
+        Route::get('/soal/destroy-soal/{id}', 'destroy')->name('destroy.soal');
     });
 
 

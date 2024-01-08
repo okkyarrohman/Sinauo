@@ -44,7 +44,7 @@ class TugasResultController extends Controller
 
     public function updateFeedback(Request $request)
     {
-        $tugas = TugasResult::find($request->id)->get();
+        $tugas = TugasResult::find($request->id);
 
         $tugas->konfirmasi = $request->konfirmasi;
         $tugas->feedback = $request->feedback;

@@ -10,11 +10,11 @@ class Soal extends Model
     use HasFactory;
 
     protected $table = 'soals';
-    protected $fillable = ['kategori_id', 'soal', 'gambar'];
+    protected $fillable = ['kategori_kuis_id', 'soal', 'gambar'];
 
     public function kategori()
     {
-        return $this->belongsTo(KategoriKuis::class, 'kategori_id');
+        return $this->belongsTo(KategoriKuis::class, 'kategori_kuis_id');
     }
 
     public function opsi()

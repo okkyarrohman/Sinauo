@@ -14,14 +14,14 @@ class SoalController extends Controller
     {
         $soal = Soal::all();
 
-        return Inertia::render('Guru/Soal', [
+        return Inertia::render('Guru/Kuis/SoalKuis', [
             'soal' => $soal
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Guru/TambahSoal');
+        return Inertia::render('Guru/Kuis/TambahSoalKuis');
     }
 
     public function store(Request $request)
@@ -46,7 +46,7 @@ class SoalController extends Controller
     {
         $soal  = Soal::find($id)->first();
 
-        return Inertia::render('Guru/EditSoal', [
+        return Inertia::render('Guru/Kuis/EditSoalKuis', [
             'soal' => $soal,
         ]);
     }

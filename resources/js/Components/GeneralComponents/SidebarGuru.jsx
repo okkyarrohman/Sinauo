@@ -1,8 +1,15 @@
 import { Link, usePage } from "@inertiajs/react";
 import { logoSinauo } from "../../../assets";
+import { useState } from "react";
 
 export default function SidebarGuru() {
     const { url } = usePage();
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleDropdownClick = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
         <div className="fixed left-0 w-60 py-10 rounded-r-3xl h-screen bg-white shadow-custom flex flex-col justify-between">
@@ -126,32 +133,157 @@ export default function SidebarGuru() {
                         Penilaian
                     </p>
                     <ul className="*:text-lg *:font-semibold *:h-14 *:pl-12">
-                        <Link
-                            className={`flex hover:bg-primary-light hover:text-white ${
-                                url.includes("/kuis")
+                        <button
+                            className={`flex items-center w-full hover:bg-primary-light hover:text-white ${
+                                url.includes("/kategori") ||
+                                url.includes("/soal") ||
+                                url.includes("/opsi")
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
-                            href={route("kuis-guru")}
+                            onClick={handleDropdownClick}
+                            // href={route("kuis-guru")}
                         >
-                            <li className="flex items-center gap-1">
+                            <li className="flex items-center w-full">
+                                <div className="flex items-center gap-1">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"
+                                        />
+                                    </svg>
+                                    Kuis
+                                </div>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
                                     viewBox="0 0 24 24"
-                                    strokeWidth="1.5"
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
+                                    fill="currentColor"
+                                    className="w-6 h-6 ml-auto mr-4"
                                 >
                                     <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"
+                                        fillRule="evenodd"
+                                        d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z"
+                                        clipRule="evenodd"
                                     />
                                 </svg>
-                                Kuis
                             </li>
-                        </Link>
+                        </button>
+                        {isOpen ? (
+                            <>
+                                <Link
+                                    className={`flex hover:bg-primary-light hover:text-white ${
+                                        url.includes("/kategori")
+                                            ? "bg-primary text-white"
+                                            : ""
+                                    }`}
+                                    href={route("kategori")}
+                                >
+                                    <li className="flex items-center gap-1 pl-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
+                                            />
+                                        </svg>
+                                        Kategori
+                                    </li>
+                                </Link>
+                                <Link
+                                    className={`flex hover:bg-primary-light hover:text-white ${
+                                        url.includes("/soal")
+                                            ? "bg-primary text-white"
+                                            : ""
+                                    }`}
+                                    href={route("soal")}
+                                >
+                                    <li className="flex items-center gap-1 pl-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
+                                            />
+                                        </svg>
+                                        Soal
+                                    </li>
+                                </Link>
+                                <Link
+                                    className={`flex hover:bg-primary-light hover:text-white ${
+                                        url.includes("/opsi")
+                                            ? "bg-primary text-white"
+                                            : ""
+                                    }`}
+                                    href={route("opsi")}
+                                >
+                                    <li className="flex items-center gap-1 pl-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+                                            />
+                                        </svg>
+                                        Opsi
+                                    </li>
+                                </Link>
+                                <Link
+                                    className={`flex hover:bg-primary-light hover:text-white ${
+                                        url.includes("/hasil")
+                                            ? "bg-primary text-white"
+                                            : ""
+                                    }`}
+                                    href=""
+                                >
+                                    <li className="flex items-center gap-1 pl-10">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="1.5"
+                                            stroke="currentColor"
+                                            className="w-6 h-6"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12"
+                                            />
+                                        </svg>
+                                        Hasil
+                                    </li>
+                                </Link>
+                            </>
+                        ) : null}
                         <Link
                             className={`flex hover:bg-primary-light hover:text-white ${
                                 url.includes("/tugas")

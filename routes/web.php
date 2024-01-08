@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\KategoriKuisController;
+use App\Http\Controllers\KuisController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferensiController;
 use App\Http\Controllers\SoalController;
@@ -177,7 +178,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
     // Referensi
     Route::controller(ReferensiController::class)->group(function () {
         Route::get('/referensi', 'index_siswa')->name('referensi');
-        Route::get('/referensi/lihat-referensi/', 'read_siswa')->name('lihat-referensi');
+        Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
 
     // Kuis
@@ -210,6 +211,11 @@ Route::group(['middleware' => 'role:siswa'], function () {
     })->name('panduan');
 });
 // SISWA
+
+Route::get('/testing-quis', [KuisController::class, 'index']);
+Route::post('/testing-quis/store', [KuisController::class, 'store'])->name('store.testingQuis');
+Route::get('/testing-quis/hasil/{result_id}', [KuisController::class, 'show'])->name('testing.testing.show');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit-profil', [ProfileController::class, 'edit'])->name('edit-profil.edit');

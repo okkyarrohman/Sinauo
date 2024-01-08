@@ -65,7 +65,7 @@ export default function TugasSiswa({ auth }) {
                         <div className="flex items-center justify-between w-[92%] ml-auto">
                             <div className="w-28 relative">
                                 <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap">
-                                    {item.tugas.nama}
+                                    {item.nama}
                                 </p>
                             </div>
                             <p>{item.tenggat}</p>

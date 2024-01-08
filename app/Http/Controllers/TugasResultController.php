@@ -58,15 +58,11 @@ class TugasResultController extends Controller
     // Untuk Siswa
     public function index_siswa()
     {
-        $tugas = TugasResult::all();
+        $tugas = Tugas::all();
 
-        $namaTugas = $tugas->map(function ($tugas) {
-            return $tugas->tugas->nama;
-        });
 
         return Inertia::render('Siswa/TugasSiswa', [
             'tugas' => $tugas,
-            'namaTugas' => $namaTugas,
         ]);
     }
 

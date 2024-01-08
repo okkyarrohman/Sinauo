@@ -12,20 +12,20 @@ class KategoriKuisController extends Controller
     {
         $kategori = KategoriKuis::all();
 
-        return Inertia::render('Guru/KategoriKuis', [
+        return Inertia::render('Guru/Kuis/KategoriKuis', [
             'kategori' => $kategori
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Guru/TambahKategoriKuis');
+        return Inertia::render('Guru/Kuis/TambahKategoriKuis');
     }
 
     public function store(Request $request)
     {
         $kategori = new KategoriKuis();
-        $kategori->name = $request->name;
+        $kategori->kuis = $request->kuis;
         $kategori->tenggat = $request->tenggat;
         $kategori->waktu = $request->waktu;
         $kategori->save();
@@ -37,7 +37,7 @@ class KategoriKuisController extends Controller
     {
         $kategori  = KategoriKuis::find($id)->first();
 
-        return Inertia::render('Guru/EditKategoriKuis', [
+        return Inertia::render('Guru/Kuis/EditKategoriKuis', [
             'kategori' => $kategori,
         ]);
     }
@@ -45,7 +45,7 @@ class KategoriKuisController extends Controller
     public function update(Request $request)
     {
         $kategori = KategoriKuis::find($request->id);
-        $kategori->name = $request->name;
+        $kategori->kuis = $request->kuis;
         $kategori->tenggat = $request->tenggat;
         $kategori->waktu = $request->waktu;
         $kategori->save();

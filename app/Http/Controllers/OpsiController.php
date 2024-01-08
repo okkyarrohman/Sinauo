@@ -13,14 +13,14 @@ class OpsiController extends Controller
     {
         $opsi = Opsi::all();
 
-        return Inertia::render('Guru/Opsi', [
+        return Inertia::render('Guru/Kuis/OpsiKuis', [
             'opsi' => $opsi
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Guru/TambahOpsi');
+        return Inertia::render('Guru/Kuis/TambahOpsiKuis');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class OpsiController extends Controller
     {
         $opsi  = Opsi::find($id)->first();
 
-        return Inertia::render('Guru/EditOpsi', [
+        return Inertia::render('Guru/Kuis/EditOpsiKuis', [
             'opsi' => $opsi,
         ]);
     }

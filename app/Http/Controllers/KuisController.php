@@ -49,29 +49,6 @@ class KuisController extends Controller
 
             return redirect()->route('testing.testing.show', $result->id);
         }
-
-
-
-
-
-        // $options = Opsi::find(array_values($request->input('soal')));
-
-        // $result = auth()->user()->hasil()->create([
-        //     'total_points' => $options->sum('points')
-        // ]);
-
-        // $questions = $options->mapWithKeys(function ($option) {
-        //     return [
-        //         $option->question_id => [
-        //             'option_id' => $option->id,
-        //             'points' => $option->points
-        //         ]
-        //     ];
-        // })->toArray();
-
-        // $result->questions()->sync($questions);
-
-        // return redirect()->route('testing.testing.show', $result->id);
     }
 
     public function show($result_id)

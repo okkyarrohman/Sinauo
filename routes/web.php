@@ -178,7 +178,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
     // Referensi
     Route::controller(ReferensiController::class)->group(function () {
         Route::get('/referensi', 'index_siswa')->name('referensi');
-        Route::get('/referensi/lihat-referensi/', 'read_siswa')->name('lihat-referensi');
+        Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
 
     // Kuis

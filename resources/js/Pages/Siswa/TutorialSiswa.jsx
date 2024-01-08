@@ -3,9 +3,15 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { placeholderTutorial } from "../../../assets";
+// import Cover1 from "../../../../storage/app/public/tutorial/cover/";
+import { useEffect } from "react";
 
 export default function TutorialSiswa({ auth }) {
     const { tutorial } = usePage().props;
+
+    useEffect(() => {
+        console.log(tutorial);
+    }, []);
 
     return (
         <MainLayout>
@@ -18,8 +24,9 @@ export default function TutorialSiswa({ auth }) {
             <div className="grid grid-cols-3 justify-items-center gap-y-10">
                 {tutorial.map((item, index) => {
                     return (
-                        <Link
-                            href=""
+                        <a
+                            href={item.sumber}
+                            target="_blank"
                             key={index}
                             className="w-[19rem] h-full shadow-custom rounded-[1.25rem]"
                         >
@@ -48,7 +55,7 @@ export default function TutorialSiswa({ auth }) {
                                     </div>
                                     <img
                                         className="h-36 w-full object-cover object-center rounded-t-[1.25rem]"
-                                        src={placeholderTutorial}
+                                        src={item.cover}
                                         alt="image materi"
                                     />
                                 </div>
@@ -61,7 +68,7 @@ export default function TutorialSiswa({ auth }) {
                                     <p className="text-sm">{item.sumber}</p>
                                 </div>
                             </div>
-                        </Link>
+                        </a>
                     );
                 })}
             </div>

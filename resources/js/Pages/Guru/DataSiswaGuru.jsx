@@ -15,14 +15,6 @@ export default function DataSiswaGuru({ auth }) {
     const { siswa } = usePage().props;
 
     const head_title = ["No", "Nama", "Email", "Alamat", "Aksi"];
-    const data = [
-        {
-            no: "1",
-            nama: "Febrian Daffa",
-            email: "daffa123@gmail.com",
-            alamat: "Jl. Malik Ibrahim",
-        },
-    ];
 
     return (
         <MainGuruLayout>
@@ -33,25 +25,6 @@ export default function DataSiswaGuru({ auth }) {
             </div>
             <div className="flex justify-between items-center mb-10">
                 <h1 className="font-semibold text-2xl">Data Siswa</h1>
-                {/* <Link href={route("tambah-materi")}>
-                    <button className="flex items-center gap-1 w-fit py-3 px-5 rounded-[0.625rem] bg-primary text-white">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M12 4.5v15m7.5-7.5h-15"
-                            />
-                        </svg>
-                        Tambah
-                    </button>
-                </Link> */}
             </div>
             <Table>
                 <TableHead head={head_title} />

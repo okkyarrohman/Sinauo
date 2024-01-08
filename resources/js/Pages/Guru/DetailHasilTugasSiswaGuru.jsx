@@ -4,35 +4,25 @@ import TableBody from "@/Components/GeneralComponents/TableBody";
 import TableHead from "@/Components/GeneralComponents/TableHead";
 import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
+import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
-import { useState } from "react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function DetailHasilTugasSiswaGuru() {
+    const { tugas } = usePage().props;
+
+    const { data, setData, post, processing, error } = useForm({
+        id: tugas.id,
+        konfirmasi: tugas.konfirmasi,
+        feedback: tugas.feedback,
+    });
+
     const head_title = ["Tahap", "Tanggal", "Hasil"];
-    const [step, setStep] = useState(1);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState("");
-
-    const data = [
-        {
-            tanggal: "22/11/2024",
-            hasil: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, perferendis.",
-        },
-        {
-            tanggal: "22/11/2024",
-            hasil: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, perferendis.",
-        },
-        {
-            tanggal: "22/11/2024",
-            hasil: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, perferendis.",
-        },
-        {
-            tanggal: "22/11/2024",
-            hasil: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, perferendis.",
-        },
-    ];
 
     const optionDropdown = ["Terima", "Tolak"];
 
@@ -42,8 +32,32 @@ export default function DetailHasilTugasSiswaGuru() {
 
     const handleSelectOption = (option) => {
         setSelectedValue(option);
+        setData("konfirmasi", option);
         setIsOpen(false);
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Value Yang Tersubmit", data);
+        triggerAlert();
+        post(route("updateFeedback.tugas"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Tugas Berhasil Dinilai",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
+    };
+
+    useEffect(() => {
+        console.log("TUGAS ISI :", tugas);
+    }, []);
 
     return (
         <MainGuruLayout>
@@ -54,14 +68,54 @@ export default function DetailHasilTugasSiswaGuru() {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
-                        const incrementedStep = step + index;
+                    {tugas.map((item, index) => {
                         return (
-                            <TableRow key={index}>
-                                <TableItem item={`Step ${incrementedStep}`} />
-                                <TableItem item={item.tanggal} />
-                                <TableItem item={item.hasil} />
-                            </TableRow>
+                            <>
+                                <TableRow>
+                                    <TableItem item={`Step 1`} />
+                                    <TableItem item={item.updated_at} />
+                                    <TableItem
+                                        item={
+                                            item.answer1 === null
+                                                ? "Belum Terjawab"
+                                                : item.answer1
+                                        }
+                                    />
+                                </TableRow>
+                                <TableRow>
+                                    <TableItem item={`Step 2`} />
+                                    <TableItem item={item.updated_at} />
+                                    <TableItem
+                                        item={
+                                            item.answer2 === null
+                                                ? "Belum Terjawab"
+                                                : item.answer2
+                                        }
+                                    />
+                                </TableRow>
+                                <TableRow>
+                                    <TableItem item={`Step 3`} />
+                                    <TableItem item={item.updated_at} />
+                                    <TableItem
+                                        item={
+                                            item.answer3 === null
+                                                ? "Belum Terjawab"
+                                                : item.answer3
+                                        }
+                                    />
+                                </TableRow>
+                                <TableRow>
+                                    <TableItem item={`Step 4`} />
+                                    <TableItem item={item.updated_at} />
+                                    <TableItem
+                                        item={
+                                            item.answer4 === null
+                                                ? "Belum Terjawab"
+                                                : item.answer4
+                                        }
+                                    />
+                                </TableRow>
+                            </>
                         );
                     })}
                 </TableBody>
@@ -130,19 +184,22 @@ export default function DetailHasilTugasSiswaGuru() {
             <div className="mb-6">
                 <textarea
                     className="w-full rounded-lg border border-[#D1D1D1]"
-                    placeholder="Masukkan Jawaban..."
-                    name="jawaban"
-                    id="jawaban"
+                    placeholder="Masukkan Feedback..."
+                    name="feedback"
+                    id="feedback"
                     rows="7"
-                    // value={data.jawaban}
-                    // onChange={(e) => setData("jawaban", e.target.value)}
+                    value={data.feedback}
+                    onChange={(e) => setData("feedback", e.target.value)}
                 ></textarea>
             </div>
-            <Link href={route("tugas-guru")}>
-                <button className="w-full bg-primary text-white font-medium text-xl rounded-lg py-2">
-                    Submit
-                </button>
-            </Link>
+            {/* <Link href={route("tugas-guru")}> */}
+            <button
+                className="w-full bg-primary text-white font-medium text-xl rounded-lg py-2"
+                onClick={handleSubmit}
+            >
+                Submit
+            </button>
+            {/* </Link> */}
         </MainGuruLayout>
     );
 }

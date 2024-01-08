@@ -14,14 +14,14 @@ class MateriController extends Controller
     {
         $materi = Materi::all();
 
-        return Inertia::render('Guru/MateriGuru', [
+        return Inertia::render('Guru/Materi/MateriGuru', [
             'materi' => $materi
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Guru/TambahMateriGuru');
+        return Inertia::render('Guru/Materi/TambahMateriGuru');
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class MateriController extends Controller
     {
         $materi = Materi::where('id', $id)->first();
 
-        return Inertia::render('Guru/EditMateriGuru', [
+        return Inertia::render('Guru/Materi/EditMateriGuru', [
             'materi' => $materi
         ]);
     }

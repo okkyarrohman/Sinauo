@@ -3,77 +3,106 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import Swal from "sweetalert2";
 
 export default function TambahMateriGuru() {
+    const { materi } = usePage().props;
+
+    const { data, setData, post, processing, errors } = useForm({
+        id: materi.id,
+        nama: materi.nama,
+        jumlah: materi.jumlah,
+        deskripsi: materi.deskripsi,
+        cover: materi.cover,
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        triggerAlert();
+        post(route("update.materi"));
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Materi Berhasil Diedit",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
+    };
+
     return (
         <MainGuruLayout>
             <Head title="Materi" />
-            <h1 className="font-semibold text-2xl mb-10">Tambah Materi</h1>
+            <h1 className="font-semibold text-2xl mb-10">Edit Materi</h1>
             <form className="w-4/5">
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="nama"
                     >
                         Nama Materi
                     </label>
                     <TextInput
-                        id="email"
+                        id="nama"
                         type="text"
-                        name="email"
+                        name="nama"
                         placeholder="Masukkan Nama Materi..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.nama}
+                        onChange={(e) => setData("nama", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="jumlah"
                     >
                         Jumlah Konten
                     </label>
                     <TextInput
-                        id="email"
+                        id="jumlah"
                         type="number"
-                        name="email"
+                        name="jumlah"
                         placeholder="Masukkan Jumlah Konten..."
                         className="w-full border-[#353535]"
-                        // value={data.email}
-                        // onChange={(e) => setData("email", e.target.value)}
+                        value={data.jumlah}
+                        onChange={(e) => setData("jumlah", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="email"
+                        htmlFor="deskripsi"
                     >
                         Deskripsi
                     </label>
                     <textarea
                         className="w-full rounded-lg border border-[#D1D1D1]"
-                        placeholder="Masukkan Jawaban..."
-                        name="jawaban"
-                        id="jawaban"
+                        placeholder="Masukkan Deskripsi..."
+                        name="deskripsi"
+                        id="deskripsi"
                         rows="7"
-                        // value={data.jawaban}
-                        // onChange={(e) => setData("jawaban", e.target.value)}
+                        value={data.deskripsi}
+                        onChange={(e) => setData("deskripsi", e.target.value)}
                     ></textarea>
                 </div>
                 <div className="mb-12">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="foto"
+                        htmlFor="cover"
                     >
                         Cover
                     </label>
                     <div className="flex items-center gap-3">
                         <label
                             className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
-                            htmlFor="foto"
+                            htmlFor="cover"
                         >
                             <span className="text-white flex items-center gap-1">
                                 <svg
@@ -93,22 +122,28 @@ export default function TambahMateriGuru() {
                                 Pilih File
                             </span>
                             <input
-                                id="foto"
+                                id="cover"
                                 type="file"
-                                name="foto"
+                                name="cover"
                                 className="hidden"
+                                accept=".png, .jpg, .jpeg"
+                                onChange={(e) =>
+                                    setData("cover", e.target.files[0])
+                                }
                             />
                         </label>
-                        <p className="font-light text-sm">nama file</p>
+                        <p className="font-light text-sm">
+                            {data.cover ? data.cover.name : "Nama File"}
+                        </p>
                     </div>
                 </div>
                 <div className="flex gap-5 justify-end">
                     <Link href={route("materi-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    <Link href={route("create.submateri")}>
-                        <PrimaryButton text="Next" />
-                    </Link>
+                    {/* <Link href={route("create.submateri")}> */}
+                    <PrimaryButton text="Simpan" onClick={handleSubmit} />
+                    {/* </Link> */}
                 </div>
             </form>
         </MainGuruLayout>

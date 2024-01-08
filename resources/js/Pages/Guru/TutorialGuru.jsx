@@ -55,8 +55,8 @@ export default function TutorialGuru({ auth }) {
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
                                 <TableItem item={item.judul} />
-                                <TableItem item={item.cover} />
-                                <TableItem item={item.sumber} />
+                                <TableItem item={item.cover} wrap />
+                                <TableItem item={item.sumber} wrap />
                                 <TableItem
                                     item={
                                         <ActionButton

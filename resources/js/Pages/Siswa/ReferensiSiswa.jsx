@@ -4,6 +4,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { placeholderReferensi, placeholderTutorial } from "../../../assets";
 import { useEffect } from "react";
+import { url } from "../../../assets/url";
 
 export default function ReferensiSiswa({ auth }) {
     const { referensi } = usePage().props;
@@ -34,7 +35,7 @@ export default function ReferensiSiswa({ auth }) {
                                 >
                                     <img
                                         className="h-36 w-full object-cover object-center rounded-t-[1.25rem]"
-                                        src={placeholderReferensi}
+                                        src={`${url}referensi/cover/${item.cover}`}
                                         alt="image materi"
                                     />
 
@@ -44,7 +45,9 @@ export default function ReferensiSiswa({ auth }) {
                                         </h4>
                                     </div>
                                     <div className="px-5">
-                                        <p className="text-sm">{item.sumber}</p>
+                                        <p className="text-sm line-clamp-2">
+                                            {item.sumber}
+                                        </p>
                                     </div>
                                 </Link>
                                 <div className="px-5 pb-5 flex justify-end">

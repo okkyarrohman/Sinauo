@@ -108,6 +108,7 @@ export default function EditTutorialGuru() {
                                 type="file"
                                 name="cover"
                                 className="hidden"
+                                accept=".png, .jpg, .jpeg"
                                 onChange={(e) =>
                                     setData("cover", e.target.files[0])
                                 }

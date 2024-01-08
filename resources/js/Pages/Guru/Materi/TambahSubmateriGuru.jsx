@@ -4,28 +4,34 @@ import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 
-export default function EditReferensiGuru() {
-    const { referensis } = usePage().props;
+export default function TambahSubmateriGuru() {
+    const { subMateri } = usePage().props;
+
+    useEffect(() => {
+        console.log(subMateri);
+    }, []);
+
     const { data, setData, post, processing, errors } = useForm({
-        id: referensis.id,
-        judul: referensis.judul,
-        sumber: referensis.sumber,
-        cover: referensis.cover,
-        file: referensis.file,
+        materi_id: "",
+        nama: "",
+        deskripsi: "",
+        cover: null,
+        file: null,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         triggerAlert();
-        post(route("update.referensi"));
+        post(route("store.submateri"));
     };
 
     const triggerAlert = () => {
         Swal.fire({
             icon: "success",
-            title: "Referensi Berhasil Diedit",
+            title: "Submateri Berhasil Ditambahkan",
             showConfirmButton: false,
             customClass: {
                 title: "block text-lg w-3/4 text-center mx-auto",
@@ -36,43 +42,43 @@ export default function EditReferensiGuru() {
 
     return (
         <MainGuruLayout>
-            <Head title="Referensi" />
-            <h1 className="font-semibold text-2xl mb-10">Edit Referensi</h1>
+            <Head title="Materi" />
+            <h1 className="font-semibold text-2xl mb-10">Tambah Submateri</h1>
             <form className="w-4/5">
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="judul"
+                        htmlFor="nama"
                     >
-                        Judul Referensi
+                        Nama Submateri
                     </label>
                     <TextInput
-                        id="judul"
+                        id="nama"
                         type="text"
-                        name="judul"
-                        placeholder="Masukkan Judul Referensi..."
+                        name="nama"
+                        placeholder="Masukkan Nama Materi..."
                         className="w-full border-[#353535]"
                         isFocused={true}
-                        value={data.judul}
-                        onChange={(e) => setData("judul", e.target.value)}
+                        value={data.nama}
+                        onChange={(e) => setData("nama", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-lg font-semibold mb-2"
-                        htmlFor="sumber"
+                        htmlFor="deskripsi"
                     >
-                        Sumber
+                        Deskripsi
                     </label>
-                    <TextInput
-                        id="sumber"
-                        type="text"
-                        name="sumber"
-                        placeholder="Masukkan Sumber..."
-                        className="w-full border-[#353535]"
-                        value={data.sumber}
-                        onChange={(e) => setData("sumber", e.target.value)}
-                    />
+                    <textarea
+                        className="w-full rounded-lg border border-[#D1D1D1]"
+                        placeholder="Masukkan Deskripsi..."
+                        name="deskripsi"
+                        id="deskripsi"
+                        rows="7"
+                        value={data.deskripsi}
+                        onChange={(e) => setData("deskripsi", e.target.value)}
+                    ></textarea>
                 </div>
                 <div className="mb-4">
                     <label
@@ -124,7 +130,7 @@ export default function EditReferensiGuru() {
                         className="block text-lg font-semibold mb-2"
                         htmlFor="file"
                     >
-                        File Referensi
+                        File
                     </label>
                     <div className="flex items-center gap-3">
                         <label
@@ -165,10 +171,10 @@ export default function EditReferensiGuru() {
                     </div>
                 </div>
                 <div className="flex gap-5 justify-end">
-                    <Link href={route("referensi-guru")}>
+                    <Link href={route("materi-guru")}>
                         <SecondaryButton text="Tutup" />
                     </Link>
-                    {/* <Link href={route("referensi-guru")}> */}
+                    {/* <Link href={route("create.submateri")}> */}
                     <PrimaryButton text="Simpan" onClick={handleSubmit} />
                     {/* </Link> */}
                 </div>

@@ -6,21 +6,26 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
-import { imageKonten1, imageNoData } from "../../../assets";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { imageKonten1, imageNoData } from "../../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
+import { useEffect } from "react";
 
 export default function MateriGuru({ auth }) {
-    const head_title = ["No", "Materi", "Jumlah", "Cover", "Konten", "Aksi"];
-    const data = [
-        {
-            no: "1",
-            materi: "ReactJS Basic",
-            jumlah: "25",
-            cover: imageKonten1,
-            // konten: "Edukasi?",
-        },
+    const { materi } = usePage().props;
+
+    useEffect(() => {
+        console.log(materi);
+    }, []);
+
+    const head_title = [
+        "No",
+        "Materi",
+        "Jumlah Konten",
+        "Deskripsi",
+        "Cover",
+        "Aksi",
     ];
 
     return (
@@ -55,37 +60,34 @@ export default function MateriGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {data.map((item, index) => {
+                    {materi.map((item, index) => {
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
-                                <TableItem item={item.materi} />
+                                <TableItem item={index + 1} />
+                                <TableItem item={item.nama} />
                                 <TableItem item={item.jumlah} />
+                                <TableItem item={item.deskripsi} wrap />
+                                <TableItem item={item.cover} wrap />
                                 <TableItem
                                     item={
-                                        <img
-                                            className="size-20"
-                                            src={item.cover}
-                                            alt="Cover Materi"
+                                        <ActionButton
+                                            handleDelete={route(
+                                                "destroy.materi",
+                                                item.id
+                                            )}
+                                            handleEdit={route(
+                                                "edit.materi",
+                                                item.id
+                                            )}
                                         />
                                     }
                                 />
-                                <TableItem
-                                    item={
-                                        <Link>
-                                            <button className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white">
-                                                Detail
-                                            </button>
-                                        </Link>
-                                    }
-                                />
-                                <TableItem item={<ActionButton />} />
                             </TableRow>
                         );
                     })}
                 </TableBody>
             </Table>
-            {data.length > 0 ? null : (
+            {materi.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

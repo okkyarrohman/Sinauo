@@ -13,14 +13,14 @@ class SubMateriController extends Controller
     {
         $subMateri = SubMateri::all();
 
-        return Inertia::render('Guru/SubMateriGuru', [
+        return Inertia::render('Guru/Materi/SubmateriGuru', [
             'subMateri' => $subMateri
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Guru/TambahSubMateriGuru');
+        return Inertia::render('Guru/Materi/TambahSubmateriGuru');
     }
 
     public function store(Request $request)
@@ -53,9 +53,9 @@ class SubMateriController extends Controller
 
     public function edit($id)
     {
-        $subMateri = SubMateri::find($id)->firest();
+        $subMateri = SubMateri::find($id)->first();
 
-        return Inertia::render('Guru/EditSubMateriGuru', [
+        return Inertia::render('Guru/Materi/EditSubmateriGuru', [
             'edit' => $subMateri
         ]);
     }

@@ -5,33 +5,41 @@ import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
-import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { imageKonten1, imageNoData } from "../../../assets";
+import { imageKonten1, imageNoData } from "../../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { useEffect } from "react";
 
-export default function ReferensiGuru({ auth }) {
-    const { referensis } = usePage().props;
-    const head_title = ["No", "Judul", "Sumber", "Cover", "File", "Aksi"];
+export default function SubmateriGuru({ auth }) {
+    const { subMateri } = usePage().props;
 
-    const handleDelete = (id) => {
-        route("destroy.referensi", { id });
-    };
+    useEffect(() => {
+        console.log(subMateri);
+    }, []);
+
+    const head_title = [
+        "No",
+        "Materi",
+        "Submateri",
+        "Deskripsi",
+        "Cover",
+        "File",
+        "Aksi",
+    ];
 
     return (
         <MainGuruLayout>
-            <Head title="Referensi" />
+            <Head title="Materi" />
             <div className="mb-10 flex justify-between gap-16">
                 <SearchBar />
                 <ProfileInfo name={auth.user.name} />
             </div>
             <div className="flex justify-between items-center mb-10">
                 <h1 className="font-semibold text-2xl">
-                    Referensi Pembelajaran
+                    Submateri Pembelajaran
                 </h1>
-                <Link href={route("create.referensi")}>
+                <Link href={route("create.submateri")}>
                     <button className="flex items-center gap-1 w-fit py-3 px-5 rounded-[0.625rem] bg-primary text-white">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -54,23 +62,24 @@ export default function ReferensiGuru({ auth }) {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {referensis.map((item, index) => {
+                    {subMateri.map((item, index) => {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
-                                <TableItem item={item.judul} />
-                                <TableItem item={item.sumber} wrap />
+                                <TableItem item={item.materi_id} />
+                                <TableItem item={item.nama} />
+                                <TableItem item={item.deskripsi} wrap />
                                 <TableItem item={item.cover} wrap />
                                 <TableItem item={item.file} wrap />
                                 <TableItem
                                     item={
                                         <ActionButton
                                             handleDelete={route(
-                                                "destroy.referensi",
+                                                "destroy.submateri",
                                                 item.id
                                             )}
                                             handleEdit={route(
-                                                "edit.referensi",
+                                                "edit.submateri",
                                                 item.id
                                             )}
                                         />
@@ -81,7 +90,7 @@ export default function ReferensiGuru({ auth }) {
                     })}
                 </TableBody>
             </Table>
-            {referensis.length > 0 ? null : (
+            {subMateri.length > 0 ? null : (
                 <img
                     className="w-80 mx-auto mt-8"
                     src={imageNoData}

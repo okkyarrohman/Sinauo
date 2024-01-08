@@ -5,6 +5,7 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import { placeholderTutorial } from "../../../assets";
 // import Cover1 from "../../../../storage/app/public/tutorial/cover/";
 import { useEffect } from "react";
+import { url } from "../../../assets/url";
 
 export default function TutorialSiswa({ auth }) {
     const { tutorial } = usePage().props;
@@ -55,7 +56,7 @@ export default function TutorialSiswa({ auth }) {
                                     </div>
                                     <img
                                         className="h-36 w-full object-cover object-center rounded-t-[1.25rem]"
-                                        src={item.cover}
+                                        src={`${url}tutorial/cover/${item.cover}`}
                                         alt="image materi"
                                     />
                                 </div>

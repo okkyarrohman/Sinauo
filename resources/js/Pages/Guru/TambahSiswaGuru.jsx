@@ -5,6 +5,7 @@ import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function TambahSiswaGuru() {
     const { siswa } = usePage().props;
@@ -18,6 +19,7 @@ export default function TambahSiswaGuru() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        triggerAlert();
         post(route("update.siswa"));
     };
 
@@ -25,6 +27,18 @@ export default function TambahSiswaGuru() {
 
     const handlePassVisible = () => {
         setPassVisible(!passVisible);
+    };
+
+    const triggerAlert = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Data Siswa Berhasil Diedit",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
     };
 
     return (

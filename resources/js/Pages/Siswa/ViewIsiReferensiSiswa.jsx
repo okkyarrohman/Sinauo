@@ -1,8 +1,15 @@
 import BackButton from "@/Components/GeneralComponents/BackButton";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function ViewIsiReferensiSiswa() {
+    const { referensi } = usePage().props;
+
+    useEffect(() => {
+        console.log(referensi);
+    }, []);
+
     return (
         <MainLayout>
             <Head title="Referensi" />

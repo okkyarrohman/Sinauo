@@ -85,10 +85,11 @@ class TugasController extends Controller
 
     public function destroy($id)
     {
-        $tugas = Tugas::find($id)->get();
+        $tugas = Tugas::find($id);
 
         $tugas->delete();
-        return redirect()->route('Guru/TugasGuru')->with('success', 'Tugas Berhasil Dihapus');
+
+        return redirect()->route('tugas-guru')->with('success', 'Tugas Berhasil Dihapus');
     }
 
 

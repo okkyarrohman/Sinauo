@@ -5,29 +5,10 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
 import { iconFeedback, iconSubmitKuis } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
+import { useEffect } from "react";
 
 export default function TugasSiswa({ auth }) {
     const { tugas } = usePage().props;
-
-    const data = [
-        {
-            no: "1",
-            nama: "Proyek 1",
-            tanggal: "27/11/2024",
-            progres: "25",
-            status: "Belum Diterima",
-            feedback: "Kamu Hebat",
-        },
-        {
-            no: "2",
-            nama: "Proyek Akhir",
-            tanggal: "01/01/2024",
-            progres: "75",
-            status: "Sudah Diterima",
-            feedback:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde excepturi accusamus nam quaerat. Animi aliquam quia fuga aliquid. Doloremque id sapiente expedita reprehenderit saepe, atque ad sequi iure ipsam soluta ipsum minima distinctio accusantium alias vitae quo et earum error eaque voluptatum enim veritatis sit harum modi. Debitis, nulla itaque!",
-        },
-    ];
 
     const triggerAlert = (feedback) => {
         Swal.fire({
@@ -47,6 +28,10 @@ export default function TugasSiswa({ auth }) {
         });
     };
 
+    useEffect(() => {
+        console.log(tugas);
+    }, []);
+
     return (
         <MainLayout>
             <Head title="Tugas" />
@@ -56,6 +41,19 @@ export default function TugasSiswa({ auth }) {
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tugas</h1>
             {tugas.map((item, index) => {
+                const totalAnswers = [
+                    "answer1",
+                    "answer2",
+                    "answer3",
+                    "answer4",
+                ];
+                const filledAnswers = totalAnswers.filter(
+                    (answer) => item[answer]
+                );
+
+                const percentage =
+                    (filledAnswers.length / totalAnswers.length) * 100;
+
                 return (
                     <div
                         key={index}
@@ -68,12 +66,16 @@ export default function TugasSiswa({ auth }) {
                                     {item.nama}
                                 </p>
                             </div>
-                            <p>{item.tenggat}</p>
+                            <p>{item.tugas.tenggat}</p>
                             <div className="w-[20%]">
-                                <ProgressBar progres={item.progres} />
+                                <ProgressBar progres={percentage} />
                             </div>
-                            <p>{item.konfirmasi}</p>
-                            <Link href={route("detail-tugas",item.id)}>
+                            <p>
+                                {item.konfirmasi === null
+                                    ? "Belum Dikonfirmasi"
+                                    : item.konfirmasi}
+                            </p>
+                            <Link href={route("detail-tugas", item.id)}>
                                 <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
                                     Detail
                                 </button>

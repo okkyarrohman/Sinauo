@@ -106,6 +106,7 @@ export default function TambahReferensiGuru() {
                                 type="file"
                                 name="cover"
                                 className="hidden"
+                                accept=".png, .jpg, .jpeg"
                                 onChange={(e) =>
                                     setData("cover", e.target.files[0])
                                 }
@@ -150,6 +151,7 @@ export default function TambahReferensiGuru() {
                                 type="file"
                                 name="file"
                                 className="hidden"
+                                accept=".pdf"
                                 onChange={(e) =>
                                     setData("file", e.target.files[0])
                                 }

@@ -9,6 +9,7 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function HasilTugasSiswaGuru({ auth }) {
     const { tugas } = usePage().props;
@@ -22,22 +23,9 @@ export default function HasilTugasSiswaGuru({ auth }) {
         "Konfirmasi",
     ];
 
-    const data = [
-        {
-            no: "1",
-            nama: "Daffa",
-            tugas: "ReactJS Portfolio",
-            progres: "25",
-            status: "Belum Diterima",
-        },
-        {
-            no: "2",
-            nama: "Febrian",
-            tugas: "ReactJS Portfolio",
-            progres: "25",
-            status: "Sudah Diterima",
-        },
-    ];
+    useEffect(() => {
+        console.log(tugas);
+    }, []);
 
     return (
         <MainGuruLayout>
@@ -51,17 +39,34 @@ export default function HasilTugasSiswaGuru({ auth }) {
                 <TableHead head={head_title} />
                 <TableBody>
                     {tugas.map((item, index) => {
+                        const totalAnswers = [
+                            "answer1",
+                            "answer2",
+                            "answer3",
+                            "answer4",
+                        ];
+                        const filledAnswers = totalAnswers.filter(
+                            (answer) => item[answer]
+                        );
+
+                        const percentage =
+                            (filledAnswers.length / totalAnswers.length) * 100;
+
                         return (
                             <TableRow key={index}>
-                                <TableItem item={item.no} />
+                                <TableItem item={index + 1} />
                                 <TableItem item={item.user.name} />
                                 <TableItem item={item.tugas.nama} />
                                 <TableItem
+                                    item={<ProgressBar progres={percentage} />}
+                                />
+                                <TableItem
                                     item={
-                                        <ProgressBar progres={item.progres} />
+                                        item.konfirmasi === null
+                                            ? "Belum Dikonfirmasi"
+                                            : item.konfirmasi
                                     }
                                 />
-                                <TableItem item={item.konfirmasi} />
                                 <TableItem
                                     item={
                                         <Link

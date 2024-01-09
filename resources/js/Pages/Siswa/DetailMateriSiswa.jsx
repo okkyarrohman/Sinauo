@@ -3,11 +3,19 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import MainLayout from "@/Layouts/MainLayout";
 import { imageBuku, placeholderMateri } from "../../../assets";
 import MateriBanner from "@/Components/SiswaComponents/MateriBanner";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import CardSubmateri from "@/Components/SiswaComponents/CardSubmateri";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
+import { url } from "../../../assets/url";
 
 export default function DetailMateriSiswa({ auth }) {
+    const { materi } = usePage().props;
+    useEffect(() => {
+        console.log(materi);
+    }, []);
+
+
     const data = [
         {
             judul: "Statefull or Stateless",
@@ -39,11 +47,11 @@ export default function DetailMateriSiswa({ auth }) {
                 </div>
             </div>
             <div className="w-4/5">
-                {data.map((item, index) => {
+                {materi.map((item, index) => {
                     return (
                         <div key={index} className="mb-6">
                             <CardSubmateri
-                                judul={item.judul}
+                                judul={item.nama}
                                 deskripsi={item.deskripsi}
                             />
                         </div>

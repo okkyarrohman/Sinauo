@@ -1,11 +1,18 @@
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link,usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import { imageKonten1, imageKonten2, imageKonten3 } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
+import { url } from "../../../assets/url";
 
 export default function MateriSiswa({ auth }) {
+    const { materi } = usePage().props;
+    useEffect(() => {
+        console.log(materi);
+    }, []);
+
     const data = [
         {
             image: imageKonten1,
@@ -50,7 +57,7 @@ export default function MateriSiswa({ auth }) {
                 Materi Pembelajaran
             </h1>
             <div className="grid grid-cols-3 justify-items-center gap-y-10">
-                {data.map((item, index) => {
+                {materi.map((item, index) => {
                     return (
                         <div
                             key={index}
@@ -59,18 +66,18 @@ export default function MateriSiswa({ auth }) {
                             <div className="h-full flex flex-col justify-between">
                                 <img
                                     className="h-36 w-full object-cover object-center rounded-t-[1.25rem]"
-                                    src={item.image}
+                                    src={`${url}materi/cover/${item.cover}`}
                                     alt="image materi"
                                 />
                                 <div className="p-5">
                                     <div className="flex gap-1 items-center mb-4">
                                         <div className="bg-green-500 size-5 rounded-full"></div>
                                         <p className="font-medium">
-                                            {item.total_materi}x Materi
+                                            {item.jumlah}x Materi
                                         </p>
                                     </div>
                                     <h4 className="text-lg font-semibold line-clamp-2">
-                                        {item.judul}
+                                        {item.nama}
                                     </h4>
                                 </div>
                                 <div className="px-5 pb-5">
@@ -80,7 +87,7 @@ export default function MateriSiswa({ auth }) {
                                         />
                                     </div>
                                     <div className="flex justify-end">
-                                        <Link href={route("detail-materi")}>
+                                        <Link href={route("detail-materi",item.id)}>
                                             <button className="py-1 px-5 rounded-full bg-primary hover:bg-primary-dark text-sm text-white font-medium">
                                                 Detail
                                             </button>

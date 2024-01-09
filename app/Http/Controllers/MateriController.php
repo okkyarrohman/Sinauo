@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Materi;
 use Illuminate\Support\Facades\Storage;
+use App\Models\SubMateri;
 
 
 class MateriController extends Controller
@@ -90,10 +91,27 @@ class MateriController extends Controller
 
     public function index_siswa()
     {
-        return Inertia::render('Siswa/MateriSiswa');
+        $materi = Materi::all();
+        return Inertia::render('Siswa/MateriSiswa', [
+            'materi' => $materi
+        ]);
     }
 
     public function show_siswa($id)
     {
+        $materi = Submateri::where('materi_id', $id)->get();
+
+        return Inertia::render('Siswa/DetailMateriSiswa', [
+            'materi' => $materi
+        ]);
+    }
+
+    public function lihat_materi_siswa()
+    {
+        // $submateri = Submateri::where()->first();
+
+        return Inertia::render('Siswa/ViewIsiMateriSiswa', [
+            // 'submateri' => $submateri
+        ]);
     }
 }

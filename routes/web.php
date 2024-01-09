@@ -161,19 +161,19 @@ Route::group(['middleware' => 'role:siswa'], function () {
     // Materi
     Route::controller(MateriController::class)->group(function () {
         Route::get('/materi', 'index_siswa')->name('materi');
-        Route::get('/materi/detail-materi/', 'show_siswa')->name('detail-materi');
-        Route::get('/materi/detail-materi/lihat-materi/', 'lihat_materi_siswa')->name('lihat-materi');
+        Route::get('/materi/detail-materi/{id}', 'show_siswa')->name('detail-materi');
+        Route::get('/materi/detail-materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
     });
 
 
 
-    Route::get('/materi/detail-materi', function () {
-        return Inertia::render('Siswa/DetailMateriSiswa');
-    })->name('detail-materi');
+    // Route::get('/materi/detail-materi', function () {
+    //     return Inertia::render('Siswa/DetailMateriSiswa');
+    // })->name('detail-materi');
 
-    Route::get('/materi/detail-materi/lihat-materi', function () {
-        return Inertia::render('Siswa/ViewIsiMateriSiswa');
-    })->name('lihat-materi');
+    // Route::get('/materi/detail-materi/lihat-materi', function () {
+    //     return Inertia::render('Siswa/ViewIsiMateriSiswa');
+    // })->name('lihat-materi');
 
     // Tutorial
     Route::controller(TutorialController::class)->group(function () {
@@ -185,6 +185,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/referensi', 'index_siswa')->name('referensi');
         Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
+
 
     // Kuis
     Route::get('/kuis', function () {
@@ -215,7 +216,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
         return Inertia::render('Siswa/PanduanSiswa');
     })->name('panduan');
 });
-// SISWA
+//End SISWA
 
 Route::get('/testing-quis', [KuisController::class, 'index']);
 Route::post('/testing-quis/store', [KuisController::class, 'store'])->name('store.testingQuis');

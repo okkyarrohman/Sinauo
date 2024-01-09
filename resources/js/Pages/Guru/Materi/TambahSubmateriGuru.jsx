@@ -8,14 +8,10 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function TambahSubmateriGuru() {
-    const { subMateri } = usePage().props;
-    const { materi } =  usePage().props;
 
+
+    const { materi } = usePage().props;
     useEffect(() => {
-        console.log(subMateri);
-    }, []);
-
-     useEffect(() => {
         console.log(materi);
     }, []);
 
@@ -65,19 +61,19 @@ export default function TambahSubmateriGuru() {
                             name="materi_id"
                             type="text"
                             value={data.materi_id}
-                            onChange={(e) => handleChange(e)}
-                            // onChange={(e) => setData("materi_id", e.target.value)}
+                            // onChange={(e) => handleChange(e)}
+                            onChange={(e) => setData("materi_id", e.target.value)}
                         >
                             <option value="">Pilih Materi</option>
-                            {materi.map((items,index) =>
-                            {
-                                <option
+                            {materi?.map((items, index) => (
+                            <option
                                 className="capitalize"
-                                key=""
-                                value=""
-                            >{items.nama}
+                                key={index}
+                                value={items.id}
+                            >
+                                {items.nama}
                             </option>
-                            })}
+                            ))}
                         </select>
 
 

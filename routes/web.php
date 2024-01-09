@@ -154,13 +154,18 @@ Route::group(['middleware' => 'role:guru'], function () {
 
 // Route Siswa
 Route::group(['middleware' => 'role:siswa'], function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Siswa/DashboardSiswa');
-    })->name('dashboard');
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/dashboard', 'index_siswa')->name('dashboard');
+    });
+
     // Materi
-    Route::get('/materi', function () {
-        return Inertia::render('Siswa/MateriSiswa');
-    })->name('materi');
+    Route::controller(MateriController::class)->group(function () {
+        Route::get('/materi', 'index_siswa')->name('materi');
+        Route::get('/materi/detail-materi/', 'show_siswa')->name('detail-materi');
+        Route::get('/materi/detail-materi/lihat-materi/', 'lihat_materi_siswa')->name('lihat-materi');
+    });
+
+
 
     Route::get('/materi/detail-materi', function () {
         return Inertia::render('Siswa/DetailMateriSiswa');
@@ -224,5 +229,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-

@@ -10,6 +10,12 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+    public function index_siswa()
+    {
+
+        return Inertia::render('Siswa/DashboardSiswa', []);
+    }
+
     public function index()
     {
         return Inertia::render('Guru/DashboardGuru');

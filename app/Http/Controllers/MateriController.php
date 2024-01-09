@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
 {
+
     public function index()
     {
         $materi = Materi::all();
@@ -21,6 +22,7 @@ class MateriController extends Controller
 
     public function create()
     {
+
         return Inertia::render('Guru/Materi/TambahMateriGuru');
     }
 
@@ -83,5 +85,15 @@ class MateriController extends Controller
         }
         $materi->delete();
         return redirect()->route('materi-guru')->with('success', 'Materi Berhasil Dihapus');
+    }
+
+
+    public function index_siswa()
+    {
+        return Inertia::render('Siswa/MateriSiswa');
+    }
+
+    public function show_siswa($id)
+    {
     }
 }

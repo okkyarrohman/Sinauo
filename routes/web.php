@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\KategoriKuisController;
 use App\Http\Controllers\KuisController;
@@ -16,6 +16,8 @@ use App\Http\Controllers\OpsiController;
 use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\DashboardController;
 use Inertia\Inertia;
 
 /*
@@ -166,15 +168,6 @@ Route::group(['middleware' => 'role:siswa'], function () {
     });
 
 
-
-    // Route::get('/materi/detail-materi', function () {
-    //     return Inertia::render('Siswa/DetailMateriSiswa');
-    // })->name('detail-materi');
-
-    // Route::get('/materi/detail-materi/lihat-materi', function () {
-    //     return Inertia::render('Siswa/ViewIsiMateriSiswa');
-    // })->name('lihat-materi');
-
     // Tutorial
     Route::controller(TutorialController::class)->group(function () {
         Route::get('/tutorial', 'index_siswa')->name('tutorial');
@@ -209,6 +202,11 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::post('/tugas/detail-tugas', 'update_answer')->name('update-tugas');
     });
 
+    Route::controller(DownloadController::class)->group(function () {
+        Route::get('/submateri/file/{id}', 'submateri_file')->name('submateri.file');
+        Route::get('/referensi/file/{id}', 'referensi_file')->name('referensi.file');
+    });
+
 
 
     // Panduan
@@ -221,6 +219,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
 Route::get('/testing-quis', [KuisController::class, 'index']);
 Route::post('/testing-quis/store', [KuisController::class, 'store'])->name('store.testingQuis');
 Route::get('/testing-quis/hasil/{result_id}', [KuisController::class, 'show'])->name('testing.testing.show');
+
+
 
 
 Route::middleware('auth')->group(function () {

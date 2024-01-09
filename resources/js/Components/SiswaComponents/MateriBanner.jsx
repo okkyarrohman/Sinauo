@@ -1,4 +1,5 @@
 import { imageBuku } from "../../../assets";
+import { url } from "../../../assets/url";
 
 export default function MateriBanner() {
     return (
@@ -16,7 +17,9 @@ export default function MateriBanner() {
                     voluptatibus debitis aliquid necessitatibus quis.
                 </p>
             </div>
-            <img className="h-60" src={imageBuku} alt="image banner" />
+            <img className="h-60"
+            src={imageBuku}
+            alt="image banner" />
         </div>
     );
 }

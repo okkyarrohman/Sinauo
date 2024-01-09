@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\KategoriKuis;
 use App\Models\Opsi;
 use App\Models\Hasil;
+use Inertia\Inertia;
 
 class KuisController extends Controller
 {
@@ -20,7 +21,13 @@ class KuisController extends Controller
             ->whereHas('soal')
             ->get();
 
-        return view('testing.testing', compact('categories'));
+        // return view('testing.testing', compact('categories'));
+        // return Inertia::render('Siswa/KuisSiswa', [
+        //     'kategori' => $categories
+        // ]);        
+        return Inertia::render('Siswa/SoalKuisSiswa', [
+            'kategori' => $categories
+        ]);        
     }
 
     public function store(Request $request)
@@ -57,6 +64,9 @@ class KuisController extends Controller
             $query->whereId(auth()->id());
         })->findOrFail($result_id);
 
-        return view('testing.hasilTesting', compact('result'));
+        // return view('testing.hasilTesting', compact('result'));
+        return Inertia::render('Siswa/KuisSiswa', [
+            'result' => $result
+        ]);
     }
 }

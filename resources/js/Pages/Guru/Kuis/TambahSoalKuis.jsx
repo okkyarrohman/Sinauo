@@ -6,8 +6,6 @@ import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 
-
-
 export default function SoalKuis() {
     const { kategori } = usePage().props;
     useEffect(() => {
@@ -58,17 +56,19 @@ export default function SoalKuis() {
                             type="text"
                             value={data.kategori_kuis_id}
                             // onChange={(e) => handleChange(e)}
-                            onChange={(e) => setData("kategori_kuis_id", e.target.value)}
+                            onChange={(e) =>
+                                setData("kategori_kuis_id", e.target.value)
+                            }
                         >
                             <option value="">Pilih Kategori</option>
                             {kategori?.map((items, index) => (
-                            <option
-                                className="capitalize"
-                                key={index}
-                                value={items.id}
-                            >
-                                {items.kuis}
-                            </option>
+                                <option
+                                    className="capitalize"
+                                    key={index}
+                                    value={items.id}
+                                >
+                                    {items.kuis}
+                                </option>
                             ))}
                         </select>
                         {/* <svg
@@ -146,7 +146,7 @@ export default function SoalKuis() {
                             />
                         </label>
                         <p className="font-light text-sm">
-                            {data.cover ? data.cover.name : "Nama File"}
+                            {data.gambar ? data.gambar.name : "Nama File"}
                         </p>
                     </div>
                 </div>

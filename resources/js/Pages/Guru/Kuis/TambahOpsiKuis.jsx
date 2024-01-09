@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function TambahOpsiKuis() {
-
     const { soal } = usePage().props;
     useEffect(() => {
         console.log(soal);
@@ -28,7 +27,7 @@ export default function TambahOpsiKuis() {
     const triggerAlert = () => {
         Swal.fire({
             icon: "success",
-            title: "Soal Berhasil Ditambahkan",
+            title: "Opsi Berhasil Ditambahkan",
             showConfirmButton: false,
             customClass: {
                 title: "block text-lg w-3/4 text-center mx-auto",
@@ -39,7 +38,7 @@ export default function TambahOpsiKuis() {
 
     return (
         <MainGuruLayout>
-            <Head title="Soal Kuis" />
+            <Head title="Opsi Kuis" />
             <h1 className="font-semibold text-2xl mb-10">Tambah Opsi Kuis</h1>
             <form className="w-4/5">
                 <div className="mb-4">
@@ -61,13 +60,13 @@ export default function TambahOpsiKuis() {
                         >
                             <option value="">Pilih Soal</option>
                             {soal?.map((items, index) => (
-                            <option
-                                className="capitalize"
-                                key={index}
-                                value={items?.id}
-                            >
-                                {items.soal}
-                            </option>
+                                <option
+                                    className="capitalize"
+                                    key={index}
+                                    value={items?.id}
+                                >
+                                    {items.soal}
+                                </option>
                             ))}
                         </select>
                     </div>

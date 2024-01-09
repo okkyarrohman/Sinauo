@@ -1,18 +1,25 @@
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
+import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
-    const data = [
-        { nama: "Pre-Test", total_soal: "25", durasi: "25", nilai: "95" },
-        {
-            nama: "Post-Test Terakhir Gk Bohong Suerrrrrr",
-            total_soal: "15",
-            durasi: "60",
-            nilai: "",
-        },
-    ];
+    const { kategori } = usePage().props;
+
+    useEffect(() => {
+        console.log("Kategori", kategori);
+    }, []);
+
+    // const data = [
+    //     { nama: "Pre-Test", total_soal: "25", durasi: "25", nilai: "95" },
+    //     {
+    //         nama: "Post-Test Terakhir Gk Bohong Suerrrrrr",
+    //         total_soal: "15",
+    //         durasi: "60",
+    //         nilai: "",
+    //     },
+    // ];
 
     return (
         <MainLayout>
@@ -22,7 +29,7 @@ export default function KuisSiswa({ auth }) {
                 <ProfileInfo name={auth.user.name} />
             </div>
             <h1 className="font-semibold text-2xl mb-10">Kuis Pembelajaran</h1>
-            {data.map((item, index) => {
+            {kategori.map((item, index) => {
                 return (
                     <div key={index} className="p-6 bg-white rounded-2xl mb-4">
                         <div className="w-[91%] flex items-center">
@@ -30,11 +37,11 @@ export default function KuisSiswa({ auth }) {
                             <div className="w-[65%] flex justify-between">
                                 <div className="w-60 relative">
                                     <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap hover:absolute">
-                                        {item.nama}
+                                        {item.kuis}
                                     </p>
                                 </div>
-                                <p>{item.total_soal} Soal</p>
-                                <p>{item.durasi} Menit</p>
+                                <p>{item.soal.length} Soal</p>
+                                <p>{item.waktu} Menit</p>
                             </div>
                             {item.nilai === "" ? (
                                 <Link

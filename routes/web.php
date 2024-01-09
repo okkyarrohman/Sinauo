@@ -180,10 +180,15 @@ Route::group(['middleware' => 'role:siswa'], function () {
     });
 
 
+    Route::controller(KuisController::class)->group(function () {
+        Route::get('/kuis', 'index')->name('kuis');
+        // Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
+    });
+
     // Kuis
-    Route::get('/kuis', function () {
-        return Inertia::render('Siswa/KuisSiswa');
-    })->name('kuis');
+    // Route::get('/kuis', function () {
+    //     return Inertia::render('Siswa/KuisSiswa');
+    // })->name('kuis');
 
     Route::get('/kuis/mulai-kuis', function () {
         return Inertia::render('Siswa/MulaiKuisSiswa');

@@ -2,10 +2,17 @@ import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function TambahOpsiKuis() {
+
+    const { soal } = usePage().props;
+    useEffect(() => {
+        console.log(soal);
+    }, []);
+
     const { data, setData, post, processing, errors } = useForm({
         soal_id: "",
         opsi: "",
@@ -15,7 +22,7 @@ export default function TambahOpsiKuis() {
     const handleSubmit = (e) => {
         e.preventDefault();
         triggerAlert();
-        post(route("store.soal"));
+        post(route("store.opsi"));
     };
 
     const triggerAlert = () => {
@@ -33,7 +40,7 @@ export default function TambahOpsiKuis() {
     return (
         <MainGuruLayout>
             <Head title="Soal Kuis" />
-            <h1 className="font-semibold text-2xl mb-10">Tambah Soal Kuis</h1>
+            <h1 className="font-semibold text-2xl mb-10">Tambah Opsi Kuis</h1>
             <form className="w-4/5">
                 <div className="mb-4">
                     <label
@@ -48,20 +55,20 @@ export default function TambahOpsiKuis() {
                             id="soal_id"
                             name="soal_id"
                             type="text"
-                            // value={data.soal_id}
+                            value={data.soal_id}
                             // onChange={(e) => handleChange(e)}
-                            // onChange={(e) => setData("soal_id", e.target.value)}
+                            onChange={(e) => setData("soal_id", e.target.value)}
                         >
-                            <option value="">Pilih Kategori</option>
-                            {/* {surveyor?.map((surveyorItem, index) => ( */}
+                            <option value="">Pilih Soal</option>
+                            {soal?.map((items, index) => (
                             <option
                                 className="capitalize"
-                                // key={index}
-                                // value={surveyorItem?.id}
+                                key={index}
+                                value={items?.id}
                             >
-                                Tes
+                                {items.soal}
                             </option>
-                            {/* ))} */}
+                            ))}
                         </select>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Soal;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use App\Models\KategoriKuis as Kategori;
 
 
 class SoalController extends Controller
@@ -21,13 +22,17 @@ class SoalController extends Controller
 
     public function create()
     {
-        return Inertia::render('Guru/Kuis/TambahSoalKuis');
+        $kategori = Kategori::all();
+
+        return Inertia::render('Guru/Kuis/TambahSoalKuis', [
+            'kategori' => $kategori
+        ]);
     }
 
     public function store(Request $request)
     {
         $soal = new Soal();
-        $soal->kategori_id = $request->kategori_id;
+        $soal->kategori_kuis_id = $request->kategori_kuis_id;
         $soal->soal = $request->soal;
         // Request column input type file
         if ($request->hasFile('gambar')) {

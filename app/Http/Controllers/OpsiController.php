@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Opsi;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Soal;
 
 class OpsiController extends Controller
 {
@@ -20,7 +21,11 @@ class OpsiController extends Controller
 
     public function create()
     {
-        return Inertia::render('Guru/Kuis/TambahOpsiKuis');
+        $soal = Soal::all();
+
+        return Inertia::render('Guru/Kuis/TambahOpsiKuis', [
+            'soal' => $soal
+        ]);
     }
 
     public function store(Request $request)

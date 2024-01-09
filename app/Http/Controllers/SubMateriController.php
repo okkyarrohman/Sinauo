@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\SubMateri;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Materi;
 
 class SubMateriController extends Controller
 {
@@ -20,7 +21,11 @@ class SubMateriController extends Controller
 
     public function create()
     {
-        return Inertia::render('Guru/Materi/TambahSubmateriGuru');
+        $materi = Materi::all();
+
+        return Inertia::render('Guru/Materi/TambahSubmateriGuru', [
+            'materi' => $materi
+        ]);
     }
 
     public function store(Request $request)

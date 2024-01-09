@@ -226,8 +226,3 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-// Route::get('/testing', function(){
-//     return Inertia::render('Testing',[
-//         'title' => 'Laravel with react'
-//     ]);
-// });

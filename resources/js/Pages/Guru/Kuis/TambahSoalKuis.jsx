@@ -2,10 +2,18 @@ import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 
+
+
 export default function SoalKuis() {
+    const { kategori } = usePage().props;
+    useEffect(() => {
+        console.log(kategori);
+    }, []);
+
     const { data, setData, post, processing, errors } = useForm({
         kategori_kuis_id: "",
         soal: "",
@@ -48,20 +56,20 @@ export default function SoalKuis() {
                             id="kategori_kuis_id"
                             name="kategori_kuis_id"
                             type="text"
-                            // value={data.kategori_kuis_id}
+                            value={data.kategori_kuis_id}
                             // onChange={(e) => handleChange(e)}
-                            // onChange={(e) => setData("kategori_kuis_id", e.target.value)}
+                            onChange={(e) => setData("kategori_kuis_id", e.target.value)}
                         >
                             <option value="">Pilih Kategori</option>
-                            {/* {surveyor?.map((surveyorItem, index) => ( */}
+                            {kategori?.map((items, index) => (
                             <option
                                 className="capitalize"
-                                // key={index}
-                                // value={surveyorItem?.id}
+                                key={index}
+                                value={items.id}
                             >
-                                Tes
+                                {items.kuis}
                             </option>
-                            {/* ))} */}
+                            ))}
                         </select>
                         {/* <svg
                             className="absolute w-5 h-5 top-2 right-2.5"

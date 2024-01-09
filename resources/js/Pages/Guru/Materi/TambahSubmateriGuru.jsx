@@ -9,9 +9,14 @@ import Swal from "sweetalert2";
 
 export default function TambahSubmateriGuru() {
     const { subMateri } = usePage().props;
+    const { materi } =  usePage().props;
 
     useEffect(() => {
         console.log(subMateri);
+    }, []);
+
+     useEffect(() => {
+        console.log(materi);
     }, []);
 
     const { data, setData, post, processing, errors } = useForm({
@@ -53,26 +58,29 @@ export default function TambahSubmateriGuru() {
                         Nama Materi
                     </label>
                     <div className="relative">
+
                         <select
                             className={`border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full`}
                             id="materi_id"
                             name="materi_id"
                             type="text"
-                            // value={data.materi_id}
-                            // onChange={(e) => handleChange(e)}
+                            value={data.materi_id}
+                            onChange={(e) => handleChange(e)}
                             // onChange={(e) => setData("materi_id", e.target.value)}
                         >
                             <option value="">Pilih Materi</option>
-                            {/* {surveyor?.map((surveyorItem, index) => ( */}
-                            <option
+                            {materi.map((items,index) =>
+                            {
+                                <option
                                 className="capitalize"
-                                // key={index}
-                                // value={surveyorItem?.id}
-                            >
-                                Tes
+                                key=""
+                                value=""
+                            >{items.nama}
                             </option>
-                            {/* ))} */}
+                            })}
                         </select>
+
+
                         {/* <svg
                             className="absolute w-5 h-5 top-2 right-2.5"
                             xmlns="http://www.w3.org/2000/svg"

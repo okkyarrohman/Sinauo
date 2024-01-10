@@ -11,17 +11,19 @@ import { url } from "../../../assets/url";
 export default function SoalKuisSiswa() {
     const { kategori } = usePage().props;
 
-    const [currentSoal, setCurrentSoal] = useState(0);
-    const [jawaban, setJawaban] = useState([]);
-    const [soal, setSoal] = useState({});
-    const [minutes, setMinutes] = useState(kategori[0].waktu);
-    const [seconds, setSeconds] = useState(0);
+    const { data, setData, post, processing, errors } = useForm({
+        hasil: "",
+    });
 
     useEffect(() => {
         console.log(kategori);
-        console.log(jawaban);
-        // console.log(jawaban.soal[kategori[0].soal[currentSoal].id]);
-    }, [jawaban]);
+        console.log(selectedOptions);
+    }, []);
+
+    const [currentSoal, setCurrentSoal] = useState(0);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [minutes, setMinutes] = useState(kategori[0].waktu);
+    const [seconds, setSeconds] = useState(0);
 
     const handleNextClick = () => {
         setCurrentSoal(currentSoal + 1);
@@ -33,19 +35,16 @@ export default function SoalKuisSiswa() {
 
     const handleOptionChange = (event) => {
         const { name, value } = event.target;
-        const updatedJawaban = { ...jawaban };
-        updatedJawaban.soal = {
-            ...updatedJawaban.soal,
+        setSelectedOptions({
+            ...selectedOptions,
             [name]: value,
-        };
-        setJawaban(updatedJawaban);
+        });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // triggerAlert();
-        // console.log(jawaban)
-        router.post("/kuis/store", jawaban);
+        console.log(route("store.kuis"));
     };
 
     useEffect(() => {
@@ -108,7 +107,7 @@ export default function SoalKuisSiswa() {
                     Menit
                 </p>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 {kategori.map((item, index) => {
                     return (
                         <div
@@ -122,7 +121,8 @@ export default function SoalKuisSiswa() {
                                         : "mb-7"
                                 }`}
                             >
-                                Pertanyaan {currentSoal + 1}/{item.soal.length}
+                                Pertanyaan {currentSoal + 1}/
+                                {item.soal.length}
                             </p>
                             {/* Foto Soal Start */}
                             {item.soal[currentSoal].gambar !== null && (
@@ -146,14 +146,14 @@ export default function SoalKuisSiswa() {
                                             <input
                                                 id={`option-${opsiItem.id}`}
                                                 type="radio"
+                                                // name={`soal[${item.soal[currentSoal].id}]`}
                                                 name={item.soal[currentSoal].id}
                                                 value={opsiItem.id}
                                                 checked={
-                                                    jawaban.soal &&
-                                                    jawaban.soal[
+                                                    selectedOptions[
                                                         item.soal[currentSoal]
-                                                            .id
-                                                    ] == opsiItem.id
+                                                            .id == opsiItem.id
+                                                    ]
                                                 }
                                                 onChange={handleOptionChange}
                                             />

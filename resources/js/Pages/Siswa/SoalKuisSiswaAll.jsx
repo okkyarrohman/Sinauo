@@ -51,10 +51,6 @@ export default function SoalKuisSiswaAll() {
             [name]: value,
         };
         setJawaban(updatedJawaban);
-        // setSoal({
-        //     ...soal,
-        //     [name]: value,
-        // });
     };
 
     useEffect(() => {

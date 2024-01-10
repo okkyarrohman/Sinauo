@@ -39,7 +39,7 @@ class KuisController extends Controller
             ->whereHas('soal')
             ->get();
 
-        return Inertia::render('Siswa/SoalKuisSiswaAll', [
+        return Inertia::render('Siswa/SoalKuisSiswa', [
             'kategori' => $categories
         ]);
     }

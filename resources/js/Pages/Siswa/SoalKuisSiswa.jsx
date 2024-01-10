@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import Swal from "sweetalert2";
-import { Head, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { url } from "../../../assets/url";
 
 export default function SoalKuisSiswa() {
@@ -13,10 +13,11 @@ export default function SoalKuisSiswa() {
 
     useEffect(() => {
         console.log(kategori);
-    }, [kategori]);
+        console.log(selectedOptions);
+    }, []);
 
     const [currentSoal, setCurrentSoal] = useState(0);
-    const [selectedOptions, setSelectedOptions] = useState({});
+    const [selectedOptions, setSelectedOptions] = useState([]);
     const [minutes, setMinutes] = useState(kategori[0].waktu);
     const [seconds, setSeconds] = useState(0);
 
@@ -65,6 +66,7 @@ export default function SoalKuisSiswa() {
             },
         }).then((result) => {
             if (result.isConfirmed) {
+                route("store.testingQuis");
                 // router.visit("/kuis");
                 console.log(selectedOptions);
             }
@@ -94,90 +96,89 @@ export default function SoalKuisSiswa() {
                     Menit
                 </p>
             </div>
-            {kategori.map((item, index) => {
-                return (
-                    <div
-                        key={index}
-                        className="bg-white rounded-3xl w-full h-full p-6 shadow-custom"
-                    >
-                        <p
-                            className={`text-xl font-semibold ${
-                                item.soal[currentSoal].gambar !== null
-                                    ? "mb-2"
-                                    : "mb-7"
-                            }`}
+            <form>
+                {kategori.map((item, index) => {
+                    return (
+                        <div
+                            key={index}
+                            className="bg-white rounded-3xl w-full h-full p-6 shadow-custom"
                         >
-                            Pertanyaan {currentSoal + 1}/
-                            {kategori[0].soal.length}
-                        </p>
-                        {/* Foto Soal Start */}
-                        {item.soal[currentSoal].gambar !== null && (
-                            <img
-                                className="max-w-[50%] min-w-[20%] mb-7"
-                                src={`${url}kuis/gambar/${item.soal[currentSoal].gambar}`}
-                                alt="foto soal"
-                            />
-                        )}
-                        {/* Foto Soal End */}
-                        {/* Soal Start */}
-                        <p className="text-lg mb-4">
-                            {item.soal[currentSoal].soal}
-                        </p>
-                        {/* Soal End */}
-                        {/* Jawaban Soal Start */}
-                        <div className="flex flex-col gap-4 mb-12">
-                            <input
-                                type="hidden"
-                                name={`soal[${item.soal[currentSoal].id}]`}
-                                value=""
-                            />
-                            {item.soal[currentSoal].opsi.map(
-                                (opsiItem, opsiIndex) => (
-                                    <label key={opsiIndex}>
-                                        <input
-                                            id={`option-${opsiItem.id}`}
-                                            type="radio"
-                                            name={`soal[${item.soal[currentSoal].id}]`}
-                                            value={opsiItem.id}
-                                            checked={
-                                                selectedOptions[
-                                                    `soal[${item.soal[currentSoal].id}]`
-                                                ] === opsiItem.id
-                                            }
-                                            onChange={handleOptionChange}
-                                        />
-                                        <span className="pl-5">
-                                            {opsiItem.opsi}
-                                        </span>
-                                    </label>
-                                )
-                            )}
-                        </div>
-                        {/* Jawaban Soal End */}
-                        <div className="flex justify-between">
-                            {currentSoal === 0 ? null : (
-                                <SecondaryButton
-                                    text="Kembali"
-                                    onClick={handlePrevClick}
+                            <p
+                                className={`text-xl font-semibold ${
+                                    item.soal[currentSoal].gambar !== null
+                                        ? "mb-2"
+                                        : "mb-7"
+                                }`}
+                            >
+                                Pertanyaan {currentSoal + 1}/
+                                {kategori[0].soal.length}
+                            </p>
+                            {/* Foto Soal Start */}
+                            {item.soal[currentSoal].gambar !== null && (
+                                <img
+                                    className="max-w-[50%] min-w-[20%] mb-7"
+                                    src={`${url}kuis/gambar/${item.soal[currentSoal].gambar}`}
+                                    alt="foto soal"
                                 />
                             )}
-                            <div className="ml-auto">
-                                {currentSoal + 1 === kategori[0].soal.length ? (
-                                    <PrimaryButton
-                                        text="Selesai"
-                                        onClick={triggerAlert}
-                                    />
-                                ) : (
-                                    <PrimaryButton
-                                        text="Berikutnya"
-                                        onClick={handleNextClick}
-                                    />
+                            {/* Foto Soal End */}
+                            {/* Soal Start */}
+                            <p className="text-lg mb-4">
+                                {item.soal[currentSoal].soal}
+                            </p>
+                            {/* Soal End */}
+                            {/* Jawaban Soal Start */}
+                            <div className="flex flex-col gap-4 mb-12">
+                                {item.soal[currentSoal].opsi.map(
+                                    (opsiItem, opsiIndex) => (
+                                        <label key={opsiIndex}>
+                                            <input
+                                                id={`option-${opsiItem.id}`}
+                                                type="radio"
+                                                name={item.soal[currentSoal].id}
+                                                value={opsiItem.id}
+                                                checked={
+                                                    selectedOptions[
+                                                        item.soal[currentSoal]
+                                                            .id === opsiItem.id
+                                                    ]
+                                                }
+                                                onChange={handleOptionChange}
+                                            />
+                                            <span className="pl-5">
+                                                {opsiItem.opsi}
+                                            </span>
+                                        </label>
+                                    )
                                 )}
                             </div>
+                            {/* Jawaban Soal End */}
+                            <div className="flex justify-between">
+                                {currentSoal === 0 ? null : (
+                                    <SecondaryButton
+                                        text="Kembali"
+                                        onClick={handlePrevClick}
+                                    />
+                                )}
+                                <div className="ml-auto">
+                                    {currentSoal + 1 ===
+                                    kategori[0].soal.length ? (
+                                        <PrimaryButton
+                                            text="Selesai"
+                                            onClick={triggerAlert}
+                                        />
+                                    ) : (
+                                        <PrimaryButton
+                                            text="Berikutnya"
+                                            onClick={handleNextClick}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </form>
         </SoalLayout>
     );
 }

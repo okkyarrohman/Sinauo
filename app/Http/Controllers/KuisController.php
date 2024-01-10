@@ -13,11 +13,11 @@ class KuisController extends Controller
     public function index()
     {
         $categories = KategoriKuis::with(['soal' => function ($query) {
-                $query->inRandomOrder()
-                    ->with(['opsi' => function ($query) {
-                        $query->inRandomOrder();
-                    }]);
-            }])
+            $query->inRandomOrder()
+                ->with(['opsi' => function ($query) {
+                    $query->inRandomOrder();
+                }]);
+        }])
             ->whereHas('soal')
             ->get();
 
@@ -29,11 +29,11 @@ class KuisController extends Controller
     public function index_soal($id)
     {
         $categories = KategoriKuis::where('id', $id)->with(['soal' => function ($query) {
-                $query->inRandomOrder()
-                    ->with(['opsi' => function ($query) {
-                        $query->inRandomOrder();
-                    }]);
-            }])
+            $query->inRandomOrder()
+                ->with(['opsi' => function ($query) {
+                    $query->inRandomOrder();
+                }]);
+        }])
             ->whereHas('soal')
             ->get();
 
@@ -45,7 +45,6 @@ class KuisController extends Controller
     public function store(Request $request)
     {
         $soalInput = $request->input('soal');
-
 
         if (is_array($soalInput)) {
             $options = Opsi::find(array_values($soalInput));
@@ -66,9 +65,10 @@ class KuisController extends Controller
 
             $result->soal()->sync($questions);
 
-            return redirect()->route('testing.testing.show', $result->id);
+            return redirect()->route('kuis');
         }
     }
+
 
     public function show($result_id)
     {

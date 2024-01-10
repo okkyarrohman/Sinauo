@@ -183,13 +183,14 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::controller(KuisController::class)->group(function () {
         Route::get('/kuis', 'index')->name('kuis');
         Route::get('/kuis/{id}', 'index_soal')->name('soal-kuis');
+        Route::post('/kuis/store', 'store')->name('store.kuis');
+        Route::post('/kuis/store', 'store2')->name('store2.kuis');
         // Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
 
-    // Kuis
-    // Route::get('/kuis', function () {
-    //     return Inertia::render('Siswa/KuisSiswa');
-    // })->name('kuis');
+
+
+
 
     Route::get('/kuis/mulai-kuis', function () {
         return Inertia::render('Siswa/MulaiKuisSiswa');
@@ -222,9 +223,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
 });
 //End SISWA
 
-Route::get('/testing-quis', [KuisController::class, 'index']);
-Route::post('/testing-quis/store', [KuisController::class, 'store'])->name('store.testingQuis');
-Route::get('/testing-quis/hasil/{result_id}', [KuisController::class, 'show'])->name('testing.testing.show');
+
 
 
 

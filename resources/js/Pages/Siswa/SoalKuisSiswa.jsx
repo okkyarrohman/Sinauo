@@ -37,6 +37,12 @@ export default function SoalKuisSiswa() {
         });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        triggerAlert();
+        post(route("store.testingQuis"));
+    };
+
     useEffect(() => {
         let interval = setInterval(() => {
             if (seconds > 0) {
@@ -66,6 +72,7 @@ export default function SoalKuisSiswa() {
             },
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log(result.message);
                 route("store.testingQuis");
                 // router.visit("/kuis");
                 console.log(selectedOptions);
@@ -123,6 +130,13 @@ export default function SoalKuisSiswa() {
                             )}
                             {/* Foto Soal End */}
                             {/* Soal Start */}
+                            <input
+                            type="hidden"
+                            id="hasil"
+                            name={`soal[${soal.id}]`}
+                            value=""
+                            hidden
+                            />
                             <p className="text-lg mb-4">
                                 {item.soal[currentSoal].soal}
                             </p>
@@ -135,7 +149,7 @@ export default function SoalKuisSiswa() {
                                             <input
                                                 id={`option-${opsiItem.id}`}
                                                 type="radio"
-                                                name={item.soal[currentSoal].id}
+                                                name={`soal[${soal.id}]`}
                                                 value={opsiItem.id}
                                                 checked={
                                                     selectedOptions[
@@ -165,7 +179,7 @@ export default function SoalKuisSiswa() {
                                     kategori[0].soal.length ? (
                                         <PrimaryButton
                                             text="Selesai"
-                                            onClick={triggerAlert}
+                                            onClick={handleSubmit}
                                         />
                                     ) : (
                                         <PrimaryButton

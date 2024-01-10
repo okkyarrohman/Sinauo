@@ -13,7 +13,7 @@ export default function SoalKuisSiswaAll() {
 
     useEffect(() => {
         console.log(kategori);
-        console.log(selectedOptions);
+        // console.log(selectedOptions);
         console.log(kategori[0].soal[0].id);
     }, []);
 
@@ -53,6 +53,12 @@ export default function SoalKuisSiswaAll() {
         return () => clearInterval(interval);
     }, [minutes, seconds]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        triggerAlert();
+        post(route("store.kuis"));
+    };
+
     const triggerAlert = () => {
         Swal.fire({
             imageUrl: iconSubmitKuis,
@@ -67,9 +73,10 @@ export default function SoalKuisSiswaAll() {
             },
         }).then((result) => {
             if (result.isConfirmed) {
-                route("store.testingQuis");
-                // router.visit("/kuis");
                 console.log(selectedOptions);
+                // route("store.kuis");
+                // router.visit("/kuis");
+
             }
         });
     };
@@ -117,6 +124,7 @@ export default function SoalKuisSiswaAll() {
                                             Pertanyaan {soalIndex + 1}/
                                             {item.soal.length}
                                         </p>
+
                                         {/* Foto Soal Start */}
                                         {soalItem.gambar !== null && (
                                             <img
@@ -126,6 +134,7 @@ export default function SoalKuisSiswaAll() {
                                             />
                                         )}
                                         {/* Foto Soal End */}
+
                                         {/* Soal Start */}
                                         <p className="text-lg mb-4">
                                             {soalItem.soal}
@@ -176,6 +185,8 @@ export default function SoalKuisSiswaAll() {
                                         text="Selesai"
                                         onClick={triggerAlert}
                                     />
+
+
                                     {/* ) : (
                                         <PrimaryButton
                                             text="Berikutnya"

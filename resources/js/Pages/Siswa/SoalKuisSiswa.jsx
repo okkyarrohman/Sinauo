@@ -126,6 +126,11 @@ export default function SoalKuisSiswa() {
                         {/* Soal End */}
                         {/* Jawaban Soal Start */}
                         <div className="flex flex-col gap-4 mb-12">
+                            <input
+                                type="hidden"
+                                name={`soal[${item.soal[currentSoal].id}]`}
+                                value=""
+                            />
                             {item.soal[currentSoal].opsi.map(
                                 (opsiItem, opsiIndex) => (
                                     <label key={opsiIndex}>
@@ -133,11 +138,11 @@ export default function SoalKuisSiswa() {
                                             id={`option-${opsiItem.id}`}
                                             type="radio"
                                             name={`soal[${item.soal[currentSoal].id}]`}
-                                            value={opsiItem.opsi}
+                                            value={opsiItem.id}
                                             checked={
                                                 selectedOptions[
                                                     `soal[${item.soal[currentSoal].id}]`
-                                                ] === opsiItem.opsi
+                                                ] === opsiItem.id
                                             }
                                             onChange={handleOptionChange}
                                         />

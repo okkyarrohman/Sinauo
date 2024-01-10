@@ -181,7 +181,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
 
 
     Route::controller(KuisController::class)->group(function () {
-        Route::get('/kuis/{id}', 'index')->name('kuis');
+        Route::get('/kuis', 'index')->name('kuis');
+        Route::get('/kuis/{id}', 'index_soal')->name('soal-kuis');
         // Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
 

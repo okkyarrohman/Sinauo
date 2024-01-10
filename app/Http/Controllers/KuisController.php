@@ -10,7 +10,23 @@ use Inertia\Inertia;
 
 class KuisController extends Controller
 {
-    public function index($id)
+    public function index()
+    {
+        $categories = KategoriKuis::with(['soal' => function ($query) {
+                $query->inRandomOrder()
+                    ->with(['opsi' => function ($query) {
+                        $query->inRandomOrder();
+                    }]);
+            }])
+            ->whereHas('soal')
+            ->get();
+
+        return Inertia::render('Siswa/KuisSiswa', [
+            'kategori' => $categories
+        ]);
+    }
+
+    public function index_soal($id)
     {
         $categories = KategoriKuis::where('id', $id)->with(['soal' => function ($query) {
                 $query->inRandomOrder()

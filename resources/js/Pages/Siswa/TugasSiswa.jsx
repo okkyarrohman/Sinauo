@@ -66,7 +66,7 @@ export default function TugasSiswa({ auth }) {
                                     {item.nama}
                                 </p>
                             </div>
-                            <p>{item.tugas.tenggat}</p>
+                            {/* <p>{item.tugas.tenggat}</p> */}
                             <div className="w-[20%]">
                                 <ProgressBar progres={percentage} />
                             </div>

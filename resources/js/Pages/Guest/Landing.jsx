@@ -13,6 +13,7 @@ export default function Landing({ auth }) {
     const { siswa } = usePage().props;
 
     useEffect(() => {
+        console.log(auth);
         console.log(siswa);
     }, []);
 

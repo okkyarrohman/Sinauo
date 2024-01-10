@@ -43,25 +43,59 @@ export default function SoalKuisSiswa() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // triggerAlert();
+        triggerAlert();
         // console.log(jawaban)
-        router.post("/kuis/store", jawaban);
+        // router.post("/kuis/store", jawaban);
     };
+
+    // useEffect(() => {
+    //     let interval = setInterval(() => {
+    //         if (seconds > 0) {
+    //             setSeconds(seconds - 1);
+    //         } else if (minutes > 0) {
+    //             setSeconds(59);
+    //             setMinutes(minutes - 1);
+    //         } else {
+    //             clearInterval(interval);
+    //         }
+    //     }, 1000);
+
+    //     return () => clearInterval(interval);
+    // }, [minutes, seconds]);
+
+    useEffect(() => {
+        const storedMinutes = localStorage.getItem("minutes");
+        const storedSeconds = localStorage.getItem("seconds");
+        setMinutes(storedMinutes ? parseInt(storedMinutes) : kategori[0].waktu);
+        setSeconds(storedSeconds ? parseInt(storedSeconds) : 0);
+    }, [kategori]);
 
     useEffect(() => {
         let interval = setInterval(() => {
-            if (seconds > 0) {
-                setSeconds(seconds - 1);
-            } else if (minutes > 0) {
-                setSeconds(59);
-                setMinutes(minutes - 1);
-            } else {
-                clearInterval(interval);
-            }
+            setSeconds((prevSeconds) => {
+                if (prevSeconds > 0) {
+                    return prevSeconds - 1;
+                } else if (minutes > 0) {
+                    setMinutes((prevMinutes) => prevMinutes - 1);
+                    return 59;
+                } else {
+                    clearInterval(interval);
+                    // Submit quiz when time runs out
+                    submitQuiz();
+                    return 0;
+                }
+            });
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [minutes, seconds]);
+    }, [minutes]);
+
+    const submitQuiz = () => {
+        localStorage.removeItem("minutes");
+        localStorage.removeItem("seconds");
+        triggerTimesUp();
+        router.post("/kuis/store", jawaban);
+    };
 
     const triggerAlert = () => {
         Swal.fire({
@@ -77,6 +111,9 @@ export default function SoalKuisSiswa() {
             },
         }).then((result) => {
             if (result.isConfirmed) {
+                localStorage.removeItem("minutes");
+                localStorage.removeItem("seconds");
+                router.post("/kuis/store", jawaban);
                 console.log(result.message);
                 // route("store.testingQuis");
                 // router.visit("/kuis");
@@ -85,11 +122,28 @@ export default function SoalKuisSiswa() {
         });
     };
 
+    const triggerTimesUp = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Waktu Habis Jawabanmu Telah Disimpan",
+            showConfirmButton: false,
+            customClass: {
+                title: "block text-lg w-3/4 text-center mx-auto",
+            },
+            timer: 1000,
+        });
+    };
+
+    const removeLocalStorage = () => {
+        localStorage.removeItem("minutes");
+        localStorage.removeItem("seconds");
+    };
+
     return (
         <SoalLayout>
             <Head title="Kuis" />
             <div className="mb-6">
-                <BackButton />
+                <BackButton otherHandleClick={removeLocalStorage()} />
             </div>
             <div className="flex justify-between items-center mb-4">
                 <div>

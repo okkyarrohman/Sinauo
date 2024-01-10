@@ -1,14 +1,13 @@
 import { useForm } from "@inertiajs/react";
 
-export default function StepSatuTugas({ deskripsi, children }) {
+export default function StepSatuTugas({ data, setData, deskripsi }) {
     return (
         <div>
-            <div className="whitespace-pre-line text-xl text-justify mb-7 leading-8">
+            <div class="whitespace-pre-line text-xl text-justify mb-7 leading-8">
                 {deskripsi}
             </div>
-            {/* <form> */}
-            {children}
-            {/* <textarea
+            <form>
+                <textarea
                     className="w-full rounded-lg border border-[#D1D1D1]"
                     placeholder="Masukkan Jawaban..."
                     name="jawaban"
@@ -16,8 +15,8 @@ export default function StepSatuTugas({ deskripsi, children }) {
                     rows="7"
                     value={data.jawaban}
                     onChange={(e) => setData("jawaban", e.target.value)}
-                ></textarea> */}
-            {/* </form> */}
+                ></textarea>
+            </form>
         </div>
     );
 }

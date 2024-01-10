@@ -1,5 +1,8 @@
-export default function BackButton() {
+export default function BackButton({ otherHandleClick }) {
     const handleClick = () => {
+        {
+            otherHandleClick;
+        }
         window.history.back();
     };
 

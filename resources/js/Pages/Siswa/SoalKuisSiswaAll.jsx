@@ -11,20 +11,21 @@ import { url } from "../../../assets/url";
 export default function SoalKuisSiswaAll() {
     const { kategori } = usePage().props;
 
-    useEffect(() => {
-        console.log(kategori);
-        // console.log(selectedOptions);
-        console.log(kategori[0].soal[0].id);
-        console.log(soal_data);
-    }, []);
-
     const [currentSoal, setCurrentSoal] = useState(0);
     // const [selectedOptions, setSelectedOptions] = useState({});
+    const [jawaban, setJawaban] = useState([]);
     const [soal, setSoal] = useState({});
     const [minutes, setMinutes] = useState(kategori[0].waktu);
     const [seconds, setSeconds] = useState(0);
 
-    let soal_data = [{ soal }];
+    // let soal_data = [{ soal }];
+
+    useEffect(() => {
+        console.log(kategori);
+        // console.log(selectedOptions);
+        console.log(kategori[0].soal[0].id);
+        console.log(jawaban);
+    }, [jawaban]);
 
     const handleNextClick = () => {
         setCurrentSoal(currentSoal + 1);
@@ -34,12 +35,26 @@ export default function SoalKuisSiswaAll() {
         setCurrentSoal(currentSoal - 1);
     };
 
+    // const handleOptionChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setSoal({
+    //         ...soal,
+    //         [name]: value,
+    //     });
+    // };
+
     const handleOptionChange = (event) => {
         const { name, value } = event.target;
-        setSoal({
-            ...soal,
+        const updatedJawaban = { ...jawaban };
+        updatedJawaban.soal = {
+            ...updatedJawaban.soal,
             [name]: value,
-        });
+        };
+        setJawaban(updatedJawaban);
+        // setSoal({
+        //     ...soal,
+        //     [name]: value,
+        // });
     };
 
     useEffect(() => {
@@ -60,7 +75,7 @@ export default function SoalKuisSiswaAll() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // triggerAlert();
-        route("store.kuis", soal_data);
+        router.post("/kuis/store", jawaban);
     };
 
     const triggerAlert = () => {
@@ -107,7 +122,7 @@ export default function SoalKuisSiswaAll() {
                     Menit
                 </p>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 {kategori.map((item, index) => {
                     return (
                         <div
@@ -175,17 +190,13 @@ export default function SoalKuisSiswaAll() {
                                 );
                             })}
                             <div className="flex justify-between">
-                                {/* {currentSoal === 0 ? null : (
-                                    <SecondaryButton
-                                        text="Kembali"
-                                        onClick={handlePrevClick}
-                                    />
-                                )} */}
                                 <div className="ml-auto">
                                     <button
                                         className="rounded-[0.625rem] py-3 px-12 text-lg font-bold bg-primary text-white"
                                         type="submit"
-                                        onClick={route("store.kuis", soal_data)}
+                                        // onClick={() =>
+                                        //     route("store.kuis", jawaban)
+                                        // }
                                     >
                                         Selesai
                                     </button>

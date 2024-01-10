@@ -170,7 +170,9 @@ export default function SoalKuisSiswaAll() {
                                                             name={`soal[${soalItem.id}]`}
                                                             value={opsiItem.id}
                                                             checked={
-                                                                `soal.{${soalItem.id}}` == opsiItem.id
+                                                                soal[
+                                                                    `soal.{${soalItem.id}}` == opsiItem.id
+                                                                ]
                                                             }
                                                             onChange={
                                                                 handleOptionChange

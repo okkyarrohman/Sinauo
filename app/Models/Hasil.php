@@ -11,7 +11,6 @@ class Hasil extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $fillable = ['user_id', 'soal_id', 'opsi_id'];
 
     public function user()
     {

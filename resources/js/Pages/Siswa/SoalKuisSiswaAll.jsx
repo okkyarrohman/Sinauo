@@ -75,6 +75,7 @@ export default function SoalKuisSiswaAll() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // triggerAlert();
+        // console.log(jawaban)
         router.post("/kuis/store", jawaban);
     };
 
@@ -166,13 +167,10 @@ export default function SoalKuisSiswaAll() {
                                                         <input
                                                             id={`option-${opsiItem.id}`}
                                                             type="radio"
-                                                            name={soalItem.id}
+                                                            name={`soal[${soalItem.id}]`}
                                                             value={opsiItem.id}
                                                             checked={
-                                                                soal[
-                                                                    soalItem.id ===
-                                                                        opsiItem.id
-                                                                ]
+                                                                `soal.{${soalItem.id}}` == opsiItem.id
                                                             }
                                                             onChange={
                                                                 handleOptionChange

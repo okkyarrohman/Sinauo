@@ -7,6 +7,8 @@ use App\Models\KategoriKuis;
 use App\Models\Opsi;
 use App\Models\Hasil;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+
 
 class KuisController extends Controller
 {
@@ -44,30 +46,25 @@ class KuisController extends Controller
 
     public function store(Request $request)
     {
-        $soalInput = $request->input('soal');
+        $opsi = Opsi::find(array_values($request->input('soal')));
 
-        if (is_array($soalInput)) {
-            $options = Opsi::find(array_values($soalInput));
+        $user = Auth::user()->hasil();
+        $hasil = $user->create([
+            'total_points' => $opsi->sum('point'),
+        ]);
 
+        $soal = $opsi->mapWithKeys(function ($option) {
+            return [
+                $option->soal_id => [
+                    'opsi_id' => $option->id,
+                    'point' => $option->point
+                ],
+            ];
+        })->toArray();
 
-            $result = auth()->user()->hasil()->create([
-                'total_points' => $options->sum('point')
-            ]);
+        $hasil->soal()->sync($soal);
 
-            $questions = $options->mapWithKeys(function ($option) {
-                return [
-                    $option->soal_id => [
-                        'opsi_id' => $option->id,
-                        'point' => $option->point
-                    ]
-                ];
-            })->toArray();
-
-            $result->soal()->sync($questions);
-
-            return redirect()->route('kuis');
-            // return Inertia::render('Siswa/KuisSiswa');
-        }
+        return redirect()->route('kuis');
     }
 
 

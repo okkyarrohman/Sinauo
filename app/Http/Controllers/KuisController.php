@@ -66,6 +66,7 @@ class KuisController extends Controller
             $result->soal()->sync($questions);
 
             return redirect()->route('kuis');
+            // return Inertia::render('Siswa/KuisSiswa');
         }
     }
 

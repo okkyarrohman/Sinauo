@@ -15,12 +15,16 @@ export default function SoalKuisSiswaAll() {
         console.log(kategori);
         // console.log(selectedOptions);
         console.log(kategori[0].soal[0].id);
+        console.log(soal_data);
     }, []);
 
     const [currentSoal, setCurrentSoal] = useState(0);
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    // const [selectedOptions, setSelectedOptions] = useState({});
+    const [soal, setSoal] = useState({});
     const [minutes, setMinutes] = useState(kategori[0].waktu);
     const [seconds, setSeconds] = useState(0);
+
+    let soal_data = [{ soal }];
 
     const handleNextClick = () => {
         setCurrentSoal(currentSoal + 1);
@@ -32,8 +36,8 @@ export default function SoalKuisSiswaAll() {
 
     const handleOptionChange = (event) => {
         const { name, value } = event.target;
-        setSelectedOptions({
-            ...selectedOptions,
+        setSoal({
+            ...soal,
             [name]: value,
         });
     };
@@ -55,8 +59,8 @@ export default function SoalKuisSiswaAll() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        triggerAlert();
-        post(route("store.kuis"));
+        // triggerAlert();
+        route("store.kuis", soal_data);
     };
 
     const triggerAlert = () => {
@@ -73,10 +77,9 @@ export default function SoalKuisSiswaAll() {
             },
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(selectedOptions);
+                console.log(soal);
                 // route("store.kuis");
                 // router.visit("/kuis");
-
             }
         });
     };
@@ -148,11 +151,11 @@ export default function SoalKuisSiswaAll() {
                                                         <input
                                                             id={`option-${opsiItem.id}`}
                                                             type="radio"
-                                                            name={`soal[${soalItem.id}]`}
+                                                            name={soalItem.id}
                                                             value={opsiItem.id}
                                                             checked={
-                                                                selectedOptions[
-                                                                    `soal.${soalItem.id}` ===
+                                                                soal[
+                                                                    soalItem.id ===
                                                                         opsiItem.id
                                                                 ]
                                                             }
@@ -179,20 +182,13 @@ export default function SoalKuisSiswaAll() {
                                     />
                                 )} */}
                                 <div className="ml-auto">
-                                    {/* {currentSoal + 1 ===
-                                    kategori[0].soal.length ? ( */}
-                                    <PrimaryButton
-                                        text="Selesai"
-                                        onClick={triggerAlert}
-                                    />
-
-
-                                    {/* ) : (
-                                        <PrimaryButton
-                                            text="Berikutnya"
-                                            onClick={handleNextClick}
-                                        />
-                                    )} */}
+                                    <button
+                                        className="rounded-[0.625rem] py-3 px-12 text-lg font-bold bg-primary text-white"
+                                        type="submit"
+                                        onClick={route("store.kuis", soal_data)}
+                                    >
+                                        Selesai
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -5,11 +5,15 @@ import { useEffect, useState } from "react";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import Swal from "sweetalert2";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import { url } from "../../../assets/url";
 
 export default function SoalKuisSiswa() {
     const { kategori } = usePage().props;
+
+    const { data, setData, post, processing, errors } = useForm({
+        hasil: "",
+    });
 
     useEffect(() => {
         console.log(kategori);
@@ -39,8 +43,8 @@ export default function SoalKuisSiswa() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        triggerAlert();
-        post(route("store.testingQuis"));
+        // triggerAlert();
+        console.log(route("store.kuis"));
     };
 
     useEffect(() => {
@@ -73,7 +77,7 @@ export default function SoalKuisSiswa() {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(result.message);
-                route("store.testingQuis");
+                // route("store.testingQuis");
                 // router.visit("/kuis");
                 console.log(selectedOptions);
             }
@@ -103,7 +107,7 @@ export default function SoalKuisSiswa() {
                     Menit
                 </p>
             </div>
-            <form>
+            <form method="POST" action={route("store.kuis")}>
                 {kategori.map((item, index) => {
                     return (
                         <div
@@ -131,11 +135,11 @@ export default function SoalKuisSiswa() {
                             {/* Foto Soal End */}
                             {/* Soal Start */}
                             <input
-                            type="hidden"
-                            id="hasil"
-                            name={`soal[${soal.id}]`}
-                            value=""
-                            hidden
+                                type="hidden"
+                                // id="hasil"
+                                // name={`soal[${item.soal[currentSoal].id}]`}
+                                name={item.soal[currentSoal].id}
+                                value=""
                             />
                             <p className="text-lg mb-4">
                                 {item.soal[currentSoal].soal}
@@ -149,12 +153,13 @@ export default function SoalKuisSiswa() {
                                             <input
                                                 id={`option-${opsiItem.id}`}
                                                 type="radio"
-                                                name={`soal[${soal.id}]`}
+                                                // name={`soal[${item.soal[currentSoal].id}]`}
+                                                name={item.soal[currentSoal].id}
                                                 value={opsiItem.id}
                                                 checked={
                                                     selectedOptions[
                                                         item.soal[currentSoal]
-                                                            .id === opsiItem.id
+                                                            .id == opsiItem.id
                                                     ]
                                                 }
                                                 onChange={handleOptionChange}
@@ -177,10 +182,13 @@ export default function SoalKuisSiswa() {
                                 <div className="ml-auto">
                                     {currentSoal + 1 ===
                                     kategori[0].soal.length ? (
-                                        <PrimaryButton
-                                            text="Selesai"
-                                            onClick={handleSubmit}
-                                        />
+                                        <button
+                                            className="rounded-[0.625rem] py-3 px-12 text-lg font-bold bg-primary text-white"
+                                            type="submit"
+                                            // onClick={handleSubmit}
+                                        >
+                                            Selesai
+                                        </button>
                                     ) : (
                                         <PrimaryButton
                                             text="Berikutnya"

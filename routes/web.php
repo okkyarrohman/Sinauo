@@ -184,7 +184,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/kuis', 'index')->name('kuis');
         Route::get('/kuis/{id}', 'index_soal')->name('soal-kuis');
         Route::post('/kuis/store', 'store')->name('store.kuis');
-        Route::post('/kuis/store', 'store2')->name('store2.kuis');
+        // Route::post('/kuis/store', 'store2')->name('store2.kuis');
         // Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
     });
 

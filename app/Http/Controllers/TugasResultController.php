@@ -77,9 +77,9 @@ class TugasResultController extends Controller
 
     public function update_answer(Request $request)
     {
-        $tugas = TugasResult::find($request->id);
-        $tugas->user()->associate(Auth::user());
-        $tugas->tugas = $request->tugas_id;
+        $tugas = new TugasResult();
+        $tugas->user_id = $request->user_id;
+        $tugas->tugas_id = $request->tugas_id;
         $tugas->answer1 = $request->answer1;
 
         // Request column input type file
@@ -110,6 +110,8 @@ class TugasResultController extends Controller
         }
 
         $tugas->konfirmasi = "Belum Diterima";
+
+
 
         $tugas->save();
 

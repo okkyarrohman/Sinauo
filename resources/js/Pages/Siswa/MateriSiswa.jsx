@@ -1,7 +1,7 @@
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link,usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { imageKonten1, imageKonten2, imageKonten3 } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
@@ -12,39 +12,6 @@ export default function MateriSiswa({ auth }) {
     useEffect(() => {
         console.log(materi);
     }, []);
-
-    const data = [
-        {
-            image: imageKonten1,
-            judul: "Pemrograman React",
-            total_materi: 16,
-            presentase: 100,
-        },
-        {
-            image: imageKonten1,
-            judul: "Deep AI Learning To Improve Mobility of Web3 Website With Keras and TensorFlow",
-            total_materi: 16,
-            presentase: 40,
-        },
-        {
-            image: imageKonten2,
-            judul: "Pemrograman JavaScript ES6",
-            total_materi: 6,
-            presentase: 10,
-        },
-        {
-            image: imageKonten3,
-            judul: "Object Oriented Programming in PHP",
-            total_materi: 25,
-            presentase: 90,
-        },
-        {
-            image: imageKonten3,
-            judul: "Object Oriented Programming in PHP",
-            total_materi: 25,
-            presentase: 40,
-        },
-    ];
 
     return (
         <MainLayout>
@@ -87,7 +54,12 @@ export default function MateriSiswa({ auth }) {
                                         />
                                     </div>
                                     <div className="flex justify-end">
-                                        <Link href={route("detail-materi",item.id)}>
+                                        <Link
+                                            href={route(
+                                                "detail-materi",
+                                                item.id
+                                            )}
+                                        >
                                             <button className="py-1 px-5 rounded-full bg-primary hover:bg-primary-dark text-sm text-white font-medium">
                                                 Detail
                                             </button>

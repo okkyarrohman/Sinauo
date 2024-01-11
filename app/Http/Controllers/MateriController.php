@@ -110,8 +110,10 @@ class MateriController extends Controller
     {
         // $submateri = Submateri::where()->first();
 
-        return Inertia::render('Siswa/ViewIsiMateriSiswa', [
+        return Inertia::render('Siswa/ViewIsiMateriSiswa');
+
+        // return Inertia::render('Siswa/ViewIsiMateriSiswa', [
             // 'submateri' => $submateri
-        ]);
+        // ]);
     }
 }

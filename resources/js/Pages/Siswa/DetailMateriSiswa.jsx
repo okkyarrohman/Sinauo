@@ -15,20 +15,6 @@ export default function DetailMateriSiswa({ auth }) {
         console.log(materi);
     }, []);
 
-
-    const data = [
-        {
-            judul: "Statefull or Stateless",
-            deskripsi:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit necessitatibus volupta consequatur deleniti tempora esse explicabo quisquam omnis ullam id.",
-        },
-        {
-            judul: "Flutter is Sucks",
-            deskripsi:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit necessitatibus volupta consequatur deleniti tempora esse explicabo quisquam omnis ullam id.",
-        },
-    ];
-
     return (
         <MainLayout>
             <Head title="Materi" />
@@ -42,8 +28,8 @@ export default function DetailMateriSiswa({ auth }) {
             <div className="w-1/3 flex items-center justify-between mb-9">
                 <div className="size-10 bg-primary rounded-[0.625rem]"></div>
                 <div className="w-[85%]">
-                    <ProgressBar progres="50" />
-                    <p>2/4 Materi</p>
+                    <ProgressBar progres={(2 / materi.length) * 100} />
+                    <p>2/{materi.length} Materi</p>
                 </div>
             </div>
             <div className="w-4/5">
@@ -53,6 +39,7 @@ export default function DetailMateriSiswa({ auth }) {
                             <CardSubmateri
                                 judul={item.nama}
                                 deskripsi={item.deskripsi}
+                                link={route("lihat-materi")}
                             />
                         </div>
                     );

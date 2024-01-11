@@ -164,7 +164,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::controller(MateriController::class)->group(function () {
         Route::get('/materi', 'index_siswa')->name('materi');
         Route::get('/materi/detail-materi/{id}', 'show_siswa')->name('detail-materi');
-        Route::get('/materi/detail-materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
+        // Route::get('/materi/detail-materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
+        Route::get('/materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
     });
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Absensi;
 use Inertia\Inertia;
+use App\Models\Tugas;
+use Carbon\Carbon;
 
 
 
@@ -12,12 +14,29 @@ class DashboardController extends Controller
 {
     public function index_siswa()
     {
+        // Mendapatkan Barcode Terbaru
+        $barcode = Absensi::latest()->first();
 
-        return Inertia::render('Siswa/DashboardSiswa', []);
+        // Mendapatkan Tanggal Barcode sesuai Tahun-Bulan-Hari
+        $formatDate = Carbon::parse($barcode->created_at)->format('Y-m-d');
+
+
+        // Mendapat 3 tugas Terbaru
+        $tugasBaru = Tugas::latest()->take(3)->get();
+
+        return Inertia::render('Siswa/DashboardSiswa', [
+            'formatDate' => $formatDate,
+            'barcode' => $barcode,
+            'tugasBaru' => $tugasBaru,
+        ]);
     }
 
     public function index()
     {
+
+
+
+
         return Inertia::render('Guru/DashboardGuru');
     }
 

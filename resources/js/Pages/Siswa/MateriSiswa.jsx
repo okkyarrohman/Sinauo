@@ -8,9 +8,10 @@ import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
 
 export default function MateriSiswa({ auth }) {
-    const { materi } = usePage().props;
+    const { materi, submaterial } = usePage().props;
     useEffect(() => {
         console.log(materi);
+        console.log(submaterial);
     }, []);
 
     return (

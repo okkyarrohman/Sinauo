@@ -40,7 +40,7 @@ export default function DetailMateriSiswa({ auth }) {
                                 cover={`${url}subMateri/cover/${item.cover}`}
                                 judul={item.nama}
                                 deskripsi={item.deskripsi}
-                                link={route("lihat-materi")}
+                                link={route("lihat-materi", item.id)}
                             />
                         </div>
                     );

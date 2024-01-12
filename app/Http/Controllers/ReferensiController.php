@@ -20,9 +20,9 @@ class ReferensiController extends Controller
         ]);
     }
 
-    public function read_siswa()
+    public function read_siswa($id)
     {
-        $referensi = Referensi::where('id')->first();
+        $referensi = Referensi::where('id', $id)->first();
 
         return Inertia::render('Siswa/ViewIsiReferensiSiswa', [
             'referensi' => $referensi

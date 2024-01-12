@@ -37,6 +37,7 @@ export default function DetailMateriSiswa({ auth }) {
                     return (
                         <div key={index} className="mb-6">
                             <CardSubmateri
+                                cover={`${url}subMateri/cover/${item.cover}`}
                                 judul={item.nama}
                                 deskripsi={item.deskripsi}
                                 link={route("lihat-materi")}

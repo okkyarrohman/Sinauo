@@ -48,6 +48,7 @@ Route::get('/', function (User $user) {
 Route::group(['middleware' => 'role:guru'], function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/dashboard-guru', 'index')->name('dashboard-guru');
+        Route::post('/dashboard-guru', 'store_absensi')->name('store.absensi');
     });
 
     Route::controller(MateriController::class)->group(function () {

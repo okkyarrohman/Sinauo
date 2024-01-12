@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('deskripsi')->nullable();
             $table->string('cover')->nullable();
             $table->string('file')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -1,12 +1,11 @@
 import { Link } from "@inertiajs/react";
-import { placeholderMateri } from "../../../assets";
 
 export default function CardSubmateri(props) {
     return (
         <div className="w-full rounded-[0.625rem] overflow-hidden shadow-custom flex items-center">
             <img
                 className="h-36 w-32 object-cover"
-                src={placeholderMateri}
+                src={props.cover}
                 alt="image submateri"
             />
             <div className="p-5 flex items-center gap-6 w-full">

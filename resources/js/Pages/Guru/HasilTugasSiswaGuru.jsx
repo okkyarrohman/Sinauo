@@ -10,6 +10,7 @@ import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
+import { imageNoData } from "../../../assets";
 
 export default function HasilTugasSiswaGuru({ auth }) {
     const { tugas } = usePage().props;
@@ -86,6 +87,13 @@ export default function HasilTugasSiswaGuru({ auth }) {
                     })}
                 </TableBody>
             </Table>
+            {tugas.length > 0 ? null : (
+                <img
+                    className="w-80 mx-auto mt-8"
+                    src={imageNoData}
+                    alt="Tidak Ada Data"
+                />
+            )}
         </MainGuruLayout>
     );
 }

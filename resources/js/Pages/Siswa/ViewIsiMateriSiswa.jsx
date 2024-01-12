@@ -19,7 +19,7 @@ export default function ViewIsiMateriSiswa() {
             </div>
             <embed
                 className="rounded-xl w-full h-screen bg-[#D9D9D9]"
-                src={`${url}subMateri/file/${submateri.file}`}
+                src={`${url}subMateri/file/${submateri[0].file}`}
                 type="application/pdf"
             >
                 {/* <span className="h-full text-5xl flex justify-center items-center">

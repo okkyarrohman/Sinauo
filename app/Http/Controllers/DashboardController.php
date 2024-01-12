@@ -18,14 +18,14 @@ class DashboardController extends Controller
         $barcode = Absensi::latest()->first();
 
         // Mendapatkan Tanggal Barcode sesuai Tahun-Bulan-Hari
-        $formatDate = Carbon::parse($barcode->created_at)->format('Y-m-d');
+        // $formatDate = Carbon::parse($barcode->created_at)->format('Y-m-d');
 
 
         // Mendapat 3 tugas Terbaru
         $tugasBaru = Tugas::latest()->take(3)->get();
 
         return Inertia::render('Siswa/DashboardSiswa', [
-            'formatDate' => $formatDate,
+            // 'formatDate' => $formatDate,
             'barcode' => $barcode,
             'tugasBaru' => $tugasBaru,
         ]);

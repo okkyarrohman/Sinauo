@@ -92,8 +92,11 @@ class MateriController extends Controller
     public function index_siswa()
     {
         $materi = Materi::all();
+        $submateri = Submateri::all();
+
         return Inertia::render('Siswa/MateriSiswa', [
-            'materi' => $materi
+            'materi' => $materi,
+            'submaterial' => $submateri
         ]);
     }
 

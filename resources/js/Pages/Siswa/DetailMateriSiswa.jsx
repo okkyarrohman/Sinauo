@@ -11,8 +11,11 @@ import { url } from "../../../assets/url";
 
 export default function DetailMateriSiswa({ auth }) {
     const { materi } = usePage().props;
+    const statusSelesai = materi.filter((item) => item.status === "Selesai");
+
     useEffect(() => {
         console.log(materi);
+        console.log(statusSelesai);
     }, []);
 
     return (
@@ -28,8 +31,12 @@ export default function DetailMateriSiswa({ auth }) {
             <div className="w-1/3 flex items-center justify-between mb-9">
                 <div className="size-10 bg-primary rounded-[0.625rem]"></div>
                 <div className="w-[85%]">
-                    <ProgressBar progres={(2 / materi.length) * 100} />
-                    <p>2/{materi.length} Materi</p>
+                    <ProgressBar
+                        progres={(statusSelesai.length / materi.length) * 100}
+                    />
+                    <p>
+                        {statusSelesai.length}/{materi.length} Materi
+                    </p>
                 </div>
             </div>
             <div className="w-4/5">

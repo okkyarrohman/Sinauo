@@ -166,6 +166,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/materi', 'index_siswa')->name('materi');
         Route::get('/materi/detail-materi/{id}', 'show_siswa')->name('detail-materi');
         Route::get('/materi/detail-materi/lihat-materi/{id}', 'lihat_materi_siswa')->name('lihat-materi');
+        Route::post('/materi/detail-materi/lihat-materi', 'update_selesai_siswa')->name('update.submateri');
     });
 
 

@@ -111,10 +111,20 @@ class MateriController extends Controller
 
     public function lihat_materi_siswa($id)
     {
-        $submateri = Submateri::where('id', $id)->get('file');
+        $submateri = Submateri::where('id', $id)->get();
 
         return Inertia::render('Siswa/ViewIsiMateriSiswa', [
             'submateri' => $submateri
         ]);
+    }
+
+    public function update_selesai_siswa(Request $request)
+    {
+        $submateri = SubMateri::find($request->id);
+        $submateri->status = $request->status;
+
+        $submateri->save();
+
+        return redirect()->route('lihat-materi', $submateri->id)->with('success', 'Submateri selesai dipelajari');
     }
 }

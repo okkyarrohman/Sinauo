@@ -164,8 +164,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::controller(MateriController::class)->group(function () {
         Route::get('/materi', 'index_siswa')->name('materi');
         Route::get('/materi/detail-materi/{id}', 'show_siswa')->name('detail-materi');
-        // Route::get('/materi/detail-materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
-        Route::get('/materi/lihat-materi', 'lihat_materi_siswa')->name('lihat-materi');
+        Route::get('/materi/detail-materi/lihat-materi/{id}', 'lihat_materi_siswa')->name('lihat-materi');
     });
 
 
@@ -177,7 +176,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
     // Referensi
     Route::controller(ReferensiController::class)->group(function () {
         Route::get('/referensi', 'index_siswa')->name('referensi');
-        Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
+        Route::get('/referensi/lihat-referensi/{id}', 'read_siswa')->name('lihat-referensi');
     });
 
 

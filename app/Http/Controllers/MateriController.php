@@ -106,14 +106,12 @@ class MateriController extends Controller
         ]);
     }
 
-    public function lihat_materi_siswa()
+    public function lihat_materi_siswa($id)
     {
-        // $submateri = Submateri::where()->first();
+        $submateri = Submateri::where('id', $id)->get('file');
 
-        return Inertia::render('Siswa/ViewIsiMateriSiswa');
-
-        // return Inertia::render('Siswa/ViewIsiMateriSiswa', [
-            // 'submateri' => $submateri
-        // ]);
+        return Inertia::render('Siswa/ViewIsiMateriSiswa', [
+            'submateri' => $submateri
+        ]);
     }
 }

@@ -31,7 +31,7 @@ export default function ReferensiSiswa({ auth }) {
                             <div className="h-full flex flex-col justify-between">
                                 <Link
                                     className="mb-2"
-                                    href={route("lihat-referensi")}
+                                    href={route("lihat-referensi", item.id)}
                                 >
                                     <img
                                         className="h-36 w-full object-cover object-center rounded-t-[1.25rem]"

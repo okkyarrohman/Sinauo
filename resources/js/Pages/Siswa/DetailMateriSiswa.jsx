@@ -39,7 +39,7 @@ export default function DetailMateriSiswa({ auth }) {
                             <CardSubmateri
                                 judul={item.nama}
                                 deskripsi={item.deskripsi}
-                                link={route("lihat-materi")}
+                                link={route("lihat-materi", item.id)}
                             />
                         </div>
                     );

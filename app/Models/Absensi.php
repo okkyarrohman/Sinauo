@@ -11,5 +11,5 @@ class Absensi extends Model
 
     protected $table = 'absensis';
 
-    protected $fillable = ['barcode'];
+    protected $fillable = ['barcode', 'link'];
 }

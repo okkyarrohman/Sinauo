@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
             $table->string('barcode');
+            $table->string('link');
             $table->timestamps();
         });
     }

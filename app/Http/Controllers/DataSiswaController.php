@@ -46,6 +46,9 @@ class DataSiswaController extends Controller
         $siswa->name = $request->name;
         $siswa->email = $request->email;
         $siswa->password = Hash::make($request['password']);
+        // dd($siswa);
+
+        $siswa->save();
 
         return redirect()->route('data-siswa')->with('success', 'Data Siswa Berhasil Diupdate');
     }

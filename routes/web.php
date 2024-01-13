@@ -18,6 +18,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HasilController;
 use Inertia\Inertia;
 
 /*
@@ -136,6 +137,12 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/opsi/edit-opsi/{id}', 'edit')->name('edit.opsi');
         Route::post('/opsi/edit-opsi', 'update')->name('update.opsi');
         Route::get('/opsi/destroy-opsi/{id}', 'destroy')->name('destroy.opsi');
+    });
+
+    Route::controller(HasilController::class)->group(function () {
+        Route::get('/hasil', 'index')->name('hasil');
+        Route::get('/hasil/show/{id}', 'show')->name('show.hasil');
+        Route::get('/hasil/destroy/{id}', 'destroy')->name('destroy.hasil');
     });
 
 

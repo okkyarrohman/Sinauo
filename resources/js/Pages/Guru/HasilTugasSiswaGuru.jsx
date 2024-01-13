@@ -13,7 +13,9 @@ import { useEffect } from "react";
 import { imageNoData } from "../../../assets";
 
 export default function HasilTugasSiswaGuru({ auth }) {
-    const { tugas } = usePage().props;
+    const { hasil } = usePage().props;
+
+
 
     const head_title = [
         "No",

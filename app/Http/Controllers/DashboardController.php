@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Absensi;
 use Inertia\Inertia;
 use App\Models\Tugas;
+use App\Models\TugasResult;
 use Carbon\Carbon;
 
 
@@ -24,10 +25,14 @@ class DashboardController extends Controller
         // Mendapat 3 tugas Terbaru
         $tugasBaru = Tugas::latest()->take(3)->get();
 
+        // $tugas = TugasResult::latest()->take(3)->get();
+        $tugas = TugasResult::with('tugas')->latest()->take(3)->get();
+
         return Inertia::render('Siswa/DashboardSiswa', [
             // 'formatDate' => $formatDate,
             'barcode' => $barcode,
             'tugasBaru' => $tugasBaru,
+            'tugasResult' => $tugas
         ]);
     }
 

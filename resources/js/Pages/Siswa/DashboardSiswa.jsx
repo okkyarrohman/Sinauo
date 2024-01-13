@@ -15,16 +15,25 @@ import { url } from "../../../assets/url";
 import FormatWaktu from "../../../assets/formatdate";
 
 export default function DashboardSiswa({ auth }) {
-    const { barcode, tugasBaru } = usePage().props;
+    const { barcode, tugasBaru, tugasResult } = usePage().props;
 
-    const sortedTugasTerbaru = tugasBaru.sort(
+    const sortedTugasTerbaru = tugasResult.sort(
         (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
     );
+
+    const totalAnswers = ["answer1", "answer2", "answer3", "answer4"];
+    const filledAnswers = totalAnswers.filter(
+        (answer) => tugasResult[0][answer]
+    );
+
+    const percentage = (filledAnswers.length / totalAnswers.length) * 100;
 
     useEffect(() => {
         console.log(barcode);
         console.log(tugasBaru);
-        console.log(sortedTugasTerbaru);
+        console.log(tugasResult);
+        console.log("Sorted", sortedTugasTerbaru);
+        console.log("Terjawab", filledAnswers);
     }, []);
 
     return (
@@ -42,13 +51,16 @@ export default function DashboardSiswa({ auth }) {
                         <TesStatistik />
                         <ProgresMateri />
                     </div>
-                    {tugasBaru != 0 && (
+                    {tugasResult != 0 && (
                         <ProgresTugas
-                            nama={sortedTugasTerbaru[0].nama}
-                            tenggat={FormatWaktu(sortedTugasTerbaru[0].tenggat)}
+                            nama={sortedTugasTerbaru[0].tugas.nama}
+                            tenggat={FormatWaktu(
+                                sortedTugasTerbaru[0].tugas.tenggat
+                            )}
+                            progress={percentage}
                             link={route(
                                 "detail-tugas",
-                                sortedTugasTerbaru[0].id
+                                sortedTugasTerbaru[0].tugas.id
                             )}
                         />
                     )}

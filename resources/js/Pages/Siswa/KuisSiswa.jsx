@@ -11,16 +11,6 @@ export default function KuisSiswa({ auth }) {
         console.log("Kategori", kategori);
     }, []);
 
-    // const data = [
-    //     { nama: "Pre-Test", total_soal: "25", durasi: "25", nilai: "95" },
-    //     {
-    //         nama: "Post-Test Terakhir Gk Bohong Suerrrrrr",
-    //         total_soal: "15",
-    //         durasi: "60",
-    //         nilai: "",
-    //     },
-    // ];
-
     return (
         <MainLayout>
             <Head title="Kuis" />

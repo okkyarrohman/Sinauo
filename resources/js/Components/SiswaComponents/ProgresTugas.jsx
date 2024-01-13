@@ -16,7 +16,7 @@ export default function ProgresTugas(props) {
                     </p>
                 </div>
                 <div className="w-48 mx-auto">
-                    <ProgressBar progres="75" />
+                    <ProgressBar progres={props.progress} />
                 </div>
                 <Link href={props.link}>
                     <button className="font-bold text-white bg-primary rounded-xl px-6 py-1.5">

@@ -12,7 +12,7 @@ class OpsiController extends Controller
 {
     public function index()
     {
-        $opsi = Opsi::all();
+        $opsi = Opsi::with('soal')->get();
 
         return Inertia::render('Guru/Kuis/OpsiKuis', [
             'opsi' => $opsi
@@ -42,7 +42,7 @@ class OpsiController extends Controller
 
     public function edit($id)
     {
-        $opsi  = Opsi::find($id)->first();
+        $opsi  = Opsi::where('id',$id)->with('soal')->first();
 
         return Inertia::render('Guru/Kuis/EditOpsiKuis', [
             'opsi' => $opsi,
@@ -57,14 +57,14 @@ class OpsiController extends Controller
         $opsi->point = $request->point;
 
         $opsi->save();
-        return redirect()->route('soal');
+        return redirect()->route('opsi');
     }
 
     public function destroy($id)
     {
-        $opsi  = Opsi::find($id)->first();
+        $opsi  = Opsi::find($id);
         $opsi->delete();
 
-        return redirect()->route('soal');
+        return redirect()->route('opsi');
     }
 }

@@ -13,7 +13,8 @@ class SoalController extends Controller
 {
     public function index()
     {
-        $soal = Soal::all();
+        // $soal = Soal::all();
+        $soal = Soal::with('kategori')->get();
 
         return Inertia::render('Guru/Kuis/SoalKuis', [
             'soal' => $soal
@@ -49,7 +50,7 @@ class SoalController extends Controller
 
     public function edit($id)
     {
-        $soal  = Soal::find($id)->first();
+        $soal  = Soal::where('id', $id)->with('kategori')->first();
 
         return Inertia::render('Guru/Kuis/EditSoalKuis', [
             'soal' => $soal,
@@ -59,7 +60,7 @@ class SoalController extends Controller
     public function update(Request $request)
     {
         $soal = Soal::find($request->id);
-        $soal->kategori_id = $request->kategori_id;
+        $soal->kategori_kuis_id = $request->kategori_kuis_id;
         $soal->soal = $request->soal;
         // Request column input type file
         if ($request->hasFile('gambar')) {
@@ -76,7 +77,7 @@ class SoalController extends Controller
 
     public function destroy($id)
     {
-        $soal  = Soal::find($id)->first();
+        $soal  = Soal::find($id);
         if (Storage::exists('public/kuis/gambar/' . $soal->gambar)) {
             Storage::delete('public/kuis/gambar/' . $soal->gambar);
         }

@@ -2,11 +2,14 @@ import { useForm } from "@inertiajs/react";
 import PrimaryButton from "../GeneralComponents/PrimaryButton";
 import TextInput from "../TextInput";
 import { useState } from "react";
+import FormatWaktu from "../../../assets/formatdate";
 
 export default function TambahAbsensi() {
     const { data, setData, post, processing, errors } = useForm({
         barcode: null,
     });
+
+    const currentDate = new Date();
 
     const [edit, setEdit] = useState(false);
 
@@ -24,7 +27,9 @@ export default function TambahAbsensi() {
             <form onSubmit={handleSubmit}>
                 <div className="flex justify-between mb-6">
                     <h1 className="text-xl font-bold">Absensi</h1>
-                    <p className="text-[#8A8A8A] font-bold">07 Juli 2024</p>
+                    <p className="text-[#8A8A8A] font-bold">
+                        {FormatWaktu(currentDate)}
+                    </p>
                 </div>
                 <div className="flex mb-6 items-center gap-4">
                     <label

@@ -7,9 +7,15 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function DetailDataSiswaGuru() {
     const { siswa } = usePage().props;
+
+    useEffect(() => {
+        console.log(siswa);
+    });
+
     const head_title = ["Data Siswa", "Keterangan"];
 
     return (

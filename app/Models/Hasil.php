@@ -19,6 +19,7 @@ class Hasil extends Model
 
     public function soal()
     {
-        return $this->belongsToMany(Soal::class)->withPivot(['opsi_id', 'point']);
+        // return $this->belongsToMany(Soal::class)->withPivot(['opsi_id', 'point']);
+        return $this->belongsToMany(Soal::class)->with(['kategori', 'opsi'])->withPivot(['opsi_id', 'point']);
     }
 }

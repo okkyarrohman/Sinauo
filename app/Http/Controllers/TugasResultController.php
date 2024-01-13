@@ -51,7 +51,7 @@ class TugasResultController extends Controller
 
         $tugas->save();
 
-        return redirect()->route('detail-tugas-siswa')->with('success', 'data berhasi dikirim');
+        return redirect()->route('hasil-tugas', $tugas->id)->with('success', 'data berhasi dikirim');
     }
 
 

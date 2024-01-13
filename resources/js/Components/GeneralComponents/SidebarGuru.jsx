@@ -214,7 +214,8 @@ export default function SidebarGuru() {
                             className={`flex items-center w-full hover:bg-primary-light hover:text-white ${
                                 url.includes("/kategori") ||
                                 url.includes("/soal") ||
-                                url.includes("/opsi")
+                                url.includes("/opsi") ||
+                                url.includes("/hasil")
                                     ? "bg-primary text-white"
                                     : ""
                             }`}
@@ -339,7 +340,7 @@ export default function SidebarGuru() {
                                             ? "bg-primary text-white"
                                             : ""
                                     }`}
-                                    href=""
+                                    href={route("hasil")}
                                 >
                                     <li className="flex items-center gap-1 pl-10">
                                         <svg

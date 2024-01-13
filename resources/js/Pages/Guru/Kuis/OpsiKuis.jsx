@@ -9,9 +9,14 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { imageNoData } from "../../../../assets";
+import { useEffect } from "react";
 
 export default function OpsiKuis({ auth }) {
     const { opsi } = usePage().props;
+
+    useEffect(() => {
+        console.log(opsi);
+    }, []);
 
     const head_title = ["No", "Pertanyaan", "Opsi Jawaban", "Poin", "Aksi"];
 
@@ -51,7 +56,7 @@ export default function OpsiKuis({ auth }) {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
-                                <TableItem item={item.soal_id} />
+                                <TableItem item={item.soal.soal} />
                                 <TableItem item={item.opsi} />
                                 <TableItem item={item.point} />
                                 <TableItem

@@ -66,7 +66,7 @@ export default function SubmateriGuru({ auth }) {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
-                                <TableItem item={item.materi_id} />
+                                <TableItem item={item.materi.nama} />
                                 <TableItem item={item.nama} />
                                 <TableItem item={item.deskripsi} wrap />
                                 <TableItem item={item.cover} wrap />

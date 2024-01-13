@@ -12,7 +12,7 @@ class SubMateriController extends Controller
 {
     public function index()
     {
-        $subMateri = SubMateri::all();
+        $subMateri = SubMateri::with('materi')->get();
 
         return Inertia::render('Guru/Materi/SubmateriGuru', [
             'subMateri' => $subMateri
@@ -58,7 +58,7 @@ class SubMateriController extends Controller
 
     public function edit($id)
     {
-        $subMateri = SubMateri::find($id)->first();
+        $subMateri = SubMateri::where('id', $id)->first();
 
         return Inertia::render('Guru/Materi/EditSubmateriGuru', [
             'edit' => $subMateri

@@ -56,9 +56,15 @@ export default function SoalKuis({ auth }) {
                         return (
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
-                                <TableItem item={item.kategori_kuis_id} />
+                                <TableItem item={item.kategori.kuis} />
                                 <TableItem item={item.soal} />
-                                <TableItem item={item.gambar === null ? "Tidak Ada Gambar" : item.gambar} />
+                                <TableItem
+                                    item={
+                                        item.gambar === null
+                                            ? "Tidak Ada Gambar"
+                                            : item.gambar
+                                    }
+                                />
                                 <TableItem
                                     item={
                                         <ActionButton

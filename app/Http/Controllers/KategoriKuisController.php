@@ -35,7 +35,7 @@ class KategoriKuisController extends Controller
 
     public function edit($id)
     {
-        $kategori  = KategoriKuis::find($id)->first();
+        $kategori  = KategoriKuis::where('id',$id)->first();
 
         return Inertia::render('Guru/Kuis/EditKategoriKuis', [
             'kategori' => $kategori,
@@ -55,7 +55,7 @@ class KategoriKuisController extends Controller
 
     public function destroy($id)
     {
-        $kategori  = KategoriKuis::find($id)->first();
+        $kategori  = KategoriKuis::find($id);
         $kategori->delete();
 
         return redirect()->route('kategori');

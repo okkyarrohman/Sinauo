@@ -8,7 +8,7 @@ import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { useEffect } from "react";
 
 export default function TugasSiswa({ auth }) {
-    const { tugas } = usePage().props;
+    const { tugas, tugasResult } = usePage().props;
 
     const triggerAlert = (feedback) => {
         Swal.fire({
@@ -29,7 +29,8 @@ export default function TugasSiswa({ auth }) {
     };
 
     useEffect(() => {
-        console.log(tugas);
+        console.log("Tugas", tugas);
+        console.log("Tugas Result", tugasResult);
     }, []);
 
     return (
@@ -40,7 +41,7 @@ export default function TugasSiswa({ auth }) {
                 <ProfileInfo name={auth.user.name} />
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tugas</h1>
-            {tugas.map((item, index) => {
+            {tugasResult.map((item, index) => {
                 const totalAnswers = [
                     "answer1",
                     "answer2",
@@ -63,7 +64,7 @@ export default function TugasSiswa({ auth }) {
                         <div className="flex items-center justify-between w-[92%] ml-auto">
                             <div className="w-28 relative">
                                 <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap">
-                                    {item.nama}
+                                    {item.tugas.nama}
                                 </p>
                             </div>
                             {/* <p>{item.tugas.tenggat}</p> */}

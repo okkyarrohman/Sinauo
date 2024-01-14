@@ -60,9 +60,11 @@ class TugasResultController extends Controller
     {
         $tugas = Tugas::all();
 
+        $tugasResult = TugasResult::with('tugas')->latest()->take(3)->get();
 
         return Inertia::render('Siswa/TugasSiswa', [
             'tugas' => $tugas,
+            'tugasResult' => $tugasResult,
         ]);
     }
 

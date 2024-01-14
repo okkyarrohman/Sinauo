@@ -5,10 +5,11 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
-    const { kategori } = usePage().props;
+    const { kategori, hasil } = usePage().props;
 
     useEffect(() => {
         console.log("Kategori", kategori);
+        console.log("Result", hasil);
     }, []);
 
     return (
@@ -33,7 +34,7 @@ export default function KuisSiswa({ auth }) {
                                 <p>{item.soal.length} Soal</p>
                                 <p>{item.waktu} Menit</p>
                             </div>
-                            {item.nilai === "" ? (
+                            {item.total_points === "" ? (
                                 <Link
                                     className="ml-auto"
                                     href={route("mulai-kuis")}
@@ -43,7 +44,7 @@ export default function KuisSiswa({ auth }) {
                                     </button>
                                 </Link>
                             ) : (
-                                <p className="ml-auto">{item.nilai}</p>
+                                <p className="ml-auto">{item.total_points}</p>
                             )}
                         </div>
                     </div>

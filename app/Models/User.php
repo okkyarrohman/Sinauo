@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Hasil::class);
     }
+
+    public function submateri()
+    {
+        return $this->hasMany(Submateri::class);
+    }
 }

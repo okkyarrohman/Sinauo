@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/react";
 import { imageKonten1 } from "../../../assets";
 
-export default function ProfileInfo({ name }) {
+export default function ProfileInfo({ name,auth }) {
     return (
         <Link
             className="flex items-center gap-3 w-60"

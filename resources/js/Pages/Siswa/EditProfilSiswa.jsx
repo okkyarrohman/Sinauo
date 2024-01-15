@@ -8,8 +8,13 @@ export default function EditProfilSiswa() {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, processing, errors, reset } = useForm({
+        id: user.id,
         name: user.name,
         email: user.email,
+        tempat_lahir: user.tempat_lahir,
+        alamat: user.alamat,
+        telepon: user.telepon,
+        foto: null
     });
 
     const submitEditProfil = () => {
@@ -60,8 +65,8 @@ export default function EditProfilSiswa() {
                             name="ttl"
                             placeholder="Masukkan Tempat dan Tanggal Lahir..."
                             className="w-full border-[#353535]"
-                            // value={data.ttl}
-                            // onChange={(e) => setData("ttl", e.target.value)}
+                            value={data.tempat_lahir}
+                            onChange={(e) => setData("tempat_lahir", e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
@@ -77,8 +82,8 @@ export default function EditProfilSiswa() {
                             name="alamat"
                             placeholder="Masukkan Alamat..."
                             className="w-full border-[#353535]"
-                            // value={data.alamat}
-                            // onChange={(e) => setData("alamat", e.target.value)}
+                            value={data.alamat}
+                            onChange={(e) => setData("alamat", e.target.value)}
                         />
                     </div>
                     <div className="mb-4">
@@ -115,6 +120,9 @@ export default function EditProfilSiswa() {
                                     type="file"
                                     name="foto"
                                     className="hidden"
+                                        value={data.foto}
+                            onChange={(e) => setData("foto", e.target.value)}
+
                                 />
                             </label>
                             <p className="font-light text-sm">nama file</p>
@@ -133,8 +141,8 @@ export default function EditProfilSiswa() {
                             name="no_telp"
                             placeholder="Masukkan No. Telepon..."
                             className="w-full border-[#353535]"
-                            // value={data.no_telp}
-                            // onChange={(e) => setData("no_telp", e.target.value)}
+                            value={data.telepon}
+                            onChange={(e) => setData("telepon", e.target.value)}
                         />
                     </div>
                     <div className="mb-4">

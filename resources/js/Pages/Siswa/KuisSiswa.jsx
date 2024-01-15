@@ -34,7 +34,16 @@ export default function KuisSiswa({ auth }) {
                                 <p>{item.soal.length} Soal</p>
                                 <p>{item.waktu} Menit</p>
                             </div>
-                            {item.total_points === "" ? (
+                            <p className="ml-auto">{item.total_points}/100</p>
+                            <Link
+                                className="ml-auto"
+                                href={route("mulai-kuis")}
+                            >
+                                <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
+                                    Mulai
+                                </button>
+                            </Link>
+                            {/* {item.total_points === "" ? (
                                 <Link
                                     className="ml-auto"
                                     href={route("mulai-kuis")}
@@ -45,7 +54,7 @@ export default function KuisSiswa({ auth }) {
                                 </Link>
                             ) : (
                                 <p className="ml-auto">{item.total_points}</p>
-                            )}
+                            )} */}
                         </div>
                     </div>
                 );

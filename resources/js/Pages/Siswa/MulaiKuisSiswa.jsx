@@ -1,8 +1,15 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { imageBelumKuis } from "../../../assets";
 import MainLayout from "@/Layouts/MainLayout";
+import { useEffect } from "react";
 
 export default function MulaiKuisSiswa() {
+    const { kategori } = usePage().props;
+
+    useEffect(() => {
+        console.log(kategori);
+    }, []);
+
     return (
         <MainLayout>
             <Head title="Kuis" />
@@ -12,8 +19,10 @@ export default function MulaiKuisSiswa() {
                     Uji kemampuan Anda dalam kuis ini dan dapatkan poin
                     penguasaan atas apa yang telah Anda ketahui
                 </p>
-                <p className="text-lg mb-3">25 Soal - 60 Menit</p>
-                <Link href={route("soal-kuis")}>
+                <p className="text-lg mb-3">
+                    {kategori[0].soal.length} Soal - {kategori[0].waktu} Menit
+                </p>
+                <Link href={route("soal-kuis", kategori[0].id)}>
                     <button className="bg-primary py-3 px-12 text-white font-bold rounded-[0.625rem]">
                         Mulai
                     </button>

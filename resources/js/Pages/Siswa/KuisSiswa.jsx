@@ -34,10 +34,10 @@ export default function KuisSiswa({ auth }) {
                                 <p>{item.soal.length} Soal</p>
                                 <p>{item.waktu} Menit</p>
                             </div>
-                            <p className="ml-auto">{item.total_points}/100</p>
+                            {/* <p className="ml-auto">{item.total_points}/100</p> */}
                             <Link
                                 className="ml-auto"
-                                href={route("mulai-kuis")}
+                                href={route("mulai-kuis", item.id)}
                             >
                                 <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
                                     Mulai

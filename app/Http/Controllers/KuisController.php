@@ -28,6 +28,22 @@ class KuisController extends Controller
         ]);
     }
 
+    public function index_mulai($id)
+    {
+        $categories = KategoriKuis::where('id', $id)->with(['soal' => function ($query) {
+            $query->inRandomOrder()
+                ->with(['opsi' => function ($query) {
+                    $query->inRandomOrder();
+                }]);
+        }])
+            ->whereHas('soal')
+            ->get();
+
+        return Inertia::render('Siswa/MulaiKuisSiswa', [
+            'kategori' => $categories
+        ]);
+    }
+
     public function index_soal($id)
     {
         $categories = KategoriKuis::where('id', $id)->with(['soal' => function ($query) {

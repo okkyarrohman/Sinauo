@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sub_materis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('materi_id')->nullable();
             $table->foreign('materi_id')->references('id')->on('materis')->onDelete('cascade');
             $table->string('nama')->nullable();

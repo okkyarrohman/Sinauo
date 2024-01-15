@@ -9,20 +9,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\User;
 use Inertia\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): Response
+    public function edit(): Response
     {
-        // return Inertia::render('Profile/Edit', [
-        return Inertia::render('Siswa/EditProfilSiswa', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+
+        return Inertia::render('Siswa/EditProfilSiswa');
     }
 
     /**
@@ -38,8 +37,11 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        // return Redirect::route('profile.edit');
-        return Redirect::route('dashboard');
+        if ($request->user()->hasRole('guru')) {
+            return Redirect::route('dashboard-guru');
+        } else {
+            return Redirect::route('dashboard');
+        }
     }
 
     /**

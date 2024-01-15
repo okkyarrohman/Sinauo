@@ -12,7 +12,8 @@ use Carbon\Carbon;
 use App\Models\Hasil;
 use App\Models\SubMateri;
 use App\Models\Materi;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class DashboardController extends Controller
@@ -92,5 +93,16 @@ class DashboardController extends Controller
 
         // Mendapatkan Nama Materi dari Submateri
         return $submateri;
+    }
+
+    private function barMateriGuru()
+    {
+        $siswa = User::with('submateri')->get();
+
+        return $siswa;
+    }
+
+    private function barKuisGuru()
+    {
     }
 }

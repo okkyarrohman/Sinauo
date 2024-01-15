@@ -41,19 +41,24 @@ export default function TugasSiswa({ auth }) {
                 <ProfileInfo name={auth.user.name} />
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tugas</h1>
-            {tugasResult.map((item, index) => {
-                const totalAnswers = [
-                    "answer1",
-                    "answer2",
-                    "answer3",
-                    "answer4",
-                ];
-                const filledAnswers = totalAnswers.filter(
-                    (answer) => item[answer]
-                );
+            {tugas.map((item, index) => {
+                let percentage = 0;
+                {
+                    item.tugas_result.map((resultItem) => {
+                        const totalAnswers = [
+                            "answer1",
+                            "answer2",
+                            "answer3",
+                            "answer4",
+                        ];
+                        const filledAnswers = totalAnswers.filter(
+                            (answer) => resultItem[answer]
+                        );
 
-                const percentage =
-                    (filledAnswers.length / totalAnswers.length) * 100;
+                        percentage =
+                            (filledAnswers.length / totalAnswers.length) * 100;
+                    });
+                }
 
                 return (
                     <div
@@ -64,17 +69,17 @@ export default function TugasSiswa({ auth }) {
                         <div className="flex items-center justify-between w-[92%] ml-auto">
                             <div className="w-28 relative">
                                 <p className="break-words text-ellipsis whitespace-nowrap overflow-hidden hover:text-wrap">
-                                    {item.tugas.nama}
+                                    {item.nama}
                                 </p>
                             </div>
-                            {/* <p>{item.tugas.tenggat}</p> */}
+                            <p>{item.tenggat}</p>
                             <div className="w-[20%]">
                                 <ProgressBar progres={percentage} />
                             </div>
                             <p>
-                                {item.konfirmasi === null
-                                    ? "Belum Dikonfirmasi"
-                                    : item.konfirmasi}
+                                {item.tugas_result.length != 0
+                                    ? item.tugas_result[0].konfirmasi
+                                    : "Belum Diterima"}
                             </p>
                             <Link href={route("detail-tugas", item.id)}>
                                 <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
@@ -83,12 +88,14 @@ export default function TugasSiswa({ auth }) {
                             </Link>
                             <button
                                 className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
-                                    item.feedback === null
-                                        ? "bg-primary-light"
-                                        : "bg-primary"
+                                    item.tugas_result.length != 0
+                                        ? "bg-primary"
+                                        : "bg-primary-light"
                                 }`}
-                                onClick={() => triggerAlert(item.feedback)}
-                                disabled={item.feedback === null}
+                                onClick={() =>
+                                    triggerAlert(item.tugas_result[0].feedback)
+                                }
+                                disabled={item.tugas_result.length == 0}
                             >
                                 Feedback
                             </button>

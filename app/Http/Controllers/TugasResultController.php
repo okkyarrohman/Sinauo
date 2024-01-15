@@ -51,19 +51,23 @@ class TugasResultController extends Controller
 
         $tugas->save();
 
-        return redirect()->route('hasil-tugas', $tugas->id)->with('success', 'data berhasi dikirim');
+        return redirect()->route('hasil-tugas', $tugas->tugas_id)->with('success', 'data berhasi dikirim');
     }
 
 
     // Untuk Siswa
     public function index_siswa()
     {
-        $tugas = Tugas::all();
+        // $tugas = Tugas::all();
+        $tugas = Tugas::with('tugasResult')->get();
+
+        // $tugasDenganInfoHasil = Tugas::with('tugasResult')->get();
 
         $tugasResult = TugasResult::with('tugas')->latest()->take(3)->get();
 
         return Inertia::render('Siswa/TugasSiswa', [
             'tugas' => $tugas,
+            // 'tugasDenganInfoHasil' => $tugasDenganInfoHasil,
             'tugasResult' => $tugasResult,
         ]);
     }

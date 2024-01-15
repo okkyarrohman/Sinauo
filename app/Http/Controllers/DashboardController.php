@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $barcode = Absensi::latest()->first();
 
         // Mendapatkan Tanggal Barcode sesuai Tahun-Bulan-Hari
-        $formatDate = Carbon::parse($barcode->created_at)->format('Y-m-d');
+        // $formatDate = Carbon::parse($barcode->created_at)->format('Y-m-d');
 
 
         // Mendapat 3 tugas Terbaru
@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
 
         return Inertia::render('Siswa/DashboardSiswa', [
-            'formatDate' => $formatDate,
+            // 'formatDate' => $formatDate,
             'barcode' => $barcode,
             'tugasBaru' => $tugasBaru,
             'tugasResult' => $tugas,
@@ -57,6 +57,8 @@ class DashboardController extends Controller
     public function store_absensi(Request $request)
     {
         $absensi = new Absensi();
+        $absensi->link = $request->link;
+
 
         // Request column input type file
         if ($request->hasFile('barcode')) {

@@ -14,7 +14,7 @@ export default function EditProfilSiswa() {
         tempat_lahir: user.tempat_lahir,
         alamat: user.alamat,
         telepon: user.telepon,
-        foto: null
+        foto: null,
     });
 
     const submitEditProfil = () => {
@@ -66,7 +66,9 @@ export default function EditProfilSiswa() {
                             placeholder="Masukkan Tempat dan Tanggal Lahir..."
                             className="w-full border-[#353535]"
                             value={data.tempat_lahir}
-                            onChange={(e) => setData("tempat_lahir", e.target.value)}
+                            onChange={(e) =>
+                                setData("tempat_lahir", e.target.value)
+                            }
                         />
                     </div>
                     <div className="mb-4">
@@ -120,12 +122,15 @@ export default function EditProfilSiswa() {
                                     type="file"
                                     name="foto"
                                     className="hidden"
-                                        value={data.foto}
-                            onChange={(e) => setData("foto", e.target.value)}
-
+                                    accept=".jpg, .png, .jpeg"
+                                    onChange={(e) =>
+                                        setData("foto", e.target.files[0])
+                                    }
                                 />
                             </label>
-                            <p className="font-light text-sm">nama file</p>
+                            <p className="font-light text-sm">
+                                {data.foto ? data.foto.name : "Nama File"}
+                            </p>
                         </div>
                     </div>
                     <div className="mb-4">

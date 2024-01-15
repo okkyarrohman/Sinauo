@@ -5,11 +5,12 @@ import { useEffect } from "react";
 import { url } from "../../../assets/url";
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 
-export default function ViewIsiMateriSiswa() {
+export default function ViewIsiMateriSiswa({ auth }) {
     const { submateri } = usePage().props;
 
     const { data, setData, post, processing, errors } = useForm({
         id: submateri[0].id,
+        user_id: auth.user.id,
         status: submateri[0].status,
     });
 
@@ -21,6 +22,7 @@ export default function ViewIsiMateriSiswa() {
     useEffect(() => {
         console.log(submateri);
         console.log(data.status);
+        console.log(auth.user.id);
     }, []);
 
     return (

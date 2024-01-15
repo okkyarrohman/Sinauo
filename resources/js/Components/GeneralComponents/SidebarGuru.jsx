@@ -215,7 +215,7 @@ export default function SidebarGuru() {
                                 url.includes("/kategori") ||
                                 url.includes("/soal") ||
                                 url.includes("/opsi") ||
-                                url.includes("/hasil")
+                                url === "/hasil"
                                     ? "bg-primary text-white"
                                     : ""
                             }`}

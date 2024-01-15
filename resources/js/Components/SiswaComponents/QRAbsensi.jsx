@@ -13,7 +13,7 @@ export default function QRAbsensi(props) {
                     src={props.qr}
                     alt="QR Absensi"
                 />
-                <p className="text-sm text-center mt-4">bit.ly/absensi</p>
+                <p className="text-sm text-center mt-4">{props.link}</p>
             </div>
         </>
     );

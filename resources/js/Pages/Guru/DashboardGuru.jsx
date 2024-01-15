@@ -12,10 +12,16 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head } from "@inertiajs/react";
-import { useState } from "react";
+import { Head, usePage } from "@inertiajs/react";
+import { useEffect, useState } from "react";
 
 export default function DashboardGuru({ auth }) {
+    const { barMateri } = usePage().props;
+
+    useEffect(() => {
+        console.log(barMateri);
+    }, []);
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
     const head_title = ["No", "Nama", "Materi", "Kuis", "Tugas", "Aksi"];

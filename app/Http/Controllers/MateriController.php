@@ -123,6 +123,7 @@ class MateriController extends Controller
     public function update_selesai_siswa(Request $request)
     {
         $submateri = SubMateri::find($request->id);
+        $submateri->user_id = $request->user_id;
         $submateri->status = $request->status;
 
         $submateri->save();

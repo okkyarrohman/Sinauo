@@ -15,25 +15,32 @@ import { url } from "../../../assets/url";
 import FormatWaktu from "../../../assets/formatdate";
 
 export default function DashboardSiswa({ auth }) {
-    const { barcode, tugasBaru, tugasResult } = usePage().props;
+    const { barcode, tugasBaru, tugasResult, chartKuis, chartMateri } =
+        usePage().props;
 
-    const sortedTugasTerbaru = tugasResult.sort(
-        (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-    );
+    let percentage = 0;
+    let sortedTugasTerbaru = [];
 
-    const totalAnswers = ["answer1", "answer2", "answer3", "answer4"];
-    const filledAnswers = totalAnswers.filter(
-        (answer) => tugasResult[0][answer]
-    );
+    if (tugasResult != 0) {
+        sortedTugasTerbaru = tugasResult.sort(
+            (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+        );
 
-    const percentage = (filledAnswers.length / totalAnswers.length) * 100;
+        const totalAnswers = ["answer1", "answer2", "answer3", "answer4"];
+        const filledAnswers = totalAnswers.filter(
+            (answer) => tugasResult[0][answer]
+        );
+
+        percentage = (filledAnswers.length / totalAnswers.length) * 100;
+    }
 
     useEffect(() => {
         console.log(barcode);
         console.log(tugasBaru);
         console.log(tugasResult);
-        console.log("Sorted", sortedTugasTerbaru);
-        console.log("Terjawab", filledAnswers);
+        console.log("Chart Kuis", chartKuis);
+        console.log("Chart Materi", chartMateri);
+        console.log("Persentase", percentage);
     }, []);
 
     return (
@@ -85,6 +92,7 @@ export default function DashboardSiswa({ auth }) {
                                         ? FormatWaktu(barcode.created_at)
                                         : "Belum Ada Absensi"
                                 }
+                                link={barcode.link}
                             />
                         </div>
                         <InformasiBaru data={tugasBaru} />

@@ -6,6 +6,7 @@ import FormatWaktu from "../../../assets/formatdate";
 
 export default function TambahAbsensi() {
     const { data, setData, post, processing, errors } = useForm({
+        link: "",
         barcode: null,
     });
 

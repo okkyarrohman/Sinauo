@@ -106,7 +106,10 @@ class DashboardController extends Controller
         return $siswa;
     }
 
-    private function barKuisGuru()
+    private function barTugasGuru()
     {
+        $tugas = Tugas::with('tugasResult')->get();
+
+        return $tugas;
     }
 }

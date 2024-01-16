@@ -47,7 +47,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-        dd($this->barTugasGuru());
 
         return Inertia::render('Guru/DashboardGuru', [
             'barMateri' => $this->barMateriGuru(),

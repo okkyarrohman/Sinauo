@@ -12,8 +12,8 @@ class TugasResult extends Model
     protected $table = 'tugas_results';
 
     protected $fillable = [
-        'user',
-        'tugas',
+        'user_id',
+        'tugas_id',
         'answer1',
         'asnwer2',
         'asnwer3',

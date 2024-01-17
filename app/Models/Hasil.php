@@ -22,4 +22,9 @@ class Hasil extends Model
         // return $this->belongsToMany(Soal::class)->withPivot(['opsi_id', 'point']);
         return $this->belongsToMany(Soal::class)->with(['kategori', 'opsi'])->withPivot(['opsi_id', 'point']);
     }
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriKuis::class);
+    }
 }

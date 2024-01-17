@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('kategori_kuis_id')->nullable();
+            $table->foreign('kategori_kuis_id')->references('id')->on('kategori_kuis')->onDelete('cascade');
             $table->integer('total_points')->nullable();
             $table->timestamps();
         });

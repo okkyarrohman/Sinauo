@@ -50,6 +50,7 @@ class KuisController extends Controller
 
         $user = Auth::user()->hasil();
         $hasil = $user->create([
+            'kategori_kuis_id' => $request->kategori_kuis_id,
             'total_points' => $opsi->sum('point'),
         ]);
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Absensi;
-use App\Models\KategoriKuis;
+use App\Models\KategoriKuis as Kategori;
 use Inertia\Inertia;
 use App\Models\Tugas;
 use App\Models\TugasResult;
@@ -14,6 +14,7 @@ use App\Models\SubMateri;
 use App\Models\Materi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Soal;
 
 
 class DashboardController extends Controller
@@ -33,6 +34,7 @@ class DashboardController extends Controller
         // $tugas = TugasResult::latest()->take(3)->get();
         $tugas = TugasResult::with('tugas')->latest()->take(3)->get();
 
+        dd($this->grafikKuis());
 
 
         return Inertia::render('Siswa/DashboardSiswa', [
@@ -76,13 +78,16 @@ class DashboardController extends Controller
     private function grafikKuis()
     {
         $data = array();
-        $kuis = KategoriKuis::all();
-        $user = auth()->user()->id;
+        $kuis = Kategori::with('soal')->get();
 
         foreach ($kuis as $item) {
             $data[] = [
                 'kategori' => $item->kuis,
-                'y' => Hasil::where('user_id', $user)->get('total_points')
+                'y' => Hasil::where([
+                    'user_id' => auth()->user()->id,
+                    'kategori_kuis_id' => $item->id
+                ])->get('total_points'),
+
             ];
         }
         return $data;

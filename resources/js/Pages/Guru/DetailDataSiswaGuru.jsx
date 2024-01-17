@@ -57,8 +57,9 @@ export default function DetailDataSiswaGuru() {
                             <TableItem item={siswa.password} />
                         </TableRow> */}
                         <TableRow>
-                            <TableItem item="Jumlah Waktu Akses " />
-                            <TableItem item="12:12:12" />
+                            <TableItem item="Jumlah Waktu Akses/Menit " />
+                            <TableItem item={siswa.total_login / 60}/>
+
                         </TableRow>
                     </TableBody>
                 </Table>

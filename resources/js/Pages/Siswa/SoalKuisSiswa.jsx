@@ -11,6 +11,10 @@ import { url } from "../../../assets/url";
 export default function SoalKuisSiswa() {
     const { kategori } = usePage().props;
 
+    const { data, setData, post, processing, errors } = useForm({
+        kategori_kuis_id: "",
+    });
+
     const [currentSoal, setCurrentSoal] = useState(0);
     const [jawaban, setJawaban] = useState([]);
     const [soal, setSoal] = useState({});
@@ -44,24 +48,7 @@ export default function SoalKuisSiswa() {
     const handleSubmit = (e) => {
         e.preventDefault();
         triggerAlert();
-        // console.log(jawaban)
-        // router.post("/kuis/store", jawaban);
     };
-
-    // useEffect(() => {
-    //     let interval = setInterval(() => {
-    //         if (seconds > 0) {
-    //             setSeconds(seconds - 1);
-    //         } else if (minutes > 0) {
-    //             setSeconds(59);
-    //             setMinutes(minutes - 1);
-    //         } else {
-    //             clearInterval(interval);
-    //         }
-    //     }, 1000);
-
-    //     return () => clearInterval(interval);
-    // }, [minutes, seconds]);
 
     useEffect(() => {
         const storedMinutes = localStorage.getItem("minutes");
@@ -163,6 +150,13 @@ export default function SoalKuisSiswa() {
                 </p>
             </div>
             <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    id="kategori_kuis_id"
+                    name="kategori_kuis_id"
+                    className="hidden"
+                    value={(data.kategori_kuis_id = kategori[0].id)}
+                />
                 {kategori.map((item, index) => {
                     return (
                         <div

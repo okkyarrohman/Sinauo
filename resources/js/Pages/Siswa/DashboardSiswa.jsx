@@ -55,7 +55,7 @@ export default function DashboardSiswa({ auth }) {
                         <WelcomeBanner />
                     </div>
                     <div className="grid grid-cols-2 gap-x-12 mb-8">
-                        <TesStatistik />
+                        <TesStatistik data={chartKuis} />
                         <ProgresMateri />
                     </div>
                     {tugasResult != 0 && (

@@ -6,9 +6,10 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 
-export default function TesStatistik() {
+export default function TesStatistik(props) {
     ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
     const options = {
@@ -21,14 +22,26 @@ export default function TesStatistik() {
         maintainAspectRatio: false,
     };
 
-    const labels = ["Pre-Test", "Post-Test", "Test 1", "Test 2", "Test 3"];
+    // const labels = ["Pre-Test", "Post-Test", "Test 1", "Test 2", "Test 3"];
+    const labels = props.data.map((item) => item.kategori);
+
+    useEffect(() => {
+        console.log(
+            "Ini Di Komponen Kategori",
+            props.data.map((item) => item.kategori)
+        );
+        console.log(
+            "Ini Di Komponen Y",
+            props.data.map((item) => item.y)
+        );
+    });
 
     const data = {
         labels,
         datasets: [
             {
                 label: "Hasil",
-                data: [11, 12, 13, 14, 15],
+                data: props.data.map((item) => item.y),
                 backgroundColor: "rgba(0, 108, 236, 1)",
             },
         ],

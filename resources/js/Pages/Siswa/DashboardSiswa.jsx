@@ -34,14 +34,14 @@ export default function DashboardSiswa({ auth }) {
         percentage = (filledAnswers.length / totalAnswers.length) * 100;
     }
 
-    useEffect(() => {
-        console.log(barcode);
-        console.log(tugasBaru);
-        console.log(tugasResult);
-        console.log("Chart Kuis", chartKuis);
-        console.log("Chart Materi", chartMateri);
-        console.log("Persentase", percentage);
-    }, []);
+    // useEffect(() => {
+    //     console.log(barcode);
+    //     console.log(tugasBaru);
+    //     console.log(tugasResult);
+    //     console.log("Chart Kuis", chartKuis);
+    //     console.log("Chart Materi", chartMateri);
+    //     console.log("Persentase", percentage);
+    // }, []);
 
     return (
         <MainLayout>
@@ -56,7 +56,7 @@ export default function DashboardSiswa({ auth }) {
                     </div>
                     <div className="grid grid-cols-2 gap-x-12 mb-8">
                         <TesStatistik data={chartKuis} />
-                        <ProgresMateri />
+                        <ProgresMateri data={chartMateri} />
                     </div>
                     {tugasResult != 0 && (
                         <ProgresTugas

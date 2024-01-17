@@ -34,14 +34,16 @@ export default function TesStatistik(props) {
             "Ini Di Komponen Y",
             props.data.map((item) => item.y)
         );
-    });
+    }, []);
 
     const data = {
         labels,
         datasets: [
             {
                 label: "Hasil",
-                data: props.data.map((item) => item.y),
+                data: props.data.map((item) =>
+                    item.y.length != 0 ? item.y[0].total_points : 0
+                ),
                 backgroundColor: "rgba(0, 108, 236, 1)",
             },
         ],

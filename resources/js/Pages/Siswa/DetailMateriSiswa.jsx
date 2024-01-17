@@ -48,6 +48,7 @@ export default function DetailMateriSiswa({ auth }) {
                                 judul={item.nama}
                                 deskripsi={item.deskripsi}
                                 link={route("lihat-materi", item.id)}
+                                download={route("submateri.file", item.id)}
                             />
                         </div>
                     );

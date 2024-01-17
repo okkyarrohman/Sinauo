@@ -64,11 +64,23 @@ class KuisController extends Controller
     {
         $opsi = Opsi::find(array_values($request->input('soal')));
 
-        $user = Auth::user()->hasil();
-        $hasil = $user->create([
-            'kategori_kuis_id' => $request->kategori_kuis_id,
-            'total_points' => $opsi->sum('point'),
-        ]);
+
+
+        // $user = Auth::user()->hasil();
+        // $kategori = $request->input('kategori_kuis_id');
+        // $hasil = $user->create([
+        //     'kategori_kuis_id' => $kategori,
+        //     'total_points' => $opsi->sum('point'),
+        // ]);
+
+
+        $hasilSeluruh = new Hasil();
+        $hasilSeluruh->user_id = Auth::user()->id;
+        $hasilSeluruh->kategori_kuis_id = $request->kategori_kuis_id;
+        $hasilSeluruh->total_points = $opsi->sum('point');
+        $hasilSeluruh->save();
+
+
 
         $soal = $opsi->mapWithKeys(function ($option) {
             return [
@@ -79,7 +91,7 @@ class KuisController extends Controller
             ];
         })->toArray();
 
-        $hasil->soal()->sync($soal);
+        $hasilSeluruh->soal()->sync($soal);
 
         return redirect()->route('kuis');
     }

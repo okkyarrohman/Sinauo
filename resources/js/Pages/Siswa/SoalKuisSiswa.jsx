@@ -12,7 +12,7 @@ export default function SoalKuisSiswa() {
     const { kategori } = usePage().props;
 
     const { data, setData, post, processing, errors } = useForm({
-        kategori_kuis_id: "",
+        kategori_kuis_id: kategori.id,
     });
 
     const [currentSoal, setCurrentSoal] = useState(0);
@@ -154,15 +154,18 @@ export default function SoalKuisSiswa() {
                     type="text"
                     id="kategori_kuis_id"
                     name="kategori_kuis_id"
-                    className="hidden"
-                    value={(data.kategori_kuis_id = kategori[0].id)}
+                    // className="hidden"
+                    value={data.kategori_kuis_id = kategori[0].id}
                 />
+
                 {kategori.map((item, index) => {
                     return (
                         <div
                             key={index}
                             className="bg-white rounded-3xl w-full h-full p-6 shadow-custom"
                         >
+
+
                             <p
                                 className={`text-xl font-semibold ${
                                     item.soal[currentSoal].gambar !== null

@@ -10,6 +10,7 @@ class Hasil extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $fillable = ['kategori_kuis_id', 'total_points'];
 
 
     public function user()
@@ -23,7 +24,7 @@ class Hasil extends Model
         return $this->belongsToMany(Soal::class)->with(['kategori', 'opsi'])->withPivot(['opsi_id', 'point']);
     }
 
-    public function kategori()
+    public function kategorikuis()
     {
         return $this->belongsTo(KategoriKuis::class);
     }

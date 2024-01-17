@@ -24,7 +24,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamp('last_logout_at')->nullable();
-            $table->integer('total_login')->nullable();
+            $table->timestamp('session_login_at')->nullable();
+            $table->integer('total_login_time')->nullable();
             $table->timestamps();
         });
     }

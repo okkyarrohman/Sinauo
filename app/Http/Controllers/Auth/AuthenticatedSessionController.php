@@ -45,17 +45,12 @@ class AuthenticatedSessionController extends Controller
         if ($guru) {
             return redirect()->route('dashboard-guru');
         } else if ($siswa) {
+            // User berhasil login
             $user = Auth::user();
-            $previousLoginTime = $user->last_logout_at ?? $user->last_login_at;
-            $timeDifference = Carbon::now()->diffInHours(Carbon::parse($previousLoginTime));
 
-            $user->total_login += $timeDifference;
-
-            $user->last_login_at = Carbon::now();
-            $user->last_logout_at = null; // Reset last_logout_at
-
+            // Set waktu login untuk sesi ini
+            $user->session_login_at = Carbon::now();
             $user->save();
-
 
             return redirect()->route('dashboard');
         }
@@ -66,22 +61,22 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-
+        // Update total waktu login saat logout
         $user = Auth::user();
 
-        $user->last_logout_at = now();
-        $previousLoginTime = $user->total_login ?? now();
+        // Hitung selisih waktu dan tambahkan ke total_login_time
+        if ($user->session_login_at) {
+            $timeDifference = Carbon::parse($user->session_login_at)->diffInMinutes(Carbon::now());
+            $user->total_login_time += $timeDifference;
+        }
 
-        $timeDifference = Carbon::now()->diffInHours(Carbon::parse($previousLoginTime));
-
-        $user->total_login += $timeDifference / 1000 / 60 - 1;
-
+        // Reset waktu login untuk sesi ini
+        $user->session_login_at = null;
         $user->save();
 
 
-
-
         Auth::guard('web')->logout();
+
 
 
 

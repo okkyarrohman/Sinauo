@@ -58,7 +58,7 @@ export default function DetailDataSiswaGuru() {
                         </TableRow> */}
                         <TableRow>
                             <TableItem item="Jumlah Waktu Akses/Menit " />
-                            <TableItem item={siswa.total_login / 60}/>
+                            <TableItem item={siswa.total_login_time}/>
 
                         </TableRow>
                     </TableBody>

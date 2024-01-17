@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('telepon')->nullable();
             $table->rememberToken();
+            $table->timestamp('last_login_at')->nullable();
+            $table->timestamp('last_logout_at')->nullable();
+            $table->integer('total_login')->nullable();
             $table->timestamps();
         });
     }

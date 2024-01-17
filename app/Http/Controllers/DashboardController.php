@@ -34,7 +34,7 @@ class DashboardController extends Controller
         // $tugas = TugasResult::latest()->take(3)->get();
         $tugas = TugasResult::with('tugas')->latest()->take(3)->get();
 
-        dd($this->grafikKuis());
+
 
 
         return Inertia::render('Siswa/DashboardSiswa', [

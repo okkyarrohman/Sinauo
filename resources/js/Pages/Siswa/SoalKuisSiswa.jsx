@@ -12,7 +12,7 @@ export default function SoalKuisSiswa() {
     const { kategori } = usePage().props;
 
     const { data, setData, post, processing, errors } = useForm({
-        kategori_kuis_id: kategori.id,
+        kategori_kuis_id: kategori[0].id,
     });
 
     const [currentSoal, setCurrentSoal] = useState(0);
@@ -24,7 +24,7 @@ export default function SoalKuisSiswa() {
     useEffect(() => {
         console.log(kategori);
         console.log(jawaban);
-        // console.log(jawaban.soal[kategori[0].soal[currentSoal].id]);
+        console.log("ID Kategori", data.kategori_kuis_id);
     }, [jawaban]);
 
     const handleNextClick = () => {
@@ -42,6 +42,7 @@ export default function SoalKuisSiswa() {
             ...updatedJawaban.soal,
             [name]: value,
         };
+        updatedJawaban.kategori_kuis_id = data.kategori_kuis_id;
         setJawaban(updatedJawaban);
     };
 
@@ -82,6 +83,7 @@ export default function SoalKuisSiswa() {
         localStorage.removeItem("seconds");
         triggerTimesUp();
         router.post("/kuis/store", jawaban);
+        // post(route("store.kuis"));
     };
 
     const triggerAlert = () => {
@@ -150,22 +152,12 @@ export default function SoalKuisSiswa() {
                 </p>
             </div>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    id="kategori_kuis_id"
-                    name="kategori_kuis_id"
-                    // className="hidden"
-                    value={data.kategori_kuis_id = kategori[0].id}
-                />
-
                 {kategori.map((item, index) => {
                     return (
                         <div
                             key={index}
                             className="bg-white rounded-3xl w-full h-full p-6 shadow-custom"
                         >
-
-
                             <p
                                 className={`text-xl font-semibold ${
                                     item.soal[currentSoal].gambar !== null

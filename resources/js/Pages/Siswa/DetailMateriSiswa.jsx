@@ -10,10 +10,11 @@ import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
 
 export default function DetailMateriSiswa({ auth }) {
-    const { materi } = usePage().props;
-    const statusSelesai = materi.filter((item) => item.status === "Selesai");
+    const { submateri, materi } = usePage().props;
+    const statusSelesai = submateri.filter((item) => item.status === "Selesai");
 
     useEffect(() => {
+        console.log(submateri);
         console.log(materi);
         console.log(statusSelesai);
     }, []);
@@ -26,21 +27,26 @@ export default function DetailMateriSiswa({ auth }) {
                 <ProfileInfo name={auth.user.name} />
             </div>
             <div className="mb-8">
-                <MateriBanner />
+                <MateriBanner
+                    judul={materi[0].nama}
+                    deskripsi={materi[0].deskripsi}
+                />
             </div>
             <div className="w-1/3 flex items-center justify-between mb-9">
                 <div className="size-10 bg-primary rounded-[0.625rem]"></div>
                 <div className="w-[85%]">
                     <ProgressBar
-                        progres={(statusSelesai.length / materi.length) * 100}
+                        progres={
+                            (statusSelesai.length / submateri.length) * 100
+                        }
                     />
                     <p>
-                        {statusSelesai.length}/{materi.length} Materi
+                        {statusSelesai.length}/{submateri.length} Materi
                     </p>
                 </div>
             </div>
             <div className="w-4/5">
-                {materi.map((item, index) => {
+                {submateri.map((item, index) => {
                     return (
                         <div key={index} className="mb-6">
                             <CardSubmateri

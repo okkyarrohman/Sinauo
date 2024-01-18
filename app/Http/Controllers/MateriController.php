@@ -104,9 +104,11 @@ class MateriController extends Controller
 
     public function show_siswa($id)
     {
-        $materi = Submateri::where('materi_id', $id)->get();
+        $submateri = Submateri::where('materi_id', $id)->get();
+        $materi = Materi::where('id', $id)->get();
 
         return Inertia::render('Siswa/DetailMateriSiswa', [
+            'submateri' => $submateri,
             'materi' => $materi
         ]);
     }

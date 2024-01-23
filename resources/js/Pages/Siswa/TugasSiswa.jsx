@@ -44,20 +44,25 @@ export default function TugasSiswa({ auth }) {
             {tugas.map((item, index) => {
                 let percentage = 0;
                 {
-                    item.tugas_result.map((resultItem) => {
-                        const totalAnswers = [
-                            "answer1",
-                            "answer2",
-                            "answer3",
-                            "answer4",
-                        ];
-                        const filledAnswers = totalAnswers.filter(
-                            (answer) => resultItem[answer]
-                        );
+                    item.tugas_result
+                        .filter(
+                            (resultItem) => resultItem.user_id == auth.user.id
+                        )
+                        .map((resultItem) => {
+                            const totalAnswers = [
+                                "answer1",
+                                "answer2",
+                                "answer3",
+                                "answer4",
+                            ];
+                            const filledAnswers = totalAnswers.filter(
+                                (answer) => resultItem[answer]
+                            );
 
-                        percentage =
-                            (filledAnswers.length / totalAnswers.length) * 100;
-                    });
+                            percentage =
+                                (filledAnswers.length / totalAnswers.length) *
+                                100;
+                        });
                 }
 
                 return (
@@ -77,8 +82,14 @@ export default function TugasSiswa({ auth }) {
                                 <ProgressBar progres={percentage} />
                             </div>
                             <p>
-                                {item.tugas_result.length != 0
-                                    ? item.tugas_result[0].konfirmasi
+                                {item.tugas_result.filter(
+                                    (resultItem) =>
+                                        resultItem.user_id == auth.user.id
+                                ).length != 0
+                                    ? item.tugas_result.filter(
+                                          (resultItem) =>
+                                              resultItem.user_id == auth.user.id
+                                      )[0].konfirmasi
                                     : "Belum Diterima"}
                             </p>
                             <Link href={route("detail-tugas", item.id)}>
@@ -88,14 +99,28 @@ export default function TugasSiswa({ auth }) {
                             </Link>
                             <button
                                 className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
-                                    item.tugas_result.length != 0
+                                    item.tugas_result.filter(
+                                        (resultItem) =>
+                                            resultItem.user_id == auth.user.id
+                                    ).length != 0
                                         ? "bg-primary"
                                         : "bg-primary-light"
                                 }`}
                                 onClick={() =>
-                                    triggerAlert(item.tugas_result[0].feedback)
+                                    triggerAlert(
+                                        item.tugas_result.filter(
+                                            (resultItem) =>
+                                                resultItem.user_id ==
+                                                auth.user.id
+                                        )[0].feedback
+                                    )
                                 }
-                                disabled={item.tugas_result.length == 0}
+                                disabled={
+                                    item.tugas_result.filter(
+                                        (resultItem) =>
+                                            resultItem.user_id == auth.user.id
+                                    ).length == 0
+                                }
                             >
                                 Feedback
                             </button>

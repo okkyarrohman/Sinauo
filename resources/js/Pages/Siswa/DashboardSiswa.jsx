@@ -20,28 +20,30 @@ export default function DashboardSiswa({ auth }) {
 
     let percentage = 0;
     let sortedTugasTerbaru = [];
+    let filledAnswers = [];
 
-    if (tugasResult != 0) {
+    if (
+        tugasResult.filter((item) => item.user_id == auth.user.id).length != 0
+    ) {
         sortedTugasTerbaru = tugasResult.sort(
             (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
         );
 
         const totalAnswers = ["answer1", "answer2", "answer3", "answer4"];
-        const filledAnswers = totalAnswers.filter(
-            (answer) => tugasResult[0][answer]
-        );
+        filledAnswers = totalAnswers.filter((answer) => tugasResult[0][answer]);
 
         percentage = (filledAnswers.length / totalAnswers.length) * 100;
     }
 
-    // useEffect(() => {
-    //     console.log(barcode);
-    //     console.log(tugasBaru);
-    //     console.log(tugasResult);
-    //     console.log("Chart Kuis", chartKuis);
-    //     console.log("Chart Materi", chartMateri);
-    //     console.log("Persentase", percentage);
-    // }, []);
+    useEffect(() => {
+        //     console.log(barcode);
+        //     console.log(tugasBaru);
+        console.log(tugasResult);
+        console.log("FilledAnswer", filledAnswers);
+        //     console.log("Chart Kuis", chartKuis);
+        //     console.log("Chart Materi", chartMateri);
+        //     console.log("Persentase", percentage);
+    }, []);
 
     return (
         <MainLayout>
@@ -58,7 +60,8 @@ export default function DashboardSiswa({ auth }) {
                         <TesStatistik data={chartKuis} />
                         <ProgresMateri data={chartMateri} />
                     </div>
-                    {tugasResult != 0 && (
+                    {tugasResult.filter((item) => item.user_id == auth.user.id)
+                        .length != 0 && (
                         <ProgresTugas
                             nama={sortedTugasTerbaru[0].tugas.nama}
                             tenggat={FormatWaktu(

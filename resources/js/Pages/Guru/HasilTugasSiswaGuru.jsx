@@ -8,7 +8,7 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { imageNoData } from "../../../assets";
 
@@ -27,6 +27,12 @@ export default function HasilTugasSiswaGuru({ auth }) {
     useEffect(() => {
         console.log(tugas);
     }, []);
+
+    const handleLihatTugas = (userId, tugasId, id) => {
+        localStorage.setItem("USER_ID", userId);
+        localStorage.setItem("TUGAS_ID", tugasId);
+        router.visit(`/tugas-guru/detail-tugas-siswa/${id}`);
+    };
 
     return (
         <MainGuruLayout>
@@ -70,16 +76,26 @@ export default function HasilTugasSiswaGuru({ auth }) {
                                 />
                                 <TableItem
                                     item={
-                                        <Link
-                                            href={route(
-                                                "detail-tugas-siswa",
-                                                item.id
-                                            )}
+                                        // <Link
+                                        //     href={route(
+                                        //         "detail-tugas-siswa",
+                                        //         item.id
+                                        //     )}
+                                        // >
+                                        <button
+                                            type="button"
+                                            className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white"
+                                            onClick={() =>
+                                                handleLihatTugas(
+                                                    item.user_id,
+                                                    item.tugas_id,
+                                                    item.id
+                                                )
+                                            }
                                         >
-                                            <button className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white">
-                                                Lihat
-                                            </button>
-                                        </Link>
+                                            Lihat
+                                        </button>
+                                        // </Link>
                                     }
                                 />
                             </TableRow>

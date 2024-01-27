@@ -65,6 +65,9 @@ class TugasResultController extends Controller
 
         $tugasResult = TugasResult::with('tugas')->latest()->take(3)->get();
 
+
+
+
         return Inertia::render('Siswa/TugasSiswa', [
             'tugas' => $tugas,
             // 'tugasDenganInfoHasil' => $tugasDenganInfoHasil,
@@ -72,12 +75,24 @@ class TugasResultController extends Controller
         ]);
     }
 
-    public function edit_answer($id)
+    public function edit_answer(Tugas $tugas, $id)
     {
+        $user = Auth::user();
+
+
         $tugas = Tugas::where('id', $id)->first();
 
+        $tugasResult = TugasResult::with('tugas')->where(
+            [
+                'tugas_id' => $id,
+                'user_id' => auth()->user()->id
+            ]
+        )->first();
+
         return Inertia::render('Siswa/DetailTugasSiswa', [
-            'tugas' => $tugas
+            'tugas' => $tugas,
+            'tugasResult' => $tugasResult
+
         ]);
     }
 

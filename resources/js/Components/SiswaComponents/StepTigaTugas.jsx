@@ -1,4 +1,9 @@
-export default function StepTigaTugas({ deskripsi, namaFile, children }) {
+export default function StepTigaTugas({
+    deskripsi,
+    namaFile,
+    namaFileUpdate,
+    children,
+}) {
     return (
         <div>
             <div class="whitespace-pre-line text-xl text-justify mb-7 leading-8">
@@ -10,6 +15,7 @@ export default function StepTigaTugas({ deskripsi, namaFile, children }) {
                     htmlFor="foto"
                 >
                     {namaFile}
+                    {namaFileUpdate}
                 </label>
                 {/* <button>
                     <svg

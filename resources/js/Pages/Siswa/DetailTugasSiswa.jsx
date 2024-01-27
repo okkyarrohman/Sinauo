@@ -17,18 +17,19 @@ export default function DetailTugasSiswa({ auth }) {
 
     useEffect(() => {
         console.log(tugas);
+        console.log("Result Tugas", tugasResult);
         console.log(auth);
     }, []);
 
     const [step, setStep] = useState(1);
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: tugas.id,
+        id: tugasResult ? tugasResult.id : "",
         user_id: auth.user.id,
         tugas_id: tugas.id,
-        answer1: null,
-        answer2: null,
-        answer3: null,
-        answer4: null,
+        answer1: tugasResult ? tugasResult.answer1 : null,
+        answer2: tugasResult ? tugasResult.answer2 : null,
+        answer3: tugasResult ? tugasResult.answer3 : null,
+        answer4: tugasResult ? tugasResult.answer4 : null,
     });
 
     const handleStepChange = (newStep) => {
@@ -80,6 +81,7 @@ export default function DetailTugasSiswa({ auth }) {
                         {step === 3 && `${tugas.step3}`}
                         {step === 4 && `${tugas.step4}`}
                     </h1>
+                    {data.id}
                 </div>
             </div>
             <div className="w-4/5 mx-auto">
@@ -105,6 +107,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepDuaTugas
                                 deskripsi={tugas.deskripsi2}
                                 namaFile={data.answer2 ? data.answer2.name : ""}
+                                namaFileUpdate={
+                                    data.answer2 != null ? data.answer2 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
@@ -146,6 +151,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepTigaTugas
                                 deskripsi={tugas.deskripsi3}
                                 namaFile={data.answer3 ? data.answer3.name : ""}
+                                namaFileUpdate={
+                                    data.answer3 != null ? data.answer3 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
@@ -187,6 +195,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepEmpatTugas
                                 deskripsi={tugas.deskripsi4}
                                 namaFile={data.answer4 ? data.answer4.name : ""}
+                                namaFileUpdate={
+                                    data.answer4 != null ? data.answer4 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"

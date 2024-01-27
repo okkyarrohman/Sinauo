@@ -7,6 +7,13 @@ import { useEffect } from "react";
 export default function KuisSiswa({ auth }) {
     const { kategori, hasil } = usePage().props;
 
+    const isTenggatPassed = (deadline) => {
+        const currentDateTime = new Date();
+        const tenggatDateTime = new Date(deadline);
+
+        return currentDateTime.getTime() >= tenggatDateTime.getTime();
+    };
+
     useEffect(() => {
         console.log("Kategori", kategori);
         console.log("Result", hasil);
@@ -36,12 +43,16 @@ export default function KuisSiswa({ auth }) {
                             </div>
                             {/* <p className="ml-auto">{item.total_points}/100</p> */}
                             <Link
-                                className="ml-auto"
+                                className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ml-auto ${
+                                    isTenggatPassed(item.tenggat)
+                                        ? "bg-primary-light"
+                                        : "bg-primary"
+                                }`}
                                 href={route("mulai-kuis", item.id)}
+                                as="button"
+                                disabled={isTenggatPassed(item.tenggat)}
                             >
-                                <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
-                                    Mulai
-                                </button>
+                                Mulai
                             </Link>
                             {/* {item.total_points === "" ? (
                                 <Link

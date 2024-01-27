@@ -220,6 +220,7 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/tugas/detail-tugas/{id}', 'edit_answer')->name('detail-tugas');
         Route::post('/tugas/detail-tugas', 'store')->name('store-tugas');
         Route::post('/tugas/detail-tugas/{id}', 'update')->name('update-tugas');
+        // Route::post('/tugas/detail-tugas', 'update')->name('update-tugas');
     });
 
     Route::controller(DownloadController::class)->group(function () {

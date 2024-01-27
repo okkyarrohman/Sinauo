@@ -28,6 +28,13 @@ export default function TugasSiswa({ auth }) {
         });
     };
 
+    const isTenggatPassed = (deadline) => {
+        const currentDateTime = new Date();
+        const tenggatDateTime = new Date(deadline);
+
+        return currentDateTime.getTime() >= tenggatDateTime.getTime();
+    };
+
     useEffect(() => {
         console.log("Tugas", tugas);
         console.log("Tugas Result", tugasResult);
@@ -42,27 +49,26 @@ export default function TugasSiswa({ auth }) {
             </div>
             <h1 className="font-semibold text-2xl mb-10">Tugas</h1>
             {tugas.map((item, index) => {
-                let percentage = 0;
-                {
-                    item.tugas_result
-                        .filter(
-                            (resultItem) => resultItem.user_id == auth.user.id
-                        )
-                        .map((resultItem) => {
-                            const totalAnswers = [
-                                "answer1",
-                                "answer2",
-                                "answer3",
-                                "answer4",
-                            ];
-                            const filledAnswers = totalAnswers.filter(
-                                (answer) => resultItem[answer]
-                            );
+                const userTugasResult = item.tugas_result.filter(
+                    (resultItem) => resultItem.user_id == auth.user.id
+                );
 
-                            percentage =
-                                (filledAnswers.length / totalAnswers.length) *
-                                100;
-                        });
+                let percentage = 0;
+                if (userTugasResult.length > 0) {
+                    userTugasResult.map((resultItem) => {
+                        const totalAnswers = [
+                            "answer1",
+                            "answer2",
+                            "answer3",
+                            "answer4",
+                        ];
+                        const filledAnswers = totalAnswers.filter(
+                            (answer) => resultItem[answer]
+                        );
+
+                        percentage =
+                            (filledAnswers.length / totalAnswers.length) * 100;
+                    });
                 }
 
                 return (
@@ -82,45 +88,44 @@ export default function TugasSiswa({ auth }) {
                                 <ProgressBar progres={percentage} />
                             </div>
                             <p>
-                                {item.tugas_result.filter(
-                                    (resultItem) =>
-                                        resultItem.user_id == auth.user.id
-                                ).length != 0
-                                    ? item.tugas_result.filter(
-                                          (resultItem) =>
-                                              resultItem.user_id == auth.user.id
-                                      )[0].konfirmasi
+                                {userTugasResult.length != 0
+                                    ? userTugasResult[0].konfirmasi
                                     : "Belum Diterima"}
                             </p>
-                            <Link href={route("detail-tugas", item.id)}>
-                                <button className="font-bold py-2 px-5 bg-primary text-white rounded-[0.625rem]">
-                                    Detail
-                                </button>
+                            <Link
+                                href={route("detail-tugas", item.id)}
+                                className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
+                                    (userTugasResult.length != 0 &&
+                                        userTugasResult[0].konfirmasi !=
+                                            "Belum Diterima") ||
+                                    isTenggatPassed(item.tenggat)
+                                        ? "bg-primary-light"
+                                        : "bg-primary"
+                                }`}
+                                as="button"
+                                disabled={
+                                    (userTugasResult.length != 0 &&
+                                        userTugasResult[0].konfirmasi !=
+                                            "Belum Diterima") ||
+                                    isTenggatPassed(item.tenggat)
+                                }
+                            >
+                                Detail
                             </Link>
                             <button
                                 className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
-                                    item.tugas_result.filter(
-                                        (resultItem) =>
-                                            resultItem.user_id == auth.user.id
-                                    ).length != 0
+                                    userTugasResult.length != 0
                                         ? "bg-primary"
                                         : "bg-primary-light"
                                 }`}
                                 onClick={() =>
                                     triggerAlert(
-                                        item.tugas_result.filter(
-                                            (resultItem) =>
-                                                resultItem.user_id ==
-                                                auth.user.id
-                                        )[0].feedback
+                                        userTugasResult[0].feedback != null
+                                            ? userTugasResult[0].feedback
+                                            : "Belum Ada Feedback"
                                     )
                                 }
-                                disabled={
-                                    item.tugas_result.filter(
-                                        (resultItem) =>
-                                            resultItem.user_id == auth.user.id
-                                    ).length == 0
-                                }
+                                disabled={userTugasResult.length == 0}
                             >
                                 Feedback
                             </button>

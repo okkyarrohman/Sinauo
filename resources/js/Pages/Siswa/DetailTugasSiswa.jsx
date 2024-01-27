@@ -23,7 +23,7 @@ export default function DetailTugasSiswa({ auth }) {
 
     const [step, setStep] = useState(1);
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: tugasResult ? tugasResult.id : "",
+        // id: tugasResult ? tugasResult.id : "",
         user_id: auth.user.id,
         tugas_id: tugas.id,
         answer1: tugasResult ? tugasResult.answer1 : null,
@@ -36,10 +36,16 @@ export default function DetailTugasSiswa({ auth }) {
         setStep(newStep);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmitStore = (e) => {
         e.preventDefault();
         console.log(data);
-        post(route("update-tugas"));
+        post(route("store-tugas"));
+    };
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault();
+        console.log(data);
+        post(route("update-tugas", tugasResult.id));
     };
 
     const triggerAlert = () => {
@@ -108,7 +114,7 @@ export default function DetailTugasSiswa({ auth }) {
                                 deskripsi={tugas.deskripsi2}
                                 namaFile={data.answer2 ? data.answer2.name : ""}
                                 namaFileUpdate={
-                                    data.answer2 != null ? data.answer2 : ""
+                                    tugasResult ? tugasResult.answer2 : ""
                                 }
                             >
                                 <label
@@ -152,7 +158,7 @@ export default function DetailTugasSiswa({ auth }) {
                                 deskripsi={tugas.deskripsi3}
                                 namaFile={data.answer3 ? data.answer3.name : ""}
                                 namaFileUpdate={
-                                    data.answer3 != null ? data.answer3 : ""
+                                    tugasResult ? tugasResult.answer3 : ""
                                 }
                             >
                                 <label
@@ -196,7 +202,7 @@ export default function DetailTugasSiswa({ auth }) {
                                 deskripsi={tugas.deskripsi4}
                                 namaFile={data.answer4 ? data.answer4.name : ""}
                                 namaFileUpdate={
-                                    data.answer4 != null ? data.answer4 : ""
+                                    tugasResult ? tugasResult.answer4 : ""
                                 }
                             >
                                 <label
@@ -285,7 +291,14 @@ export default function DetailTugasSiswa({ auth }) {
                         </button>
                     </div>
                     <div className="ml-auto">
-                        <PrimaryButton text="Submit" onClick={handleSubmit} />
+                        <PrimaryButton
+                            text="Submit"
+                            onClick={
+                                tugasResult
+                                    ? handleSubmitUpdate
+                                    : handleSubmitStore
+                            }
+                        />
                     </div>
                 </div>
                 {/* <div className="flex">

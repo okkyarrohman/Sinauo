@@ -96,7 +96,7 @@ class TugasResultController extends Controller
         ]);
     }
 
-    public function update_answer(Request $request)
+    public function store(Request $request)
     {
         $tugas = new TugasResult();
         $tugas->user_id = $request->user_id;
@@ -133,6 +133,45 @@ class TugasResultController extends Controller
         $tugas->konfirmasi = "Belum Diterima";
 
 
+
+        $tugas->save();
+
+        return redirect()->route('tugas')->with('success', 'Berhasil Mengirim Jawaban Tugas');
+    }
+
+    public function update(Request $request)
+    {
+        $tugas =  TugasResult::find($request->id);
+        $tugas->user_id = $request->user_id;
+        $tugas->tugas_id = $request->tugas_id;
+        $tugas->answer1 = $request->answer1;
+
+        // Request column input type file
+        if ($request->hasFile('answer2')) {
+            $answer2 = $request->file('answer2');
+            $extension = $answer2->getClientOriginalName();
+            $answer2Name = date('YmdHis') . "." . $extension;
+            $answer2->move(storage_path('app/public/tugas/answer2/'), $answer2Name);
+            $tugas->answer2 = $answer2Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer3')) {
+            $answer3 = $request->file('answer3');
+            $extension = $answer3->getClientOriginalName();
+            $answer3Name = date('YmdHis') . "." . $extension;
+            $answer3->move(storage_path('app/public/tugas/answer3/'), $answer3Name);
+            $tugas->answer3 = $answer3Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('YmdHis') . "." . $extension;
+            $answer4->move(storage_path('app/public/tugas/answer4/'), $answer4Name);
+            $tugas->answer4 = $answer4Name;
+        }
 
         $tugas->save();
 

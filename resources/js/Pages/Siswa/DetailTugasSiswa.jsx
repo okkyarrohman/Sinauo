@@ -25,7 +25,7 @@ export default function DetailTugasSiswa({ auth }) {
         id: tugas.id,
         user_id: auth.user.id,
         tugas_id: tugas.id,
-        answer1: tugas.answer1,
+        answer1: null,
         answer2: null,
         answer3: null,
         answer4: null,
@@ -227,6 +227,57 @@ export default function DetailTugasSiswa({ auth }) {
                     </form>
                 </div>
                 <div className="flex">
+                    <div className="flex gap-8">
+                        <button
+                            className={`p-3 text-white rounded-full ${
+                                step == 1 ? "bg-gray-500" : "bg-primary"
+                            }`}
+                            disabled={step == 1}
+                            onClick={() => handleStepChange(step - 1)}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="3"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                />
+                            </svg>
+                        </button>
+                        <button
+                            className={`p-3 text-white rounded-full ${
+                                step == 4 ? "bg-gray-500" : "bg-primary"
+                            }`}
+                            disabled={step == 4}
+                            onClick={() => handleStepChange(step + 1)}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="3"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="ml-auto">
+                        <PrimaryButton text="Submit" onClick={handleSubmit} />
+                    </div>
+                </div>
+                {/* <div className="flex">
                     {step !== 1 && (
                         <SecondaryButton
                             text="Back"
@@ -246,7 +297,7 @@ export default function DetailTugasSiswa({ auth }) {
                             }
                         />
                     </div>
-                </div>
+                </div> */}
             </div>
         </MainLayout>
     );

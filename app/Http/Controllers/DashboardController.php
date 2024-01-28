@@ -49,9 +49,11 @@ class DashboardController extends Controller
 
     public function index()
     {
+        $absensi = Absensi::latest()->first();
 
         return Inertia::render('Guru/DashboardGuru', [
             'barMateri' => $this->barMateriGuru(),
+            'absensis' => $absensi,
         ]);
     }
 

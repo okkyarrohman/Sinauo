@@ -14,6 +14,7 @@ class KuisController extends Controller
 {
     public function index()
     {
+
         $categories = KategoriKuis::with(['soal' => function ($query) {
             $query->inRandomOrder()
                 ->with(['opsi' => function ($query) {
@@ -23,8 +24,15 @@ class KuisController extends Controller
             ->whereHas('soal')
             ->get();
 
+
+        $hasilKuis = Hasil::with('kategoriKuis')->where([
+            'user_id' => auth()->user()->id
+        ])->get();
+
+
         return Inertia::render('Siswa/KuisSiswa', [
-            'kategori' => $categories
+            'kategori' => $categories,
+            'hasilKuis' => $hasilKuis
         ]);
     }
 

@@ -17,28 +17,35 @@ export default function DetailTugasSiswa({ auth }) {
 
     useEffect(() => {
         console.log(tugas);
+        console.log("Result Tugas", tugasResult);
         console.log(auth);
     }, []);
 
     const [step, setStep] = useState(1);
     const { data, setData, post, processing, errors, reset } = useForm({
-        id: tugas.id,
+        // id: tugasResult ? tugasResult.id : "",
         user_id: auth.user.id,
         tugas_id: tugas.id,
-        answer1: tugas.answer1,
-        answer2: null,
-        answer3: null,
-        answer4: null,
+        answer1: tugasResult ? tugasResult.answer1 : null,
+        answer2: tugasResult ? tugasResult.answer2 : null,
+        answer3: tugasResult ? tugasResult.answer3 : null,
+        answer4: tugasResult ? tugasResult.answer4 : null,
     });
 
     const handleStepChange = (newStep) => {
         setStep(newStep);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmitStore = (e) => {
         e.preventDefault();
         console.log(data);
-        post(route("update-tugas"));
+        post(route("store-tugas"));
+    };
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault();
+        console.log(data);
+        post(route("update-tugas", tugasResult.id));
     };
 
     const triggerAlert = () => {
@@ -80,6 +87,7 @@ export default function DetailTugasSiswa({ auth }) {
                         {step === 3 && `${tugas.step3}`}
                         {step === 4 && `${tugas.step4}`}
                     </h1>
+                    {data.id}
                 </div>
             </div>
             <div className="w-4/5 mx-auto">
@@ -105,6 +113,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepDuaTugas
                                 deskripsi={tugas.deskripsi2}
                                 namaFile={data.answer2 ? data.answer2.name : ""}
+                                namaFileUpdate={
+                                    tugasResult ? tugasResult.answer2 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
@@ -146,6 +157,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepTigaTugas
                                 deskripsi={tugas.deskripsi3}
                                 namaFile={data.answer3 ? data.answer3.name : ""}
+                                namaFileUpdate={
+                                    tugasResult ? tugasResult.answer3 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
@@ -187,6 +201,9 @@ export default function DetailTugasSiswa({ auth }) {
                             <StepEmpatTugas
                                 deskripsi={tugas.deskripsi4}
                                 namaFile={data.answer4 ? data.answer4.name : ""}
+                                namaFileUpdate={
+                                    tugasResult ? tugasResult.answer4 : ""
+                                }
                             >
                                 <label
                                     className="block w-fit py-3 px-5 rounded-[0.625rem] bg-primary cursor-pointer"
@@ -227,6 +244,64 @@ export default function DetailTugasSiswa({ auth }) {
                     </form>
                 </div>
                 <div className="flex">
+                    <div className="flex gap-8">
+                        <button
+                            className={`p-3 text-white rounded-full ${
+                                step == 1 ? "bg-gray-500" : "bg-primary"
+                            }`}
+                            disabled={step == 1}
+                            onClick={() => handleStepChange(step - 1)}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="3"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                                />
+                            </svg>
+                        </button>
+                        <button
+                            className={`p-3 text-white rounded-full ${
+                                step == 4 ? "bg-gray-500" : "bg-primary"
+                            }`}
+                            disabled={step == 4}
+                            onClick={() => handleStepChange(step + 1)}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="3"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="ml-auto">
+                        <PrimaryButton
+                            text="Submit"
+                            onClick={
+                                tugasResult
+                                    ? handleSubmitUpdate
+                                    : handleSubmitStore
+                            }
+                        />
+                    </div>
+                </div>
+                {/* <div className="flex">
                     {step !== 1 && (
                         <SecondaryButton
                             text="Back"
@@ -246,7 +321,7 @@ export default function DetailTugasSiswa({ auth }) {
                             }
                         />
                     </div>
-                </div>
+                </div> */}
             </div>
         </MainLayout>
     );

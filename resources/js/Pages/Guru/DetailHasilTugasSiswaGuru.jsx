@@ -9,16 +9,24 @@ import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
+import { url } from "../../../assets/url";
 import Swal from "sweetalert2";
 
 export default function DetailHasilTugasSiswaGuru() {
     const { tugas } = usePage().props;
 
+    const userId = localStorage.getItem("USER_ID");
+    const tugasId = localStorage.getItem("TUGAS_ID");
+
+    const filteredTugas = tugas.filter(
+        (item) => item.tugas_id == tugasId && item.user_id == userId
+    );
+
     const { data, setData, post, processing, error } = useForm({
-        id: tugas[0].id,
-        tugas_id: tugas.tugas_id,
-        konfirmasi: tugas.konfirmasi,
-        feedback: tugas.feedback,
+        id: filteredTugas[0].id,
+        tugas_id: filteredTugas.tugas_id,
+        konfirmasi: filteredTugas.konfirmasi,
+        feedback: filteredTugas.feedback,
     });
 
     const head_title = ["Tahap", "Tanggal", "Hasil"];
@@ -58,6 +66,7 @@ export default function DetailHasilTugasSiswaGuru() {
 
     useEffect(() => {
         console.log("TUGAS ISI :", tugas);
+        console.log("TUGAS ISI TERFILTER :", filteredTugas);
     }, []);
 
     return (
@@ -69,7 +78,7 @@ export default function DetailHasilTugasSiswaGuru() {
             <Table>
                 <TableHead head={head_title} />
                 <TableBody>
-                    {tugas.map((item, index) => {
+                    {filteredTugas.map((item, index) => {
                         return (
                             <>
                                 <TableRow>
@@ -88,9 +97,17 @@ export default function DetailHasilTugasSiswaGuru() {
                                     <TableItem item={item.updated_at} />
                                     <TableItem
                                         item={
-                                            item.answer2 === null
-                                                ? "Belum Terjawab"
-                                                : item.answer2
+                                            item.answer2 === null ? (
+                                                "Belum Terjawab"
+                                            ) : (
+                                                <a
+                                                    href={`${url}tugas/answer2/${item.answer2}`}
+                                                    target="_blank"
+                                                    className="text-primary"
+                                                >
+                                                    {item.answer2}
+                                                </a>
+                                            )
                                         }
                                     />
                                 </TableRow>
@@ -99,9 +116,17 @@ export default function DetailHasilTugasSiswaGuru() {
                                     <TableItem item={item.updated_at} />
                                     <TableItem
                                         item={
-                                            item.answer3 === null
-                                                ? "Belum Terjawab"
-                                                : item.answer3
+                                            item.answer3 === null ? (
+                                                "Belum Terjawab"
+                                            ) : (
+                                                <a
+                                                    href={`${url}tugas/answer3/${item.answer3}`}
+                                                    target="_blank"
+                                                    className="text-primary"
+                                                >
+                                                    {item.answer3}
+                                                </a>
+                                            )
                                         }
                                     />
                                 </TableRow>
@@ -110,9 +135,17 @@ export default function DetailHasilTugasSiswaGuru() {
                                     <TableItem item={item.updated_at} />
                                     <TableItem
                                         item={
-                                            item.answer4 === null
-                                                ? "Belum Terjawab"
-                                                : item.answer4
+                                            item.answer4 === null ? (
+                                                "Belum Terjawab"
+                                            ) : (
+                                                <a
+                                                    href={`${url}tugas/answer4/${item.answer4}`}
+                                                    target="_blank"
+                                                    className="text-primary"
+                                                >
+                                                    {item.answer4}
+                                                </a>
+                                            )
                                         }
                                     />
                                 </TableRow>

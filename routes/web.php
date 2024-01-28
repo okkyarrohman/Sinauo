@@ -193,6 +193,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
         Route::get('/kuis', 'index')->name('kuis');
         Route::get('/kuis/mulai/{id}', 'index_mulai')->name('mulai-kuis');
         Route::get('/kuis/{id}', 'index_soal')->name('soal-kuis');
+        Route::get('/kuis/{id}', 'index_soal')->name('soal-kuis');
+
         Route::post('/kuis/store', 'store')->name('store.kuis');
         // Route::post('/kuis/store', 'store2')->name('store2.kuis');
         // Route::get('/referensi/lihat-referensi', 'read_siswa')->name('lihat-referensi');
@@ -216,7 +218,9 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::controller(TugasResultController::class)->group(function () {
         Route::get('/tugas', 'index_siswa')->name('tugas');
         Route::get('/tugas/detail-tugas/{id}', 'edit_answer')->name('detail-tugas');
-        Route::post('/tugas/detail-tugas', 'update_answer')->name('update-tugas');
+        Route::post('/tugas/detail-tugas', 'store')->name('store-tugas');
+        Route::post('/tugas/detail-tugas/{id}', 'update')->name('update-tugas');
+        // Route::post('/tugas/detail-tugas', 'update')->name('update-tugas');
     });
 
     Route::controller(DownloadController::class)->group(function () {

@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('answer2')->nullable();
             $table->string('answer3')->nullable();
             $table->string('answer4')->nullable();
-            $table->string('konfirmasi')->nullable();
+            $table->string('konfirmasi1')->nullable();
+            $table->string('konfirmasi2')->nullable();
+            $table->string('konfirmasi3')->nullable();
+            $table->string('konfirmasi4')->nullable();
             $table->string('feedback')->nullable();
             $table->timestamps();
         });

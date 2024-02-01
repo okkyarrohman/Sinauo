@@ -54,6 +54,34 @@ class TugasResultController extends Controller
         return redirect()->route('hasil-tugas', $tugas->tugas_id)->with('success', 'data berhasi dikirim');
     }
 
+    public function konfimasi1(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfimasi1 = $request->konfimasi1;
+        $tugas->save();
+    }
+
+    public function konfirmasi2(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi2 = $request->konfirmasi2;
+        $tugas->save();
+    }
+
+    public function konfirmasi3(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi3 = $request->konfirmasi3;
+        $tugas->save();
+    }
+
+    public function konfirmasi4(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi4 = $request->konfirmasi4;
+        $tugas->save();
+    }
+
 
     // Untuk Siswa
     public function index_siswa()

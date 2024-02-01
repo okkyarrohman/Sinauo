@@ -101,6 +101,11 @@ Route::group(['middleware' => 'role:guru'], function () {
         Route::get('/tugas-guru/hasil-tugas/{id}', 'hasilTugas')->name('hasil-tugas');
         Route::get('/tugas-guru/detail-tugas-siswa/{id}', 'detailTugas')->name('detail-tugas-siswa');
         Route::post('/tugas-guru/detail-tugas-siswa', 'updateFeedback')->name('updateFeedback.tugas');
+
+        Route::post('/tugas-guru/detail-tugas-siswa/konfirmasi1', 'konfirmasi1')->name('konfirmasi1.update');
+        Route::post('/tugas-guru/detail-tugas-siswa/konfirmasi2', 'konfirmasi2')->name('konfirmasi2.update');
+        Route::post('/tugas-guru/detail-tugas-siswa/konfirmasi3', 'konfirmasi3')->name('konfirmasi3.update');
+        Route::post('/tugas-guru/detail-tugas-siswa/konfirmasi4', 'konfirmasi4')->name('konfirmasi4.update');
     });
 
     Route::controller(DataSiswaController::class)->group(function () {

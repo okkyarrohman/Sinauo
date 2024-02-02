@@ -88,6 +88,8 @@ export default function HasilTugasSiswaGuru({ auth }) {
                             item.konfirmasi4 !== "Belum Diterima"
                         ) {
                             status = "Tahap 4 Dikonfirmasi";
+                        } else {
+                            status = "Belum Dikonfirmasi";
                         }
 
                         return (

@@ -133,21 +133,8 @@ export default function TugasSiswa({ auth }) {
                             </p>
                             <Link
                                 href={route("detail-tugas", item.id)}
-                                className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
-                                    (userTugasResult.length != 0 &&
-                                        userTugasResult[0].konfirmasi1 !=
-                                            "Belum Diterima") ||
-                                    isTenggatPassed(item.tenggat)
-                                        ? "bg-primary-light"
-                                        : "bg-primary"
-                                }`}
+                                className={`font-bold py-2 px-5 text-white rounded-[0.625rem] bg-primary`}
                                 as="button"
-                                disabled={
-                                    (userTugasResult.length != 0 &&
-                                        userTugasResult[0].konfirmasi1 !=
-                                            "Belum Diterima") ||
-                                    isTenggatPassed(item.tenggat)
-                                }
                             >
                                 Detail
                             </Link>

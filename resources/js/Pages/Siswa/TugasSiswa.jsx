@@ -53,6 +53,8 @@ export default function TugasSiswa({ auth }) {
                     (resultItem) => resultItem.user_id == auth.user.id
                 );
 
+                console.log("userTugasResult", userTugasResult);
+
                 let percentage = 0;
                 if (userTugasResult.length > 0) {
                     userTugasResult.map((resultItem) => {
@@ -69,6 +71,41 @@ export default function TugasSiswa({ auth }) {
                         percentage =
                             (filledAnswers.length / totalAnswers.length) * 100;
                     });
+                }
+
+                let status;
+                if (userTugasResult.length != 0) {
+                    if (
+                        userTugasResult[0].konfirmasi1 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi2 === "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi3 === "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi4 === "Belum Diterima"
+                    ) {
+                        status = "Tahap 1 Dikonfirmasi";
+                    } else if (
+                        userTugasResult[0].konfirmasi1 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi2 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi3 === "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi4 === "Belum Diterima"
+                    ) {
+                        status = "Tahap 2 Dikonfirmasi";
+                    } else if (
+                        userTugasResult[0].konfirmasi1 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi2 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi3 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi4 === "Belum Diterima"
+                    ) {
+                        status = "Tahap 3 Dikonfirmasi";
+                    } else if (
+                        userTugasResult[0].konfirmasi1 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi2 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi3 !== "Belum Diterima" &&
+                        userTugasResult[0].konfirmasi4 !== "Belum Diterima"
+                    ) {
+                        status = "Tahap 4 Dikonfirmasi";
+                    } else {
+                        status = "Belum Diterima";
+                    }
                 }
 
                 return (
@@ -88,15 +125,17 @@ export default function TugasSiswa({ auth }) {
                                 <ProgressBar progres={percentage} />
                             </div>
                             <p>
-                                {userTugasResult.length != 0
-                                    ? userTugasResult[0].konfirmasi
+                                {isTenggatPassed(item.tenggat)
+                                    ? "Lewat Tenggat"
+                                    : userTugasResult.length != 0
+                                    ? status
                                     : "Belum Diterima"}
                             </p>
                             <Link
                                 href={route("detail-tugas", item.id)}
                                 className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ${
                                     (userTugasResult.length != 0 &&
-                                        userTugasResult[0].konfirmasi !=
+                                        userTugasResult[0].konfirmasi1 !=
                                             "Belum Diterima") ||
                                     isTenggatPassed(item.tenggat)
                                         ? "bg-primary-light"
@@ -105,7 +144,7 @@ export default function TugasSiswa({ auth }) {
                                 as="button"
                                 disabled={
                                     (userTugasResult.length != 0 &&
-                                        userTugasResult[0].konfirmasi !=
+                                        userTugasResult[0].konfirmasi1 !=
                                             "Belum Diterima") ||
                                     isTenggatPassed(item.tenggat)
                                 }

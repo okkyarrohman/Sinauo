@@ -29,7 +29,10 @@ class TugasResultFactory extends Factory
             'answer2' => $this->faker->url(),
             'answer3' => $this->faker->url(),
             'answer4' => $this->faker->url(),
-            'konfirmasi' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi1' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi2' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi3' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi4' => $this->faker->randomElement(['Tolak', 'Terima']),
             'feedback' => $this->faker->sentence(),
         ];
     }

@@ -46,7 +46,10 @@ class TugasResultController extends Controller
     {
         $tugas = TugasResult::find($request->id);
 
-        $tugas->konfirmasi = $request->konfirmasi;
+        $tugas->konfirmasi1 = $request->konfirmasi1;
+        $tugas->konfirmasi2 = $request->konfirmasi2;
+        $tugas->konfirmasi3 = $request->konfirmasi3;
+        $tugas->konfirmasi4 = $request->konfirmasi4;
         $tugas->feedback = $request->feedback;
 
         $tugas->save();
@@ -158,7 +161,10 @@ class TugasResultController extends Controller
             $tugas->answer4 = $answer4Name;
         }
 
-        $tugas->konfirmasi = "Belum Diterima";
+        $tugas->konfirmasi1 = "Belum Diterima";
+        $tugas->konfirmasi2 = "Belum Diterima";
+        $tugas->konfirmasi3 = "Belum Diterima";
+        $tugas->konfirmasi4 = "Belum Diterima";
 
 
 

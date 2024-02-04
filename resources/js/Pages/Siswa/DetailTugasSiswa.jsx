@@ -330,18 +330,68 @@ export default function DetailTugasSiswa({ auth }) {
                             </svg>
                         </button>
                     </div>
-                    {(tugasResult &&
-                        tugasResult.konfirmasi1 != "Belum Diterima") ||
-                    isTenggatPassed(tugas.tenggat) ? null : (
+                    {step === 1 && (
                         <div className="ml-auto">
-                            <PrimaryButton
-                                text="Submit"
-                                onClick={
-                                    tugasResult
-                                        ? handleSubmitUpdate
-                                        : handleSubmitStore
-                                }
-                            />
+                            {(tugasResult &&
+                                tugasResult.konfirmasi1 != "Belum Diterima") ||
+                            isTenggatPassed(tugas.tenggat) ? null : (
+                                <PrimaryButton
+                                    text="Submit"
+                                    onClick={
+                                        tugasResult
+                                            ? handleSubmitUpdate
+                                            : handleSubmitStore
+                                    }
+                                />
+                            )}
+                        </div>
+                    )}
+                    {step === 2 && (
+                        <div className="ml-auto">
+                            {(tugasResult &&
+                                tugasResult.konfirmasi2 != "Belum Diterima") ||
+                            isTenggatPassed(tugas.tenggat) ? null : (
+                                <PrimaryButton
+                                    text="Submit"
+                                    onClick={
+                                        tugasResult
+                                            ? handleSubmitUpdate
+                                            : handleSubmitStore
+                                    }
+                                />
+                            )}
+                        </div>
+                    )}
+                    {step === 3 && (
+                        <div className="ml-auto">
+                            {(tugasResult &&
+                                tugasResult.konfirmasi3 != "Belum Diterima") ||
+                            isTenggatPassed(tugas.tenggat) ? null : (
+                                <PrimaryButton
+                                    text="Submit"
+                                    onClick={
+                                        tugasResult
+                                            ? handleSubmitUpdate
+                                            : handleSubmitStore
+                                    }
+                                />
+                            )}
+                        </div>
+                    )}
+                    {step === 4 && (
+                        <div className="ml-auto">
+                            {(tugasResult &&
+                                tugasResult.konfirmasi4 != "Belum Diterima") ||
+                            isTenggatPassed(tugas.tenggat) ? null : (
+                                <PrimaryButton
+                                    text="Submit"
+                                    onClick={
+                                        tugasResult
+                                            ? handleSubmitUpdate
+                                            : handleSubmitStore
+                                    }
+                                />
+                            )}
                         </div>
                     )}
                 </div>

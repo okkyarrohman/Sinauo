@@ -4,13 +4,13 @@ import TableBody from "@/Components/GeneralComponents/TableBody";
 import TableHead from "@/Components/GeneralComponents/TableHead";
 import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
-import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import MainLayout from "@/Layouts/MainLayout";
-import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { url } from "../../../assets/url";
 import Swal from "sweetalert2";
+import CheckBoxKonfirmasiTugas from "@/Components/GuruComponents/CheckBoxKonfirmasiTugas";
+import DropdownKonfirmasiTugas from "@/Components/GuruComponents/DropdownKonfirmasiTugas";
 
 export default function DetailHasilTugasSiswaGuru() {
     const { tugas } = usePage().props;
@@ -24,20 +24,23 @@ export default function DetailHasilTugasSiswaGuru() {
 
     const { data, setData, post, processing, error } = useForm({
         id: filteredTugas[0].id,
-        tugas_id: filteredTugas.tugas_id,
-        konfirmasi: filteredTugas.konfirmasi,
-        feedback: filteredTugas.feedback,
+        tugas_id: filteredTugas[0].tugas_id,
+        konfirmasi1: filteredTugas[0].konfirmasi1,
+        konfirmasi2: filteredTugas[0].konfirmasi2,
+        konfirmasi3: filteredTugas[0].konfirmasi3,
+        konfirmasi4: filteredTugas[0].konfirmasi4,
+        feedback: filteredTugas[0].feedback,
     });
 
-    const head_title = ["Tahap", "Tanggal", "Hasil"];
-    const [isOpen, setIsOpen] = useState(false);
+    const head_title = ["Tahap", "Tanggal", "Hasil", "Konfirmasi"];
+    // const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState("");
 
-    const optionDropdown = ["Terima", "Tolak"];
+    // const optionDropdown = ["Terima", "Tolak"];
 
-    const handleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
+    // const handleDropdown = () => {
+    //     setIsOpen(!isOpen);
+    // };
 
     const handleSelectOption = (option) => {
         setSelectedValue(option);
@@ -65,8 +68,9 @@ export default function DetailHasilTugasSiswaGuru() {
     };
 
     useEffect(() => {
-        console.log("TUGAS ISI :", tugas);
-        console.log("TUGAS ISI TERFILTER :", filteredTugas);
+        // console.log("TUGAS ISI :", tugas);
+        // console.log("TUGAS ISI TERFILTER :", filteredTugas);
+        console.log(data.konfirmasi1);
     }, []);
 
     return (
@@ -75,148 +79,152 @@ export default function DetailHasilTugasSiswaGuru() {
             <div className="mb-10">
                 <BackButton />
             </div>
-            <Table>
-                <TableHead head={head_title} />
-                <TableBody>
-                    {filteredTugas.map((item, index) => {
-                        return (
-                            <>
-                                <TableRow>
-                                    <TableItem item={`Step 1`} />
-                                    <TableItem item={item.updated_at} />
-                                    <TableItem
-                                        item={
-                                            item.answer1 === null
-                                                ? "Belum Terjawab"
-                                                : item.answer1
-                                        }
-                                    />
-                                </TableRow>
-                                <TableRow>
-                                    <TableItem item={`Step 2`} />
-                                    <TableItem item={item.updated_at} />
-                                    <TableItem
-                                        item={
-                                            item.answer2 === null ? (
-                                                "Belum Terjawab"
-                                            ) : (
-                                                <a
-                                                    href={`${url}tugas/answer2/${item.answer2}`}
-                                                    target="_blank"
-                                                    className="text-primary"
-                                                >
-                                                    {item.answer2}
-                                                </a>
-                                            )
-                                        }
-                                    />
-                                </TableRow>
-                                <TableRow>
-                                    <TableItem item={`Step 3`} />
-                                    <TableItem item={item.updated_at} />
-                                    <TableItem
-                                        item={
-                                            item.answer3 === null ? (
-                                                "Belum Terjawab"
-                                            ) : (
-                                                <a
-                                                    href={`${url}tugas/answer3/${item.answer3}`}
-                                                    target="_blank"
-                                                    className="text-primary"
-                                                >
-                                                    {item.answer3}
-                                                </a>
-                                            )
-                                        }
-                                    />
-                                </TableRow>
-                                <TableRow>
-                                    <TableItem item={`Step 4`} />
-                                    <TableItem item={item.updated_at} />
-                                    <TableItem
-                                        item={
-                                            item.answer4 === null ? (
-                                                "Belum Terjawab"
-                                            ) : (
-                                                <a
-                                                    href={`${url}tugas/answer4/${item.answer4}`}
-                                                    target="_blank"
-                                                    className="text-primary"
-                                                >
-                                                    {item.answer4}
-                                                </a>
-                                            )
-                                        }
-                                    />
-                                </TableRow>
-                            </>
-                        );
-                    })}
-                </TableBody>
-            </Table>
             <form onSubmit={handleSubmit}>
-                <h1 className="font-semibold text-2xl mt-10 mb-4">
-                    Konfirmasi
-                </h1>
-                <div className="relative">
-                    <div className="px-4 py-3 bg-white border border-[#BDBDBD] w-60 rounded">
-                        <button
-                            className="flex items-center justify-between w-full"
-                            type="button"
-                            onClick={handleDropdown}
-                        >
-                            <span>{selectedValue || "Konfirmasi Tugas"}</span>
-                            <div>
-                                {!isOpen ? (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="w-4 h-4"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                <Table>
+                    <TableHead head={head_title} />
+                    <TableBody>
+                        {filteredTugas.map((item, index) => {
+                            return (
+                                <>
+                                    <TableRow>
+                                        <TableItem item={`Step 1`} />
+                                        <TableItem item={item.updated_at} />
+                                        <TableItem
+                                            item={
+                                                item.answer1 === null
+                                                    ? "Belum Terjawab"
+                                                    : item.answer1
+                                            }
+                                            className="block w-72"
+                                            wrap
                                         />
-                                    </svg>
-                                ) : (
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="w-4 h-4"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                                        <TableItem
+                                            item={
+                                                <DropdownKonfirmasiTugas
+                                                    id="konfirmasi1"
+                                                    selectedValue={
+                                                        data.konfirmasi1
+                                                    }
+                                                    onSelect={(value) =>
+                                                        setData(
+                                                            "konfirmasi1",
+                                                            value
+                                                        )
+                                                    }
+                                                />
+                                            }
                                         />
-                                    </svg>
-                                )}
-                            </div>
-                        </button>
-                    </div>
-                    {isOpen && (
-                        <div className="w-60 mt-2 rounded border border-[#BDBDBD] bg-white">
-                            {optionDropdown.map((item, index) => {
-                                return (
-                                    <button
-                                        key={index}
-                                        className="block w-full text-left px-4 py-3 border-b border-[#BDBDBD]"
-                                        onClick={() => handleSelectOption(item)}
-                                    >
-                                        {item}
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableItem item={`Step 2`} />
+                                        <TableItem item={item.updated_at} />
+                                        <TableItem
+                                            item={
+                                                item.answer2 === null ? (
+                                                    "Belum Terjawab"
+                                                ) : (
+                                                    <a
+                                                        href={`${url}tugas/answer2/${item.answer2}`}
+                                                        target="_blank"
+                                                        className="text-primary block w-72 overflow-ellipsis overflow-hidden"
+                                                    >
+                                                        {item.answer2}
+                                                    </a>
+                                                )
+                                            }
+                                        />
+                                        <TableItem
+                                            item={
+                                                <DropdownKonfirmasiTugas
+                                                    id="konfirmasi2"
+                                                    selectedValue={
+                                                        data.konfirmasi2
+                                                    }
+                                                    onSelect={(value) =>
+                                                        setData(
+                                                            "konfirmasi2",
+                                                            value
+                                                        )
+                                                    }
+                                                />
+                                            }
+                                        />
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableItem item={`Step 3`} />
+                                        <TableItem item={item.updated_at} />
+                                        <TableItem
+                                            item={
+                                                item.answer3 === null ? (
+                                                    "Belum Terjawab"
+                                                ) : (
+                                                    <a
+                                                        href={`${url}tugas/answer3/${item.answer3}`}
+                                                        target="_blank"
+                                                        className="text-primary block w-72 overflow-ellipsis overflow-hidden"
+                                                    >
+                                                        {item.answer3}
+                                                    </a>
+                                                )
+                                            }
+                                        />
+                                        <TableItem
+                                            item={
+                                                <DropdownKonfirmasiTugas
+                                                    id="konfirmasi3"
+                                                    selectedValue={
+                                                        data.konfirmasi3
+                                                    }
+                                                    onSelect={(value) =>
+                                                        setData(
+                                                            "konfirmasi3",
+                                                            value
+                                                        )
+                                                    }
+                                                />
+                                            }
+                                        />
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableItem item={`Step 4`} />
+                                        <TableItem item={item.updated_at} />
+                                        <TableItem
+                                            item={
+                                                item.answer4 === null ? (
+                                                    "Belum Terjawab"
+                                                ) : (
+                                                    <a
+                                                        href={`${url}tugas/answer4/${item.answer4}`}
+                                                        target="_blank"
+                                                        className="text-primary block w-72 overflow-ellipsis overflow-hidden"
+                                                    >
+                                                        {item.answer4}
+                                                    </a>
+                                                )
+                                            }
+                                        />
+                                        <TableItem
+                                            item={
+                                                <DropdownKonfirmasiTugas
+                                                    id="konfirmasi4"
+                                                    selectedValue={
+                                                        data.konfirmasi4
+                                                    }
+                                                    onSelect={(value) =>
+                                                        setData(
+                                                            "konfirmasi4",
+                                                            value
+                                                        )
+                                                    }
+                                                />
+                                            }
+                                        />
+                                    </TableRow>
+                                </>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
                 <h1 className="font-semibold text-2xl mt-10 mb-4">Feedback</h1>
                 <div className="mb-6">
                     <textarea
@@ -229,15 +237,12 @@ export default function DetailHasilTugasSiswaGuru() {
                         onChange={(e) => setData("feedback", e.target.value)}
                     ></textarea>
                 </div>
-                {/* <Link href={route("tugas-guru")}> */}
                 <button
                     className="w-full bg-primary text-white font-medium text-xl rounded-lg py-2"
-                    // onClick={handleSubmit}
                     type="submit"
                 >
                     Submit
                 </button>
-                {/* </Link> */}
             </form>
         </MainGuruLayout>
     );

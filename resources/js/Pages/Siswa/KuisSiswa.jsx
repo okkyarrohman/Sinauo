@@ -5,7 +5,11 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
-    const { kategori, hasil } = usePage().props;
+    const { kategori, hasilKuis } = usePage().props;
+
+    const filteredHasilKuisById = hasilKuis.filter(
+        (hasil) => hasil.user_id == auth.user.id
+    );
 
     const isTenggatPassed = (deadline) => {
         const currentDateTime = new Date();
@@ -16,7 +20,7 @@ export default function KuisSiswa({ auth }) {
 
     useEffect(() => {
         console.log("Kategori", kategori);
-        console.log("Result", hasil);
+        console.log("Result", hasilKuis);
     }, []);
 
     return (
@@ -28,6 +32,10 @@ export default function KuisSiswa({ auth }) {
             </div>
             <h1 className="font-semibold text-2xl mb-10">Kuis Pembelajaran</h1>
             {kategori.map((item, index) => {
+                const pointUserByKategori = filteredHasilKuisById.find(
+                    (hasil) => hasil.kategori_kuis_id == item.id
+                );
+
                 return (
                     <div key={index} className="p-6 bg-white rounded-2xl mb-4">
                         <div className="w-[91%] flex items-center">
@@ -41,16 +49,26 @@ export default function KuisSiswa({ auth }) {
                                 <p>{item.soal.length} Soal</p>
                                 <p>{item.waktu} Menit</p>
                             </div>
-                            {/* <p className="ml-auto">{item.total_points}/100</p> */}
+                            <p className="ml-auto">
+                                {pointUserByKategori &&
+                                pointUserByKategori.length != 0
+                                    ? pointUserByKategori.total_points
+                                    : 0}
+                                /100
+                            </p>
                             <Link
                                 className={`font-bold py-2 px-5 text-white rounded-[0.625rem] ml-auto ${
-                                    isTenggatPassed(item.tenggat)
+                                    isTenggatPassed(item.tenggat) ||
+                                    pointUserByKategori
                                         ? "bg-primary-light"
                                         : "bg-primary"
                                 }`}
                                 href={route("mulai-kuis", item.id)}
                                 as="button"
-                                disabled={isTenggatPassed(item.tenggat)}
+                                disabled={
+                                    isTenggatPassed(item.tenggat) ||
+                                    pointUserByKategori
+                                }
                             >
                                 Mulai
                             </Link>

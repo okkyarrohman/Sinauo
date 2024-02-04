@@ -18,7 +18,10 @@ class TugasResult extends Model
         'asnwer2',
         'asnwer3',
         'asnwer4',
-        'konfirmasi',
+        'konfirmasi1',
+        'konfirmasi2',
+        'konfirmasi3',
+        'konfirmasi4',
         'feedback'
     ];
 

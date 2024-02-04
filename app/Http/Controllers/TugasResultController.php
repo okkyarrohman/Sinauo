@@ -46,12 +46,43 @@ class TugasResultController extends Controller
     {
         $tugas = TugasResult::find($request->id);
 
-        $tugas->konfirmasi = $request->konfirmasi;
+        $tugas->konfirmasi1 = $request->konfirmasi1;
+        $tugas->konfirmasi2 = $request->konfirmasi2;
+        $tugas->konfirmasi3 = $request->konfirmasi3;
+        $tugas->konfirmasi4 = $request->konfirmasi4;
         $tugas->feedback = $request->feedback;
 
         $tugas->save();
 
         return redirect()->route('hasil-tugas', $tugas->tugas_id)->with('success', 'data berhasi dikirim');
+    }
+
+    public function konfimasi1(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfimasi1 = $request->konfimasi1;
+        $tugas->save();
+    }
+
+    public function konfirmasi2(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi2 = $request->konfirmasi2;
+        $tugas->save();
+    }
+
+    public function konfirmasi3(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi3 = $request->konfirmasi3;
+        $tugas->save();
+    }
+
+    public function konfirmasi4(Request $request)
+    {
+        $tugas = TugasResult::find($request->id);
+        $tugas->konfirmasi4 = $request->konfirmasi4;
+        $tugas->save();
     }
 
 
@@ -130,7 +161,10 @@ class TugasResultController extends Controller
             $tugas->answer4 = $answer4Name;
         }
 
-        $tugas->konfirmasi = "Belum Diterima";
+        $tugas->konfirmasi1 = "Belum Diterima";
+        $tugas->konfirmasi2 = "Belum Diterima";
+        $tugas->konfirmasi3 = "Belum Diterima";
+        $tugas->konfirmasi4 = "Belum Diterima";
 
 
 

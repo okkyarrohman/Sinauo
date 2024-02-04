@@ -21,6 +21,13 @@ export default function DetailTugasSiswa({ auth }) {
         console.log(auth);
     }, []);
 
+    const isTenggatPassed = (deadline) => {
+        const currentDateTime = new Date();
+        const tenggatDateTime = new Date(deadline);
+
+        return currentDateTime.getTime() >= tenggatDateTime.getTime();
+    };
+
     const [step, setStep] = useState(1);
     const { data, setData, post, processing, errors, reset } = useForm({
         // id: tugasResult ? tugasResult.id : "",
@@ -67,12 +74,34 @@ export default function DetailTugasSiswa({ auth }) {
         });
     };
 
-    // const handleInputChange = (name, value) => {
-    //     setData((prevInput) => ({
-    //         ...prevInput,
-    //         [name]: value,
-    //     }));
-    // };
+    const getTextColor = (step) => {
+        const konfirmasiValue = getKonfirmasiValue(step);
+
+        // Add your logic to determine the text color based on the konfirmasi value
+        switch (konfirmasiValue) {
+            case "Terima":
+                return "text-green-500";
+            case "Tolak":
+                return "text-red-500";
+            default:
+                return "text-black";
+        }
+    };
+
+    const getKonfirmasiValue = (step) => {
+        switch (step) {
+            case 1:
+                return tugasResult.konfirmasi1;
+            case 2:
+                return tugasResult.konfirmasi2;
+            case 3:
+                return tugasResult.konfirmasi3;
+            case 4:
+                return tugasResult.konfirmasi4;
+            default:
+                return "";
+        }
+    };
 
     return (
         <MainLayout>
@@ -87,7 +116,18 @@ export default function DetailTugasSiswa({ auth }) {
                         {step === 3 && `${tugas.step3}`}
                         {step === 4 && `${tugas.step4}`}
                     </h1>
-                    {data.id}
+                    {tugasResult && (
+                        <h1
+                            className={`font-bold text-base mt-4 italic ${getTextColor(
+                                step
+                            )}`}
+                        >
+                            {step === 1 && `${tugasResult.konfirmasi1}`}
+                            {step === 2 && `${tugasResult.konfirmasi2}`}
+                            {step === 3 && `${tugasResult.konfirmasi3}`}
+                            {step === 4 && `${tugasResult.konfirmasi4}`}
+                        </h1>
+                    )}
                 </div>
             </div>
             <div className="w-4/5 mx-auto">
@@ -290,16 +330,20 @@ export default function DetailTugasSiswa({ auth }) {
                             </svg>
                         </button>
                     </div>
-                    <div className="ml-auto">
-                        <PrimaryButton
-                            text="Submit"
-                            onClick={
-                                tugasResult
-                                    ? handleSubmitUpdate
-                                    : handleSubmitStore
-                            }
-                        />
-                    </div>
+                    {(tugasResult &&
+                        tugasResult.konfirmasi1 != "Belum Diterima") ||
+                    isTenggatPassed(tugas.tenggat) ? null : (
+                        <div className="ml-auto">
+                            <PrimaryButton
+                                text="Submit"
+                                onClick={
+                                    tugasResult
+                                        ? handleSubmitUpdate
+                                        : handleSubmitStore
+                                }
+                            />
+                        </div>
+                    )}
                 </div>
                 {/* <div className="flex">
                     {step !== 1 && (

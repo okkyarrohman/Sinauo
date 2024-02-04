@@ -59,29 +59,54 @@ export default function HasilTugasSiswaGuru({ auth }) {
                         const percentage =
                             (filledAnswers.length / totalAnswers.length) * 100;
 
+                        let status;
+                        if (
+                            item.konfirmasi1 !== "Belum Diterima" &&
+                            item.konfirmasi2 === "Belum Diterima" &&
+                            item.konfirmasi3 === "Belum Diterima" &&
+                            item.konfirmasi4 === "Belum Diterima"
+                        ) {
+                            status = "Tahap 1 Dikonfirmasi";
+                        } else if (
+                            item.konfirmasi1 !== "Belum Diterima" &&
+                            item.konfirmasi2 !== "Belum Diterima" &&
+                            item.konfirmasi3 === "Belum Diterima" &&
+                            item.konfirmasi4 === "Belum Diterima"
+                        ) {
+                            status = "Tahap 2 Dikonfirmasi";
+                        } else if (
+                            item.konfirmasi1 !== "Belum Diterima" &&
+                            item.konfirmasi2 !== "Belum Diterima" &&
+                            item.konfirmasi3 !== "Belum Diterima" &&
+                            item.konfirmasi4 === "Belum Diterima"
+                        ) {
+                            status = "Tahap 3 Dikonfirmasi";
+                        } else if (
+                            item.konfirmasi1 !== "Belum Diterima" &&
+                            item.konfirmasi2 !== "Belum Diterima" &&
+                            item.konfirmasi3 !== "Belum Diterima" &&
+                            item.konfirmasi4 !== "Belum Diterima"
+                        ) {
+                            status = "Tahap 4 Dikonfirmasi";
+                        } else {
+                            status = "Belum Dikonfirmasi";
+                        }
+
                         return (
                             <TableRow key={index}>
                                 <TableItem item={index + 1} />
-                                <TableItem item={item.user.name} />
+                                <TableItem
+                                    item={item.user.name}
+                                    className="w-72"
+                                    wrap
+                                />
                                 <TableItem item={item.tugas.nama} />
                                 <TableItem
                                     item={<ProgressBar progres={percentage} />}
                                 />
+                                <TableItem item={status} wrap />
                                 <TableItem
                                     item={
-                                        item.konfirmasi === null
-                                            ? "Belum Dikonfirmasi"
-                                            : item.konfirmasi
-                                    }
-                                />
-                                <TableItem
-                                    item={
-                                        // <Link
-                                        //     href={route(
-                                        //         "detail-tugas-siswa",
-                                        //         item.id
-                                        //     )}
-                                        // >
                                         <button
                                             type="button"
                                             className="bg-primary rounded-[0.625rem] py-2 px-6 font-bold text-white"

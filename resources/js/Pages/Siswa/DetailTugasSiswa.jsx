@@ -333,7 +333,7 @@ export default function DetailTugasSiswa({ auth }) {
                     {step === 1 && (
                         <div className="ml-auto">
                             {(tugasResult &&
-                                tugasResult.konfirmasi1 != "Belum Diterima") ||
+                                tugasResult.konfirmasi1 == "Terima") ||
                             isTenggatPassed(tugas.tenggat) ? null : (
                                 <PrimaryButton
                                     text="Submit"
@@ -349,7 +349,7 @@ export default function DetailTugasSiswa({ auth }) {
                     {step === 2 && (
                         <div className="ml-auto">
                             {(tugasResult &&
-                                tugasResult.konfirmasi2 != "Belum Diterima") ||
+                                tugasResult.konfirmasi2 == "Terima") ||
                             isTenggatPassed(tugas.tenggat) ? null : (
                                 <PrimaryButton
                                     text="Submit"
@@ -365,7 +365,7 @@ export default function DetailTugasSiswa({ auth }) {
                     {step === 3 && (
                         <div className="ml-auto">
                             {(tugasResult &&
-                                tugasResult.konfirmasi3 != "Belum Diterima") ||
+                                tugasResult.konfirmasi3 == "Terima") ||
                             isTenggatPassed(tugas.tenggat) ? null : (
                                 <PrimaryButton
                                     text="Submit"
@@ -381,7 +381,7 @@ export default function DetailTugasSiswa({ auth }) {
                     {step === 4 && (
                         <div className="ml-auto">
                             {(tugasResult &&
-                                tugasResult.konfirmasi4 != "Belum Diterima") ||
+                                tugasResult.konfirmasi4 == "Terima") ||
                             isTenggatPassed(tugas.tenggat) ? null : (
                                 <PrimaryButton
                                     text="Submit"

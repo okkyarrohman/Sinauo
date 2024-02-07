@@ -27,16 +27,16 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
 
-        User::factory(20)->create();
+        // User::factory(20)->create();
         Absensi::factory(3)->create();
-        Tutorial::factory(5)->create();
-        Referensi::factory(5)->create();
-        Tugas::factory(5)->create();
-        TugasResult::factory(20)->create();
-        Materi::factory(5)->create();
+        // Tutorial::factory(5)->create();
+        // Referensi::factory(5)->create();
+        // Tugas::factory(5)->create();
+        // TugasResult::factory(20)->create();
+        // Materi::factory(5)->create();
 
-        KategoriKuis::factory(3)->create();
-        Soal::factory(10)->create();
-        Opsi::factory(80)->create();
+        // KategoriKuis::factory(3)->create();
+        // Soal::factory(10)->create();
+        // Opsi::factory(80)->create();
     }
 }

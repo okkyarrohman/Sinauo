@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('tenggat')->nullable();
 
             $table->string('step1')->nullable();
-            $table->string('deskripsi1')->nullable();
+            $table->longText('deskripsi1')->nullable();
 
             $table->string('step2')->nullable();
-            $table->string('deskripsi2')->nullable();
+            $table->longText('deskripsi2')->nullable();
 
             $table->string('step3')->nullable();
-            $table->string('deskripsi3')->nullable();
+            $table->longText('deskripsi3')->nullable();
 
             $table->string('step4')->nullable();
-            $table->string('deskripsi4')->nullable();
+            $table->longText('deskripsi4')->nullable();
 
             $table->timestamps();
         });

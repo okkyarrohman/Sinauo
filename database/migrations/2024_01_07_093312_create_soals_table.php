@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('kategori_kuis_id');
             $table->foreign('kategori_kuis_id')->references('id')->on('kategori_kuis')->onDelete('cascade');
-            $table->string('soal');
+            $table->longText('soal');
             $table->string('gambar')->nullable();
             $table->timestamps();
         });

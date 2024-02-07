@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('tugas_id')->nullable();
             $table->foreign('tugas_id')->references('id')->on('tugas')->onDelete('cascade');
-            $table->string('answer1')->nullable();
+            $table->longText('answer1')->nullable();
             $table->string('answer2')->nullable();
             $table->string('answer3')->nullable();
             $table->string('answer4')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('konfirmasi2')->nullable();
             $table->string('konfirmasi3')->nullable();
             $table->string('konfirmasi4')->nullable();
-            $table->string('feedback')->nullable();
+            $table->longText('feedback')->nullable();
             $table->timestamps();
         });
     }

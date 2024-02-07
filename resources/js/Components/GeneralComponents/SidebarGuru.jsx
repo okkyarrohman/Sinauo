@@ -421,9 +421,11 @@ export default function SidebarGuru() {
                 <ul className="*:text-lg *:font-semibold *:h-14 *:pl-12">
                     <Link
                         className={`flex hover:bg-primary-light hover:text-white ${
-                            url === "/panduan" ? "bg-primary text-white" : ""
+                            url === "/panduan-guru"
+                                ? "bg-primary text-white"
+                                : ""
                         }`}
-                        href={route("panduan")}
+                        href={route("panduan-guru")}
                     >
                         <li className="flex items-center gap-1">
                             <svg

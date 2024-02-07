@@ -18,6 +18,18 @@ class UserSeeder extends Seeder
             'email' => 'guru@sinauo.com',
             'password' => bcrypt('guru123'),
         ]);
+
+        $guru = User::create([
+            'name' => 'Rara Kirana Aisyah Anwar',
+            'email' => 'rarakirana0130@gmail.com',
+            'password' => bcrypt('rara123')
+        ]);
+
+        $guru = User::create([
+            'name' => 'Ferdinan',
+            'email' => 'ferdinansmkn6@gmail.com',
+            'password' => bcrypt('ferdinan123')
+        ]);
         $guru->assignRole('guru');
 
         $siswa = User::create([

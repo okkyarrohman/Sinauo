@@ -164,6 +164,10 @@ Route::group(['middleware' => 'role:guru'], function () {
     Route::get('/kuis-guru/hasil-kuis', function () {
         return Inertia::render('Guru/HasilKuisGuru');
     })->name('hasil-kuis');
+
+    Route::get('/panduan-guru', function () {
+        return Inertia::render('Guru/PanduanGuru');
+    })->name('panduan-guru');
 });
 
 

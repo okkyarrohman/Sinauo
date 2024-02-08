@@ -1,10 +1,8 @@
 import BackButton from "@/Components/GeneralComponents/BackButton";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import MainLayout from "@/Layouts/MainLayout";
-import { imageBuku, placeholderMateri } from "../../../assets";
 import MateriBanner from "@/Components/SiswaComponents/MateriBanner";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import CardSubmateri from "@/Components/SiswaComponents/CardSubmateri";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
@@ -12,12 +10,6 @@ import { url } from "../../../assets/url";
 export default function DetailMateriSiswa({ auth }) {
     const { submateri, materi } = usePage().props;
     const statusSelesai = submateri.filter((item) => item.status === "Selesai");
-
-    useEffect(() => {
-        console.log(submateri);
-        console.log(materi);
-        console.log(statusSelesai);
-    }, []);
 
     return (
         <MainLayout>

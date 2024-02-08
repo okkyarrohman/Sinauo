@@ -2,17 +2,10 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { placeholderTutorial } from "../../../assets";
-// import Cover1 from "../../../../storage/app/public/tutorial/cover/";
-import { useEffect } from "react";
 import { url } from "../../../assets/url";
 
 export default function TutorialSiswa({ auth }) {
     const { tutorial } = usePage().props;
-
-    useEffect(() => {
-        console.log(tutorial);
-    }, []);
 
     return (
         <MainLayout>

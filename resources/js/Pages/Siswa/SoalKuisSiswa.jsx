@@ -21,12 +21,6 @@ export default function SoalKuisSiswa() {
     const [minutes, setMinutes] = useState(kategori[0].waktu);
     const [seconds, setSeconds] = useState(0);
 
-    useEffect(() => {
-        console.log(kategori);
-        console.log(jawaban);
-        console.log("ID Kategori", data.kategori_kuis_id);
-    }, [jawaban]);
-
     const handleNextClick = () => {
         setCurrentSoal(currentSoal + 1);
     };

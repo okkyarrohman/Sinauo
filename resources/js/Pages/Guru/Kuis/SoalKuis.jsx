@@ -9,14 +9,9 @@ import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { imageNoData } from "../../../../assets";
-import { useEffect } from "react";
 
 export default function SoalKuis({ auth }) {
     const { soal } = usePage().props;
-
-    useEffect(() => {
-        console.log(soal);
-    }, []);
 
     const head_title = ["No", "Kategori", "Pertanyaan", "Gambar", "Aksi"];
 

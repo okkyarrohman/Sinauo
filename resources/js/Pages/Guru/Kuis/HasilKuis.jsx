@@ -7,16 +7,10 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function HasilKuis({ auth }) {
     const { soal } = usePage().props;
-
-    useEffect(() => {
-        console.log("Soal", soal);
-    }, []);
 
     const head_title = ["No", "Siswa", "Kuis", "Poin", "Aksi"];
 

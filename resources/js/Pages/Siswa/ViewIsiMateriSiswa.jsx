@@ -1,7 +1,6 @@
 import BackButton from "@/Components/GeneralComponents/BackButton";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { url } from "../../../assets/url";
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 
@@ -18,12 +17,6 @@ export default function ViewIsiMateriSiswa({ auth }) {
         e.preventDefault();
         post(route("update.submateri"));
     };
-
-    useEffect(() => {
-        console.log(submateri);
-        console.log(data.status);
-        console.log(auth.user.id);
-    }, []);
 
     return (
         <MainLayout>

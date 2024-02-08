@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, Head, usePage } from "@inertiajs/react";
+import React from "react";
+import { Link, Head } from "@inertiajs/react";
 import {
     imageHero,
     imageKeunggulan,
@@ -10,13 +10,6 @@ import {
 } from "../../../assets";
 
 export default function Landing({ auth }) {
-    const { siswa } = usePage().props;
-
-    useEffect(() => {
-        console.log(auth);
-        console.log(siswa);
-    }, []);
-
     return (
         <>
             <Head title="Home" />

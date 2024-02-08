@@ -1,15 +1,10 @@
 import BackButton from "@/Components/GeneralComponents/BackButton";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { url } from "../../../assets/url";
 
 export default function ViewIsiReferensiSiswa() {
     const { referensi } = usePage().props;
-
-    useEffect(() => {
-        console.log(referensi);
-    }, []);
 
     return (
         <MainLayout>

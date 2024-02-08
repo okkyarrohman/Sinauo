@@ -2,18 +2,11 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
-import { imageKonten1, imageKonten2, imageKonten3 } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
 
 export default function MateriSiswa({ auth }) {
     const { materi, submaterial } = usePage().props;
-
-    useEffect(() => {
-        console.log(materi);
-        console.log(submaterial);
-    }, []);
 
     return (
         <MainLayout>

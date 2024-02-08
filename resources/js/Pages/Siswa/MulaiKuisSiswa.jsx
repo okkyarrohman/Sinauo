@@ -1,14 +1,9 @@
 import { Head, Link, usePage } from "@inertiajs/react";
 import { imageBelumKuis } from "../../../assets";
 import MainLayout from "@/Layouts/MainLayout";
-import { useEffect } from "react";
 
 export default function MulaiKuisSiswa() {
     const { kategori } = usePage().props;
-
-    useEffect(() => {
-        console.log(kategori);
-    }, []);
 
     return (
         <MainLayout>

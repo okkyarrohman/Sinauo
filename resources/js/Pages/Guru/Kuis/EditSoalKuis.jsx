@@ -1,17 +1,11 @@
 import PrimaryButton from "@/Components/GeneralComponents/PrimaryButton";
 import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
-import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function SoalKuis() {
     const { soal } = usePage().props;
-    
-    useEffect(() => {
-        console.log(soal);
-    }, []);
 
     const { data, setData, post, processing, errors } = useForm({
         id: soal.id,

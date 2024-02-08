@@ -15,12 +15,6 @@ import StepEmpatTugas from "@/Components/SiswaComponents/StepEmpatTugas";
 export default function DetailTugasSiswa({ auth }) {
     const { tugas, tugasResult } = usePage().props;
 
-    useEffect(() => {
-        console.log(tugas);
-        console.log("Result Tugas", tugasResult);
-        console.log(auth);
-    }, []);
-
     const isTenggatPassed = (deadline) => {
         const currentDateTime = new Date();
         const tenggatDateTime = new Date(deadline);

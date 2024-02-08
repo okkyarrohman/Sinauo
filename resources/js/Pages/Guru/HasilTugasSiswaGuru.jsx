@@ -7,9 +7,7 @@ import TableRow from "@/Components/GeneralComponents/TableRow";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { imageNoData } from "../../../assets";
 
 export default function HasilTugasSiswaGuru({ auth }) {
@@ -23,10 +21,6 @@ export default function HasilTugasSiswaGuru({ auth }) {
         "Status",
         "Konfirmasi",
     ];
-
-    useEffect(() => {
-        console.log(tugas);
-    }, []);
 
     const handleLihatTugas = (userId, tugasId, id) => {
         localStorage.setItem("USER_ID", userId);

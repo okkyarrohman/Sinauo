@@ -2,16 +2,10 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { placeholderReferensi, placeholderTutorial } from "../../../assets";
-import { useEffect } from "react";
 import { url } from "../../../assets/url";
 
 export default function ReferensiSiswa({ auth }) {
     const { referensi } = usePage().props;
-
-    useEffect(() => {
-        console.log(referensi);
-    }, []);
 
     return (
         <MainLayout>

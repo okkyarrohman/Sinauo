@@ -18,15 +18,6 @@ export default function SoalKuisSiswaAll() {
     const [minutes, setMinutes] = useState(kategori[0].waktu);
     const [seconds, setSeconds] = useState(0);
 
-    // let soal_data = [{ soal }];
-
-    useEffect(() => {
-        console.log(kategori);
-        // console.log(selectedOptions);
-        console.log(kategori[0].soal[0].id);
-        console.log(jawaban);
-    }, [jawaban]);
-
     const handleNextClick = () => {
         setCurrentSoal(currentSoal + 1);
     };

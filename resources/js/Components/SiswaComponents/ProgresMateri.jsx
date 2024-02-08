@@ -1,14 +1,9 @@
 import { Link } from "@inertiajs/react";
 import ProgressBar from "../GeneralComponents/ProgressBar";
-import { useEffect } from "react";
 
 export default function ProgresMateri(props) {
     let materi = [];
     materi = props.data.filter((item) => item.submateri.length > 0);
-
-    useEffect(() => {
-        console.log("Materi Bersub", materi);
-    }, []);
 
     return (
         <div className="p-4 rounded-md h-96 w-full bg-white shadow-custom">

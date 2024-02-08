@@ -6,10 +6,9 @@ import TableItem from "@/Components/GeneralComponents/TableItem";
 import TableRow from "@/Components/GeneralComponents/TableRow";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { url } from "../../../assets/url";
 import Swal from "sweetalert2";
-import CheckBoxKonfirmasiTugas from "@/Components/GuruComponents/CheckBoxKonfirmasiTugas";
 import DropdownKonfirmasiTugas from "@/Components/GuruComponents/DropdownKonfirmasiTugas";
 
 export default function DetailHasilTugasSiswaGuru() {
@@ -33,14 +32,7 @@ export default function DetailHasilTugasSiswaGuru() {
     });
 
     const head_title = ["Tahap", "Tanggal", "Hasil", "Konfirmasi"];
-    // const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState("");
-
-    // const optionDropdown = ["Terima", "Tolak"];
-
-    // const handleDropdown = () => {
-    //     setIsOpen(!isOpen);
-    // };
 
     const handleSelectOption = (option) => {
         setSelectedValue(option);
@@ -66,12 +58,6 @@ export default function DetailHasilTugasSiswaGuru() {
             timer: 1000,
         });
     };
-
-    useEffect(() => {
-        // console.log("TUGAS ISI :", tugas);
-        // console.log("TUGAS ISI TERFILTER :", filteredTugas);
-        console.log(data.konfirmasi1);
-    }, []);
 
     return (
         <MainGuruLayout>

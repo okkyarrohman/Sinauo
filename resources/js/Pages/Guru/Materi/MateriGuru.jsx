@@ -10,14 +10,9 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import { imageKonten1, imageNoData } from "../../../../assets";
 import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
-import { useEffect } from "react";
 
 export default function MateriGuru({ auth }) {
     const { materi } = usePage().props;
-
-    useEffect(() => {
-        console.log(materi);
-    }, []);
 
     const head_title = [
         "No",

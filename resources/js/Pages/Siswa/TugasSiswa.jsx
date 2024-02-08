@@ -5,7 +5,6 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
 import { iconFeedback, iconSubmitKuis } from "../../../assets";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
-import { useEffect } from "react";
 
 export default function TugasSiswa({ auth }) {
     const { tugas, tugasResult } = usePage().props;
@@ -34,11 +33,6 @@ export default function TugasSiswa({ auth }) {
 
         return currentDateTime.getTime() >= tenggatDateTime.getTime();
     };
-
-    useEffect(() => {
-        console.log("Tugas", tugas);
-        console.log("Tugas Result", tugasResult);
-    }, []);
 
     return (
         <MainLayout>

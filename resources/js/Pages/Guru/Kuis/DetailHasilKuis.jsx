@@ -1,4 +1,3 @@
-import ActionButton from "@/Components/GeneralComponents/ActionButton";
 import Table from "@/Components/GeneralComponents/Table";
 import TableBody from "@/Components/GeneralComponents/TableBody";
 import TableHead from "@/Components/GeneralComponents/TableHead";
@@ -8,14 +7,9 @@ import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function HasilKuis({ auth }) {
     const { hasil } = usePage().props;
-
-    useEffect(() => {
-        console.log(hasil);
-    }, []);
 
     const head_title = ["No", "Pertanyaan", "Poin"];
 

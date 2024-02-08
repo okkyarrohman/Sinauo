@@ -2,7 +2,6 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import SearchBar from "@/Components/SiswaComponents/SearchBar";
 import ProfileInfo from "@/Components/SiswaComponents/ProfileInfo";
-import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
     const { kategori, hasilKuis } = usePage().props;
@@ -17,11 +16,6 @@ export default function KuisSiswa({ auth }) {
 
         return currentDateTime.getTime() >= tenggatDateTime.getTime();
     };
-
-    useEffect(() => {
-        console.log("Kategori", kategori);
-        console.log("Result", hasilKuis);
-    }, []);
 
     return (
         <MainLayout>

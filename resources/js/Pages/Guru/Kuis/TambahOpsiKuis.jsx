@@ -3,14 +3,10 @@ import SecondaryButton from "@/Components/GeneralComponents/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function TambahOpsiKuis() {
     const { soal } = usePage().props;
-    useEffect(() => {
-        console.log(soal);
-    }, []);
 
     const { data, setData, post, processing, errors } = useForm({
         soal_id: "",

@@ -10,7 +10,6 @@ import InformasiBaru from "@/Components/SiswaComponents/InformasiBaru";
 import TesStatistik from "@/Components/SiswaComponents/TesStatistik";
 import ProgresMateri from "@/Components/SiswaComponents/ProgresMateri";
 import ProgresTugas from "@/Components/SiswaComponents/ProgresTugas";
-import { useEffect } from "react";
 import { url } from "../../../assets/url";
 import FormatWaktu from "../../../assets/formatdate";
 
@@ -34,16 +33,6 @@ export default function DashboardSiswa({ auth }) {
 
         percentage = (filledAnswers.length / totalAnswers.length) * 100;
     }
-
-    useEffect(() => {
-        //     console.log(barcode);
-        //     console.log(tugasBaru);
-        console.log(tugasResult);
-        console.log("FilledAnswer", filledAnswers);
-        //     console.log("Chart Kuis", chartKuis);
-        //     console.log("Chart Materi", chartMateri);
-        //     console.log("Persentase", percentage);
-    }, []);
 
     return (
         <MainLayout>

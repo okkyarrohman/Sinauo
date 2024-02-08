@@ -4,15 +4,10 @@ import TextInput from "@/Components/TextInput";
 import MainGuruLayout from "@/Layouts/MainGuruLayout";
 import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function EditSubmateriGuru() {
     const { edit } = usePage().props;
-
-    useEffect(() => {
-        console.log(edit);
-    }, []);
 
     const { data, setData, post, processing, errors } = useForm({
         id: edit.id,

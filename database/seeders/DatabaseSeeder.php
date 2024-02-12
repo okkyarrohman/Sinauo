@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
 
         // User::factory(20)->create();
-        Absensi::factory(1)->create();
+        // Absensi::factory(1)->create();
         // Tutorial::factory(5)->create();
         // Referensi::factory(5)->create();
         // Tugas::factory(5)->create();

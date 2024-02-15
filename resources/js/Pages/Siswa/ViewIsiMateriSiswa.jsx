@@ -15,7 +15,7 @@ export default function ViewIsiMateriSiswa({ auth }) {
 
     const handleMarkDone = (e) => {
         e.preventDefault();
-        post(route("update.submateri"));
+        post(route("tandai.submateri"));
     };
 
     return (

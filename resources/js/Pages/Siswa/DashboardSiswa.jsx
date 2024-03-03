@@ -12,10 +12,17 @@ import ProgresMateri from "@/Components/SiswaComponents/ProgresMateri";
 import ProgresTugas from "@/Components/SiswaComponents/ProgresTugas";
 import { url } from "../../../assets/url";
 import FormatWaktu from "../../../assets/formatdate";
+import { useEffect } from "react";
 
 export default function DashboardSiswa({ auth }) {
-    const { barcode, tugasBaru, tugasResult, chartKuis, chartMateri } =
-        usePage().props;
+    const {
+        barcode,
+        tugasBaru,
+        tugasResult,
+        chartKuis,
+        chartMateri,
+        submateriSeens,
+    } = usePage().props;
 
     let percentage = 0;
     let sortedTugasTerbaru = [];
@@ -34,6 +41,10 @@ export default function DashboardSiswa({ auth }) {
         percentage = (filledAnswers.length / totalAnswers.length) * 100;
     }
 
+    useEffect(() => {
+        console.log(chartMateri);
+    }, []);
+
     return (
         <MainLayout>
             <Head title="Dashboard" />
@@ -47,7 +58,11 @@ export default function DashboardSiswa({ auth }) {
                     </div>
                     <div className="grid grid-cols-2 gap-x-12 mb-8">
                         <TesStatistik data={chartKuis} />
-                        <ProgresMateri data={chartMateri} />
+                        <ProgresMateri
+                            data={chartMateri}
+                            isSeen={submateriSeens}
+                            userId={auth.user.id}
+                        />
                     </div>
                     {tugasResult.filter((item) => item.user_id == auth.user.id)
                         .length != 0 && (
@@ -84,7 +99,7 @@ export default function DashboardSiswa({ auth }) {
                                         ? FormatWaktu(barcode.created_at)
                                         : "Belum Ada Absensi"
                                 }
-                                link={barcode.link}
+                                link={barcode ? barcode.link : ""}
                             />
                         </div>
                         <InformasiBaru data={tugasBaru} />

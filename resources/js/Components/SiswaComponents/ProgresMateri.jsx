@@ -3,12 +3,20 @@ import ProgressBar from "../GeneralComponents/ProgressBar";
 
 export default function ProgresMateri(props) {
     let materi = [];
+    let submateriSeens = [];
     materi = props.data.filter((item) => item.submateri.length > 0);
+    submateriSeens = props.isSeen;
 
     return (
         <div className="p-4 rounded-md h-96 w-full bg-white shadow-custom">
             <h4 className="text-lg font-medium mb-2">Progres Materi</h4>
             {materi.map((item, index) => {
+                const submateriIsSeen = submateriSeens.filter(
+                    (seen) =>
+                        seen.submateri.materi.id == item.id &&
+                        seen.user_id == props.userId
+                );
+
                 return (
                     <Link
                         key={index}
@@ -21,10 +29,11 @@ export default function ProgresMateri(props) {
                             </p>
                             <ProgressBar
                                 progres={
-                                    (item.submateri.filter(
-                                        (subItem) =>
-                                            subItem.status === "Selesai"
-                                    ).length /
+                                    //     item.submateri.filter(
+                                    //     (subItem) =>
+                                    //         subItem.status === "Selesai"
+                                    // )
+                                    (submateriIsSeen.length /
                                         item.submateri.length) *
                                     100
                                 }

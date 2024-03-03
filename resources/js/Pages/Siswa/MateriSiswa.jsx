@@ -4,9 +4,15 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
+import { useEffect } from "react";
 
 export default function MateriSiswa({ auth }) {
-    const { materi, submaterial } = usePage().props;
+    const { materi, submaterial, submateriSeens } = usePage().props;
+
+    useEffect(() => {
+        console.log(materi);
+        console.log("seen", submateriSeens);
+    }, []);
 
     return (
         <MainLayout>
@@ -20,6 +26,12 @@ export default function MateriSiswa({ auth }) {
             </h1>
             <div className="grid grid-cols-3 justify-items-center gap-y-10">
                 {materi.map((item, index) => {
+                    const submateriIsSeen = submateriSeens.filter(
+                        (seen) =>
+                            seen.submateri.materi.id == item.id &&
+                            seen.user_id == auth.user.id
+                    );
+
                     return (
                         <div
                             key={index}
@@ -46,11 +58,12 @@ export default function MateriSiswa({ auth }) {
                                     <div className="mb-7">
                                         <ProgressBar
                                             progres={
-                                                (item.submateri.filter(
-                                                    (statusItem) =>
-                                                        statusItem.status ===
-                                                        "Selesai"
-                                                ).length /
+                                                // item.submateri.filter(
+                                                //     (statusItem) =>
+                                                //         statusItem.status ===
+                                                //         "Selesai"
+                                                // )
+                                                (submateriIsSeen.length /
                                                     item.submateri.length) *
                                                 100
                                             }

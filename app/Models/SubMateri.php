@@ -28,4 +28,8 @@ class SubMateri extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function isSeen() {
+        return $this->hasMany(SubmateriSeen::class, 'submateri_id', 'id');
+    }
 }

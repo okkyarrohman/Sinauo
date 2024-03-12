@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Models\Materi;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SubMateri;
-
+use App\Models\SubmateriSeen;
 
 class MateriController extends Controller
 {
@@ -93,43 +93,56 @@ class MateriController extends Controller
     {
         $materi = Materi::all();
         $materi_submateri = Materi::with('submateri')->get();
+        $submateriSeens = SubmateriSeen::with(['submateri.materi', 'user'])->get();
         // $submateri = Submateri::all();
         $submateri = SubMateri::with('materi')->get();
 
         return Inertia::render('Siswa/MateriSiswa', [
             'materi' => $materi_submateri,
-            'submaterial' => $submateri
+            'submaterial' => $submateri,
+            'submateriSeens' => $submateriSeens
         ]);
     }
 
     public function show_siswa($id)
     {
-        $submateri = Submateri::where('materi_id', $id)->get();
-        $materi = Materi::where('id', $id)->get();
+        $submateri = Submateri::where('materi_id', $id)->with(['isSeen'])->get();
+        $submateriSeens = SubmateriSeen::with(['submateri.materi', 'user'])->get();
+        $materi = Materi::where('id', $id)->first();
 
         return Inertia::render('Siswa/DetailMateriSiswa', [
             'submateri' => $submateri,
+            'submateriSeens' => $submateriSeens,
             'materi' => $materi
         ]);
     }
 
     public function lihat_materi_siswa($id)
     {
-        $submateri = Submateri::where('id', $id)->get();
+        $submateri = Submateri::where('id', $id)->with(['isSeen'])->first();
+
+        $submateriSeens = SubmateriSeen::where('submateri_id', $id)->where('user_id', auth()->user()->id)->with(['submateri', 'user'])->first();
 
         return Inertia::render('Siswa/ViewIsiMateriSiswa', [
-            'submateri' => $submateri
+            'submateri' => $submateri,
+            'submateriSeens' => $submateriSeens
         ]);
     }
 
     public function update_selesai_siswa(Request $request)
     {
-        $submateri = SubMateri::find($request->id);
-        $submateri->user_id = $request->user_id;
-        $submateri->status = $request->status;
+        // $submateri = SubMateri::find($request->id);
+        // $submateri->user_id = $request->user_id;
+        // $submateri->status = $request->status;
 
-        $submateri->save();
+        // $submateri->save();
 
-        return redirect()->route('lihat-materi', $submateri->id)->with('success', 'Submateri selesai dipelajari');
+        $submateriSeen = SubmateriSeen::create([
+            'submateri_id' => $request->input('submateri_id'),
+            'user_id' => auth()->user()->id,
+            'is_seen' => 'Selesai'
+        ]);
+
+        return redirect()->route('lihat-materi', $request->input('submateri_id'))->with('success', 'Submateri selesai dipelajari');
     }
 }

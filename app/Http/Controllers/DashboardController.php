@@ -15,7 +15,7 @@ use App\Models\Materi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Soal;
-
+use App\Models\SubmateriSeen;
 
 class DashboardController extends Controller
 {
@@ -34,7 +34,7 @@ class DashboardController extends Controller
         // $tugas = TugasResult::latest()->take(3)->get();
         $tugas = TugasResult::with('tugas')->latest()->take(3)->get();
 
-
+        $submateriSeens = SubmateriSeen::with(['submateri.materi', 'user'])->get();
 
 
         return Inertia::render('Siswa/DashboardSiswa', [
@@ -43,7 +43,8 @@ class DashboardController extends Controller
             'tugasBaru' => $tugasBaru,
             'tugasResult' => $tugas,
             'chartKuis' => $this->grafikKuis(),
-            'chartMateri' => $this->grafikMateri()
+            'chartMateri' => $this->grafikMateri(),
+            'submateriSeens' => $submateriSeens
         ]);
     }
 

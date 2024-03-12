@@ -6,10 +6,17 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import CardSubmateri from "@/Components/SiswaComponents/CardSubmateri";
 import ProgressBar from "@/Components/GeneralComponents/ProgressBar";
 import { url } from "../../../assets/url";
+import { useEffect } from "react";
 
 export default function DetailMateriSiswa({ auth }) {
-    const { submateri, materi } = usePage().props;
+    const { submateri, submateriSeens, materi } = usePage().props;
     const statusSelesai = submateri.filter((item) => item.status === "Selesai");
+
+    const submateriIsSeen = submateriSeens.filter(
+        (item) =>
+            item.submateri.materi.id == materi.id &&
+            item.user_id == auth.user.id
+    );
 
     return (
         <MainLayout>
@@ -20,8 +27,8 @@ export default function DetailMateriSiswa({ auth }) {
             </div>
             <div className="mb-8">
                 <MateriBanner
-                    judul={materi[0].nama}
-                    deskripsi={materi[0].deskripsi}
+                    judul={materi.nama}
+                    deskripsi={materi.deskripsi}
                 />
             </div>
             <div className="w-1/3 flex items-center justify-between mb-9">
@@ -29,11 +36,11 @@ export default function DetailMateriSiswa({ auth }) {
                 <div className="w-[85%]">
                     <ProgressBar
                         progres={
-                            (statusSelesai.length / submateri.length) * 100
+                            (submateriIsSeen.length / submateri.length) * 100
                         }
                     />
                     <p>
-                        {statusSelesai.length}/{submateri.length} Materi
+                        {submateriIsSeen.length}/{submateri.length} Materi
                     </p>
                 </div>
             </div>

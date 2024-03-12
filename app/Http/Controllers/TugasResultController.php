@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TugasResultController extends Controller
 {
@@ -132,7 +133,18 @@ class TugasResultController extends Controller
         $tugas = new TugasResult();
         $tugas->user_id = $request->user_id;
         $tugas->tugas_id = $request->tugas_id;
-        $tugas->answer1 = $request->answer1;
+        if ($tugas->answer1 = $request->answer1) {
+            $tugas->date_step1 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer2')) {
+            $tugas->date_step2 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer3')) {
+            $tugas->date_step3 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer4')) {
+            $tugas->date_step4 = Carbon::now()->format('Y/m/d H:i');
+        }
 
         // Request column input type file
         if ($request->hasFile('answer2')) {
@@ -179,6 +191,18 @@ class TugasResultController extends Controller
         $tugas->user_id = $request->user_id;
         $tugas->tugas_id = $request->tugas_id;
         $tugas->answer1 = $request->answer1;
+        if ($tugas->answer1 = $request->answer1) {
+            $tugas->date_step1 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer2')) {
+            $tugas->date_step2 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer3')) {
+            $tugas->date_step3 = Carbon::now()->format('Y/m/d H:i');
+        }
+        if ($request->file('answer4')) {
+            $tugas->date_step4 = Carbon::now()->format('Y/m/d H:i');
+        }
 
         // Request column input type file
         if ($request->hasFile('answer2')) {

@@ -74,7 +74,7 @@ export default function DetailHasilTugasSiswaGuru() {
                                 <>
                                     <TableRow>
                                         <TableItem item={`Step 1`} />
-                                        <TableItem item={item.updated_at} />
+                                        <TableItem item={item.date_step1} />
                                         <TableItem
                                             item={
                                                 item.answer1 === null
@@ -103,7 +103,7 @@ export default function DetailHasilTugasSiswaGuru() {
                                     </TableRow>
                                     <TableRow>
                                         <TableItem item={`Step 2`} />
-                                        <TableItem item={item.updated_at} />
+                                        <TableItem item={item.date_step2} />
                                         <TableItem
                                             item={
                                                 item.answer2 === null ? (
@@ -138,7 +138,7 @@ export default function DetailHasilTugasSiswaGuru() {
                                     </TableRow>
                                     <TableRow>
                                         <TableItem item={`Step 3`} />
-                                        <TableItem item={item.updated_at} />
+                                        <TableItem item={item.date_step3} />
                                         <TableItem
                                             item={
                                                 item.answer3 === null ? (
@@ -173,7 +173,7 @@ export default function DetailHasilTugasSiswaGuru() {
                                     </TableRow>
                                     <TableRow>
                                         <TableItem item={`Step 4`} />
-                                        <TableItem item={item.updated_at} />
+                                        <TableItem item={item.date_step4} />
                                         <TableItem
                                             item={
                                                 item.answer4 === null ? (
